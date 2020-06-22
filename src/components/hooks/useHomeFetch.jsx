@@ -10,31 +10,28 @@ const useHomeFetch = () => {
     const fetchMovies = async (endpoint) => {
         setLoading(true)
         setError(false)
-
+        
         try{
             const result = await ( await fetch(endpoint) ).json();
             
-            setState(prev => {
-                return (
+            setState(prev => (
                     {
                         ...prev,
                         movies: [...result.results],
                         heroImage: prev.heroImage || result.results[0],
                         currentPage: result.page,
                         totalPages: result.total_pages
-                    }
-                )
-            })
-        }catch(error){
-            setError(true)
-            console.error(error.message)
+                    }))
+            }catch(error){
+                setError(true)
+                console.error(error.message)
+            }
+            setLoading(false)
         }
-        setLoading(false)
-    }
-
-    useEffect( () => {
-        fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}`)
-    }, [] )
+        
+        useEffect(  () => {
+             fetchMovies(`${API_URL}movie/popular?api_key=${API_KEY}`)
+             }, [] )
 
     return [{state, loading, error}, fetchMovies]
 }
