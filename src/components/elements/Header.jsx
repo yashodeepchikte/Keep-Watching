@@ -6,12 +6,17 @@ import TMDBLogo from "../images/tmdb_logo.svg"
 
 // importing styles
 import {StyledTMDBLogo, StyledRMDBLogo, StyledHeader} from "../styles/StyledHeader";
+import { Link } from "react-router-dom";
 
 const Header = () => (
     <StyledHeader>
         <div className="header-content">
-            <StyledRMDBLogo src={RMDBLogo} alt="rmdb-logo"/>
-            <StyledTMDBLogo src={TMDBLogo} alt="tldb-logo"/>
+            <Link to="/">
+                <StyledRMDBLogo src={RMDBLogo} alt="rmdb-logo"/>
+            </Link>
+            <a href="https://www.themoviedb.org/?language=en-US">
+                <StyledTMDBLogo src={TMDBLogo} alt="tldb-logo"/>
+            </a>
         </div>
     </StyledHeader>
 )
