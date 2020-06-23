@@ -62,6 +62,8 @@ export const StyledMovieInfo = styled.div`
 
   .rating-director {
     display: flex;
+    color:white;
+    font-family: 'Abel', sans-serif;
     justify-content: flex-start;
   }
 
