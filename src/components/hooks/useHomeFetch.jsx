@@ -11,13 +11,18 @@ const useHomeFetch = () => {
         setLoading(true)
         setError(false)
         
+        const isLoadMore = endpoint.search("page")  // is page is present in the end point means we r loading more movies
         try{
             const result = await ( await fetch(endpoint) ).json();
-            
+            // console.log("result == ", result)
             setState(prev => (
                     {
                         ...prev,
-                        movies: [...result.results],
+                        movies: 
+                        ( isLoadMore !== -1 ?
+                         [...prev.movies, ...result.results]
+                         :
+                         [...result.results]),
                         heroImage: prev.heroImage || result.results[0],
                         currentPage: result.page,
                         totalPages: result.total_pages

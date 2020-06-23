@@ -18,6 +18,15 @@ const Home =  () =>{
    console.log("state = ", state)
    
    const [searchTerm, setSetTerm] = useState("")
+   
+   const loadMoreMovies = () =>{
+        const searchEndpoint = `${API_URL}search/movie?api_key=${API_KEY}&query=${searchTerm}&page=${state.currentPage + 1}`;
+        const popularEndpoint = `${API_URL}movie/popular?api_key=${API_KEY}&page=${state.currentPage+1}`;
+    
+        const endpoint = searchTerm !== "" ? searchEndpoint : popularEndpoint;
+        // console.log("ENDPOINT + =  ", endpoint)
+        fetchMovies(endpoint)
+   }
 
 
    if (error) return <div> Something went wromg ....</div>
@@ -42,9 +51,9 @@ const Home =  () =>{
                     ))
                 }
            </Grid>
+           {loading && <Spinner /> }
+           <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
            
-           <Spinner />
-           <LoadMoreBtn />
        </div>
    )
 }
