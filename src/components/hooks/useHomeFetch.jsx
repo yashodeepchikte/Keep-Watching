@@ -4,7 +4,7 @@ import  {
 }
 from "../../config"
 
-const useHomeFetch = () => {
+const useHomeFetch = (searchTerm) => {
     const [state, setState] = useState( { movies: [] } )
     const [loading, setLoading] = useState( false )
     const [error, setError] = useState( false )
@@ -38,9 +38,23 @@ const useHomeFetch = () => {
         }
         
         useEffect(  () => {
-             fetchMovies(POPULAR_BASE_URL)
-             }, [] )
+            if (sessionStorage.homeState){
+                // console.log("Loading data from session storage")
+                setState(JSON.parse(sessionStorage.homeState));
+                setLoading(false)
+            }else{
 
+                console.log("Fetching from the movie db api")
+                fetchMovies(POPULAR_BASE_URL)
+            }
+             }, [] )
+        
+        useEffect( () => {
+            if(!searchTerm){
+                // console.log("Writing to session storage")
+                sessionStorage.setItem('homeState', JSON.stringify(state))
+            }
+        }, [searchTerm, state])
     return [{state, loading, error}, fetchMovies]
 }
 

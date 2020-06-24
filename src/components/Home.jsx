@@ -19,10 +19,10 @@ import NoImage  from "./images/no_image.jpg"
 import useHomeFetch from "./hooks/useHomeFetch"
 
 const Home =  () =>{
-   const [{state, loading, error}, fetchMovies] =  useHomeFetch();
-//    console.log("state = ", state)
-   
-   const [searchTerm, setSearchTerm] = useState("")
+    //    console.log("state = ", state)
+    
+    const [searchTerm, setSearchTerm] = useState("")
+    const [{state, loading, error}, fetchMovies] =  useHomeFetch(searchTerm);
    
    const loadMoreMovies = () =>{
         const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${state.currentPage + 1}`;
