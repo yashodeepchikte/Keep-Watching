@@ -1,3 +1,5 @@
 /node_modules
-
+/server/authentication-server/node_modules
+/server/authentication-server/passport-config.js
 .DS_Store
+

@@ -1,0 +1,22 @@
+{
+  "name": "authentication-server",
+  "version": "1.0.0",
+  "description": "\"server for handelling authentications\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yashodeep",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "google-auth-library": "^6.0.2",
+    "mongoose": "^5.9.20",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "passport-google-oauth2": "^0.2.0"
+  }
+}
