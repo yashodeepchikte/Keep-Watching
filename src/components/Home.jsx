@@ -14,6 +14,7 @@ import LoadMoreBtn from "./elements/LoadMoreBtn"
 import Spinner from "./elements/Spinner"
 import MovieThubm from "./elements/MovieThumb"
 import NoImage  from "./images/no_image.jpg"
+import Footer from "./elements/Footer"
 
 // importing custom hooks
 import useHomeFetch from "./hooks/useHomeFetch"
@@ -49,6 +50,7 @@ const Home =  () =>{
                title={state.heroImage.original_title}
                text={state.heroImage.overview}
            />)}
+            <Footer />        
            <SearchBar callback={searchMovies}/>
            <Grid header={searchTerm ? "Search Results:" : "Popular Movies"}>
                 {state.movies.map(movie => (

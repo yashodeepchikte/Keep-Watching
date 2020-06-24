@@ -10,6 +10,7 @@ import Header from "./elements/Header"
 import Home from "./Home"
 import Movie from "./Movie.jsx"
 import NotFound from "./NotFound"
+import Footer from "./elements/Footer"
 
 //  Importing styles
 import {GlobalStyle} from "./styles/GlobalStyle"
@@ -23,7 +24,7 @@ const App = () => (
             {/* The next route will be called if none of the above urls match up */}
             <Route component={NotFound} />          
         </Switch>
-        
+        <Footer />        
         <GlobalStyle />
     </Router>
 )
