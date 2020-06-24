@@ -15,7 +15,7 @@ const Movie = (props) =>{
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
-    console.log("movie= ",movie)
+    // console.log("movie= ",movie)
 
     if (error) return <div>Something went wrong</div>
     if (loading) return <Spinner />

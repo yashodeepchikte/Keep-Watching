@@ -20,7 +20,7 @@ import useHomeFetch from "./hooks/useHomeFetch"
 
 const Home =  () =>{
    const [{state, loading, error}, fetchMovies] =  useHomeFetch();
-   console.log("state = ", state)
+//    console.log("state = ", state)
    
    const [searchTerm, setSearchTerm] = useState("")
    
