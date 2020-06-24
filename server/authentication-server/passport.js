@@ -4,6 +4,17 @@ const keys = require("./passport-config")
 
 const User = require("./models/user.model")
 
+//  Serialize Cookie
+passport.serializeUser( (user, done) => {
+    done(null, user.id)                 // the first argument are the errors
+})
+
+// Deserialize cookie
+passport.deserializeUser( async (id, done) => {       // now in serialize we gave done only id thus deser.. will take id
+    const currentUser = await User.findById(id)
+    console.log("the deserialized user = ", currentUser)
+    done(null, currentUser)                 // the first argument are the errors
+})
 
 passport.use(
     new GoogleStrategy(
@@ -29,9 +40,15 @@ passport.use(
                     email: profile.email
                  })
                 .save()
-                .then( newUser => console.log("New user was saved \n", newUser))
+                .then( newUser =>{
+                    console.log("New user was saved \n", newUser)
+                    done(null, newUser)
+                })
+
+                
             }else{
                 console.log("USer already exists:", foundUser)
+                await done(null, foundUser )
             }
         })
 )
