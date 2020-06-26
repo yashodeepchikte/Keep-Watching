@@ -1,92 +1,77 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
-const passport = require("passport");
-const keys = require("./keys");
-const chalk = require("chalk");
-
-const FacebookStrategy = require("passport-facebook").Strategy;
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-
+const express = require('express');
+const mongoose = require("mongoose")
 const router = express.Router();
-router.use(cors());
-router.use(passport.initialize());
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const chalk = require("chalk")
+const config = require('config');
+// const auth = require('../middleware/auth');
+const {check, validationResult} = require('express-validator');
 
-var user = {};
+const User = require("../models/user.model")
 
-
-passport.serializeUser( (user, cb) => {
-    cb(null, user);
-})
-
-passport.deserializeUser( (user, cb) => {
-    cb(null, user)
-})
-
-// Facebook Strategy
-passport.use(new FacebookStrategy({
-    clientID: keys.FACEBOOK.clientID,
-    clientSecret: keys.FACEBOOK.clientSecret,
-    callbackURL: "/auth/facebook/callback"
-    },
-    (accessToken, refreshToken, profile, cb) => {
-        console.log(chalk.blue(JSON.stringify(profile)));
-        user = { ...profile };
-        return cb(null, profile);
-    }
-));
-
-//   Facebook auth handellers
-router.get("/facebook", passport.authenticate("facebook"));
-
-router.get("/facebook/callback",
-    passport.authenticate("facebook"),
-    (req, res) => {
-        res.redirect("/");
-    }
-)
-
-
-// Google Strategy
-passport.use(new GoogleStrategy({
-    clientID: keys.GOOGLE.clientID,
-    clientSecret: keys.GOOGLE.clientSecret,
-    callbackURL: "/auth/google/callback"
-},
-(accessToken, refreshToken, profile, cb) => {
-    console.log(chalk.blue(JSON.stringify(profile)));
-    user = { ...profile };
-    return cb(null, profile);
-}));
-
-//  Google Auth handellers
-router.get("/google", passport.authenticate("google", {
-    scope: ["profile", "email"]
-}));
-router.get("/google/callback",
-passport.authenticate("google"),
-(req, res) => {
-    res.redirect("/")
-});
-
-
-
-// const PORT  = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(chalk.green("APP IS LISTENING TO ---++-> " + PORT )));
-
+//  Route       ----->     Get api/auth
+//  Description ----->   Get the logged in user
+//  Access      -------->  Private
 router.get("/", (req, res)=>{
-    res.send("AUTH ROUTE")
+    res.send("api/auth route")
 })
 
-router.get("/user", (req, res) => {
-    console.log("getting user data");
-    res.send(user)
-})
 
-router.get("/auth/logout", (req, res) => {
-    console.log("logging out");
-    user ={}
-    res.send(user)
+//  Route       ----->     Post api/auth
+//  Description ----->   Authenticate a local login attempt and generate jws token
+//  Access      -------->  Public
+router.post("/", 
+                [
+                    check("email", "Please Include a valid email").isEmail(),               // Express validator 
+                    check("password", "Password is required").exists(),                     // validating the inputs
+                ],
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+              return res.status(400).json({errors: errors.array()});
+            }   
+
+            const {email, password} = req.body;
+
+            try {
+                let user = await User.findOne({email});
+
+                if (!user){
+                    return res.status(400).json({msg: 'Invalid Credentials --> Email'});
+                }
+
+                const isMatch = await bcrypt.compare(password, user.password)
+
+                if(!isMatch){
+                    return res.status(400).json({msg: 'Invalid Credentials --> Password'});
+                }
+                
+                const payload = {
+                    user: {
+                      id: user.id,
+                    },
+                };
+                if (config.get("jwtSecret")){
+                    console.log(chalk.green("JWT = ", config.get("jwtSecret")))
+                }else{
+                    console.log(chalk.red("Something is wrong with config.get(jwtsectete) in the auth.js file"))   
+                }
+                jwt.sign(
+                    payload,
+                    config.get('jwtSecret'),
+                    {
+                      expiresIn: 360000,
+                    },
+                    (err, token) => {
+                      if (err) throw err;
+                      res.json({token});
+                    },
+                  );
+            } catch (error) {
+                console.error(err.message);
+                res.status(500).send('Server Error');
+            }
 })
 
 module.exports = router

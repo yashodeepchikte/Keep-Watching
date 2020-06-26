@@ -1,13 +1,13 @@
 {
   "name": "keep-watching",
   "version": "1.0.0",
-  "description": "",
+  "description": "Movie recommendation and review app",
   "main": "server.js",
   "scripts": {
-    "client-install": "cd client && npm install",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
+    "client-install": "cd client && npm install",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -22,12 +22,18 @@
   },
   "homepage": "https://github.com/yashodeepchikte/Keep-Watching#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "chalk": "^4.1.0",
     "concurrently": "^5.2.0",
+    "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.20",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "uuidv4": "^6.1.1"
   }
 }
