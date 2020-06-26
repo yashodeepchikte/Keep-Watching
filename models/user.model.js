@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema({
     password: String,
     likedGener:Array,               //   ["comedy", "action" , "si-fi"] 
     Rated_items: Object,        //  {  movie : rating  }
+    displaypic_URL: String,
     date:{
         type: Date,
         default: Date.now

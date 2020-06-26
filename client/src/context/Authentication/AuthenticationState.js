@@ -1,28 +1,17 @@
-import React, {useReducer} from "react"
+import React, { useReducer } from 'react';
+import AuthContext from './authenticationContext';
+import authReducer from './authenticationReducer';
 
-import AuthContext from "./authenticationContext"
-import AuthReducer from "./authenticationReducer"
-
-import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    USER_LOADED,
-    AUTH_ERROR,
-    LOGIN_FAIL,
-    LOGIN_SUCCESS,
-    LOGOUT,
-    CLEAR_ERRORS
-} from "../types"
-
-const AuthState = (props) => {
+const AuthState = props => {
     const initialState = {
+        shit: "WORKS",
         token: localStorage.getItem("token"),
         isAuthenticated: null,
         loading: false,
         error: null
-    }
+    };
 
-    const [state, dispatch] = useReducer(authReducer, initialState)
+    const [state, dispatch] = useReducer(authReducer, initialState);
 
     //  Load user   ----> check for which user is logged in
 
@@ -34,19 +23,26 @@ const AuthState = (props) => {
 
     // clear errors      --------> clear the errors
 
+
     return (
-        <AuthContext.provisder
-        value={{
+        <AuthContext.Provider
+          value={{
             token: state.token,
             isAuthenticated: state.isAuthenticated,
             loading: state.loading,
             user: state.user,
             error: state.error
-        }}
+          }}
         >
-            {props.children}
-        </AuthContext.provisder>
-    )
+          {props.children}
+        </AuthContext.Provider>
+      );
 }
 
-export default AuthState
+export default AuthState;
+
+
+
+
+
+

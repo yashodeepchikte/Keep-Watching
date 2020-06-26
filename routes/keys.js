@@ -11,8 +11,8 @@ const FACEBOOK = {
     clientSecret: "645088b310270cf3abbda58e01f65e96"
 };
 const GOOGLE = {
-    clientID: "767059472934-s7s2rfm1ck3auiq620h2amls0d1rucs9.apps.googleusercontent.com",
-    clientSecret: "NlNvTx6kCSq7B2_YLAog8jtG"
+    clientID: "792595948741-gt4mskg6bjhfb114u91jer0spqvufajm.apps.googleusercontent.com",
+    clientSecret: "uHjRV9B_CWK7t0gH6VGuUvTB"
 };
 const INSTAGRAM = {
     clientID: "0d517fd22d63445181091e63578caf92",
