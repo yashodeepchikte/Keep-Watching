@@ -1,37 +1,33 @@
 {
-  "name": "react_movie_db_course",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@reach/router": "^1.2.1",
-    "passport": "^0.4.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-fontawesome": "^1.6.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
-    "styled-components": "^4.3.2"
-  },
+  "name": "keep-watching",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "client-install": "cd client && npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashodeepchikte/Keep-Watching.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "Yashodeep",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yashodeepchikte/Keep-Watching/issues"
+  },
+  "homepage": "https://github.com/yashodeepchikte/Keep-Watching#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }
