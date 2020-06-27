@@ -1,7 +1,30 @@
-import React, {useState} from "react"
-// import axios from "axios"
+import React, {useState, useContext, useEffect} from "react"
+import chalk from "chalk"
 
-const SignUp = () =>{
+//  import components
+import CustomImput from "../CustomInput/CustomInput"
+import {StyledSignedUp} from "./StyledSignUp"
+
+//  importing context
+import AlertContext from "../../../context/AlertContext/AlertContext"
+import AuthContext from "../../../context/Authentication/authenticationContext"
+
+const SignUp = (props) =>{
+    const authContext = useContext(AuthContext)
+    const { register, isAuthenticated, loadUser } = authContext
+    
+    // console.log("AlertContext inside the signup is =", AlertContext)
+    // console.log("alert context inside the signup is =", alertContext)
+    const alertContext = useContext(AlertContext)
+    const setAlert = alertContext.setAlert;
+    
+    useEffect( () =>{
+        loadUser();
+        if(isAuthenticated){
+            props.history.push("/");
+        }
+        // eslint-disable-next-line
+    }, [isAuthenticated, props.history])
 
     const [user, setUser] = useState({
         username:"",
@@ -23,50 +46,70 @@ const SignUp = () =>{
            )
     }
 
-    const handelSubmit = (event) => {
-        console.log("submit button was clicked")
+    const handelSubmit = async (event) => {
+        event.preventDefault()
+   
+
+      
+        
+        try {
+            const email = event.target.email.value
+            const fname = event.target.fname.value
+            const lname = event.target.lname.value
+            const password = event.target.password.value
+            const password2 = event.target.password2.value
+            const username = event.target.username.value
+
+            if(username==="" || password==="" || email===""){
+                setAlert("Please enter all teh fields", "danger")
+            }else if(password !== password2){
+                setAlert("Passwords do not match", "danger")
+            }else if(password.length < 6){
+                setAlert("Password must be atleast 6 characters")
+            }
+            else{
+
+                console.log("---<> making the server request <> ---")
+                console.log(typeof(register))
+                const response = await register({
+                    email,
+                    fname, lname,
+                    password, password2,
+                    username
+                })
+                console.log("response = ", response )
+                const token = response.data.token
+                console.log("Token = ", token)
+            }
+           
+        } catch (error) {
+            console.log("<<<<<<<<<<>>>>>>>>>>>>")
+            console.error("error = ", error)
+            console.error("error message = ", error.message)
+            console.log("some error in the catch block  of the signup component \n")
+            console.log("<<<<<<<<<<>>>>>>>>>>>>")
+        }
     }
 
     return(
-        <div>
+        <StyledSignedUp>
+        <div className="signup-continer">
             <h1>Signup with Email</h1>
             <form onSubmit={handelSubmit}>
-                
-                <div className="from-group">
-                    <label htmlFor="name">Email</label>
-                    <input type="text" name="email" value={email} onChange={handelChange} />
-                </div>      
-                
-                <div className="from-group">
-                    <label htmlFor="username">User Name</label>
-                    <input type="text" name="username" value={username} onChange={handelChange} />
-                </div>  
-
-                <div className="from-group-2">
-                    <label htmlFor="name">First Name</label>
-                    <input type="text" name="fname" value={fname} onChange={handelChange} />
-                </div>      
-
-                <div className="from-group-2">
-                    <label htmlFor="lname">Last Name</label>
-                    <input type="text" name="lname" value={lname} onChange={handelChange} />
-                </div>      
-
-                <div className="from-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" value={password} onChange={handelChange} />
-                </div>   
-
-                <div className="from-group">
-                    <label htmlFor="password2">Confirm Password</label>
-                    <input type="password" name="password2" value={password2} onChange={handelChange} />
-                </div>      
-
-                <div className="from-group">
-                    <input type="submit" value="SignUp" className="submit-btn"/>
-                </div>   
+                <table>
+                <tbody>
+                <CustomImput type="email" name="email" label="Email" handelChange={handelChange} value={email}/>
+                <CustomImput type="text" name="username" label="Username" handelChange={handelChange} value={username}/>
+                <CustomImput type="text" name="fname" label="First Name" handelChange={handelChange} value={fname}/>
+                <CustomImput type="text" name="lname" label="Last Namel" handelChange={handelChange} value={lname}/>
+                <CustomImput type="password" name="password" label="Password" handelChange={handelChange} value={password}/>
+                <CustomImput type="password" name="password2" label="Confirm Password" handelChange={handelChange} value={password2}/>
+                <CustomImput type="submit" name="l" label="" handelChange={handelChange} value="Sign Up"/>
+                </tbody>
+                </table>
             </form>
-        </div>
+            </div>
+        </StyledSignedUp>
     )
 }
 

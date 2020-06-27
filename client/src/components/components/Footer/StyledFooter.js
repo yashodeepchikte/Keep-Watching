@@ -6,7 +6,9 @@ export const StyledFooter = styled.div`
   padding: 0 20px;
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;  
-//   border: 1px solid yellow;
+  border: 1px solid yellow;
+  height:10vh;
+
   a{
       color: white;
       text-decoration: none;

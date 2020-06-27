@@ -34,6 +34,7 @@ router.post("/",
     async (req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()){
+            console.error("Errors in express-validator = ", errors)
             return res.status(400).json( { errors: errors.array() } );
         }
 
@@ -44,7 +45,8 @@ router.post("/",
             let user = await User.findOne( { email } )
 
             if(user){
-                console.log(chalk.red("user already exists = ", user))
+                console.error("ERROR:")
+                console.log(chalk.red("user already exists returnining with 400 ", user))
                 return res.status(400).json( { msg: "Email already exists try logging in" } )
             }else if(password !== password2){
                 return res.status(400).json( { msg: "passwords dont match" } )

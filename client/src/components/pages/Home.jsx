@@ -1,4 +1,4 @@
-import React, {useState}  from "react"
+import React, {useState, useContext, useEffect}  from "react"
 import {  
     IMAGE_BASE_URL, BACKDROP_SIZE, 
     POSTER_SIZE, SEARCH_BASE_URL, 
@@ -13,14 +13,24 @@ import  Grid from "../components/Grid/Grid"
 import LoadMoreBtn from "../components/LoadMoreButton/LoadMoreBtn"
 import Spinner from "../components/Spinner/Spinner"
 import MovieThubm from "../components/MovieThubmnail/MovieThumb"
-import Footer from "../components/Footer/Footer"
+// import Footer from "../components/Footer/Footer"
 import NoImage  from "../images/no_image.jpg"
 
 // importing custom hooks
 import useHomeFetch from "../hooks/useHomeFetch"
 
+//  importing context
+import AuthContext from "../../context/Authentication/authenticationContext"
 const Home =  () =>{
     //    console.log("state = ", state)
+
+    const authContext = useContext(AuthContext)
+    // console.log("AuthContext = ", AuthContext)
+    // console.log("authContext = ", authContext)
+    const {isAuthenticated, loadUser} = authContext
+    useEffect(()=>{
+        loadUser()
+    }, [])
     
     const [searchTerm, setSearchTerm] = useState("")
     const [{state, loading, error}, fetchMovies] =  useHomeFetch(searchTerm);
