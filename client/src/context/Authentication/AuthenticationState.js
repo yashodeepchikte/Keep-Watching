@@ -4,8 +4,9 @@ import chalk from "chalk"
 
 import AuthContext from './authenticationContext';
 import authReducer from './authenticationReducer';
+
 import axios from "axios"
-import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS } from '../types';
+import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT } from '../types';
 
 import setAthToken from "../../utils/setAuthToken"
 // import AlertContext from "../AlertContext/AlertContext"
@@ -33,7 +34,9 @@ const AuthState = (props) => {
     const loadUser = async () => {
 		//  --------> for authentication to work we need to store the token in global header with key
 		//  ---------> X-auth-token
+		console.log("checking token")
 		if (localStorage.token){				//-------> if a token exists in the local storage set it to global header
+			console.log("token found ", localStorage.token)
 			setAthToken(localStorage.token);     // ---> utility function  
 		}
 		try {
@@ -46,6 +49,10 @@ const AuthState = (props) => {
 			})
 		} catch (error) {
 			//  this code will run if the authentication goes wrong
+			console.error("there was an error in the catch block of the loadUser in the authenticationState.jsx")
+			console.log("ERROR:-", Error.message )
+			console.log("ERROR:-", Error )
+
 			dispatch({
 				type: AUTH_ERROR
 			})
@@ -109,9 +116,29 @@ const AuthState = (props) => {
 			console.log("Error --> ", error.response.data.msg)
 		}
 	}
+	//  Signin with Google
+	const signInWithGoogle = async() => {
+		try {
+			const res = await axios.get("localhost:3000/api/auth/google")
+			// console.log("RES.data in signin with google= ", res.data)
+			dispatch({
+				type: LOGIN_SUCCESS,
+				payload: res.data
+			})
+			
+		} catch (error) {
+			console.log("some error in the catch block of the signinwithGogle function in the AuthState.jsx")
+			console.log("error --> ", error.message)
+			// console.log("Error --> ", error.response.data.msg)
+		}
 
+	}
     //  logout user --------> Logout the user
-    const logout = () => console.log("Logout")
+    const logout = () => {
+		dispatch({
+			type: LOGOUT	
+		})
+	}
 
     // clear errors      --------> clear the errors
     const clearErrors = () => console.log("Clear errors")
@@ -126,7 +153,7 @@ const AuthState = (props) => {
             user: state.user,
             error: state.error,
             register,
-            login,
+            login,signInWithGoogle,
             logout,
             clearErrors,
             loadUser

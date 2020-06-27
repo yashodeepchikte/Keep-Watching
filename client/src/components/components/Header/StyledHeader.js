@@ -4,7 +4,6 @@ export const StyledHeader = styled.div`
   background: #1c1c1c;
   padding: 0 20px;
   box-sizing: border-box;
-  height: 15vh;
 
   .header-content {
     max-width: 1280px;

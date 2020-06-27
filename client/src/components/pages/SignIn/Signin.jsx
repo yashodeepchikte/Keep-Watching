@@ -1,10 +1,10 @@
 import React, {useState, useContext, useEffect} from "react"
 import {Link} from "react-router-dom"
-import chalk from "chalk"
+// import chalk from "chalk"
 
 //  Importing components
 import CustomInput from "../../components/CustomInput/CustomInput"
-
+import SigninWithGoogle from "../../components/SignInWithGoogle/SignInWithGoogle"
 // Importing Context
 import AuthContext from "../../../context/Authentication/authenticationContext"
 import AlertContext from "../../../context/AlertContext/AlertContext"
@@ -67,17 +67,22 @@ const SignIn = (props) => {
 
     return(
     <div className="signin-container">
-        <h1>Sign in With Email</h1>
-        <h3>Don't  have an account? <br /> <Link to="/signup">Sign Up</Link></h3>
-        <form onSubmit={handelSubmit}>
-            <table>
-                <tbody>
-                    <CustomInput type="email" name="email" label="Email" handelChange={handelChange} value={email} />
-                    <CustomInput type="password" name="password" label="Password" handelChange={handelChange} value={password}/>
-                    <CustomInput type="submit" name="" label="" handelChange={handelChange} value="Sign In"/>
-                </tbody>
-            </table>
-        </form>
+        <div>
+            <h1>Sign in With Email</h1>
+            <h3>Don't  have an account? <br /> <Link to="/signup">Sign Up</Link></h3>
+            <form onSubmit={handelSubmit}>
+                <table>
+                    <tbody>
+                        <CustomInput type="email" name="email" label="Email" handelChange={handelChange} value={email} />
+                        <CustomInput type="password" name="password" label="Password" handelChange={handelChange} value={password}/>
+                        <CustomInput type="submit" name="" label="" handelChange={handelChange} value="Sign In"/>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div>
+            <SigninWithGoogle />
+        </div>
     </div>
     )
 }

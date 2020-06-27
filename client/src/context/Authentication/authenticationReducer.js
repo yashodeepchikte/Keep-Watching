@@ -1,4 +1,5 @@
 import {useContext} from "react" // eslint-disable-next-line
+import axios from "axios"
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -31,6 +32,17 @@ import {
 			};
       	case REGISTER_FAIL:
 		case AUTH_ERROR:
+			return {
+				...state,
+				token: null,
+				isAuthenticated: false,
+				loading: false,
+				user: null,
+				error: action.payload
+			};
+		case LOGOUT:
+			delete axios.defaults.headers.common ["x-auth-token"]
+			localStorage.removeItem('token');
 			return {
 				...state,
 				token: null,
