@@ -9,11 +9,12 @@ import {
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 //  importing page components
+import Alerts from "./components/Alerts/Alerts"
 import Home from "./pages/Home"
 import Movie from "./pages/Movie"
 import NotFound from "./pages/NotFound"
 import SignUp from "./components/SignUp/SignUp"
-import Alerts from "./components/Alerts/Alerts"
+import SignIn from "./pages/SignIn/Signin"
 
 // importing states
 import UserState from "../context/Users/USerState"
@@ -42,8 +43,9 @@ const App = () =>{
                     <Alerts />
                     <Switch>
                         <Route exact  path="/" component={Home} />
-                        <Route path="/movie/:movieId" component={Movie}></Route>
-                        <Route exact path="/signup"  component={SignUp}/>
+                        <Route path="/movie/:movieId" component={Movie} />
+                        <Route exact path="/signup"  component={SignUp} />
+                        <Route exact path="/signin" component={SignIn} />
                         {/* The next route will be called if none of the above urls match up */}
                         <Route component={NotFound}/>          
                     </Switch>

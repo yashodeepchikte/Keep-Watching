@@ -20,6 +20,7 @@ const SignUp = (props) =>{
     
     useEffect( () =>{
         loadUser();
+
         if(isAuthenticated){
             props.history.push("/");
         }
@@ -48,9 +49,6 @@ const SignUp = (props) =>{
 
     const handelSubmit = async (event) => {
         event.preventDefault()
-   
-
-      
         
         try {
             const email = event.target.email.value
@@ -84,7 +82,6 @@ const SignUp = (props) =>{
            
         } catch (error) {
             console.log("<<<<<<<<<<>>>>>>>>>>>>")
-            console.error("error = ", error)
             console.error("error message = ", error.message)
             console.log("some error in the catch block  of the signup component \n")
             console.log("<<<<<<<<<<>>>>>>>>>>>>")
@@ -104,7 +101,7 @@ const SignUp = (props) =>{
                 <CustomImput type="text" name="lname" label="Last Namel" handelChange={handelChange} value={lname}/>
                 <CustomImput type="password" name="password" label="Password" handelChange={handelChange} value={password}/>
                 <CustomImput type="password" name="password2" label="Confirm Password" handelChange={handelChange} value={password2}/>
-                <CustomImput type="submit" name="l" label="" handelChange={handelChange} value="Sign Up"/>
+                <CustomImput type="submit" name="" label="" handelChange={handelChange} value="Sign Up"/>
                 </tbody>
                 </table>
             </form>

@@ -1,10 +1,11 @@
 // import React, { useReducer, useContext } from 'react';
 import React, { useReducer, useContext } from "react"
+import chalk from "chalk"
 
 import AuthContext from './authenticationContext';
 import authReducer from './authenticationReducer';
 import axios from "axios"
-import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR } from '../types';
+import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS } from '../types';
 
 import setAthToken from "../../utils/setAuthToken"
 // import AlertContext from "../AlertContext/AlertContext"
@@ -36,7 +37,7 @@ const AuthState = (props) => {
 			setAthToken(localStorage.token);     // ---> utility function  
 		}
 		try {
-			const res = await axios.get("/api/auth");		// this will add user to the res.data is token is valid
+			const res = await axios.get("/api/auth");		// this will add user to the res.data if token is valid
 			
 			//  this code will run only if above request is successful
 			dispatch({
@@ -82,7 +83,32 @@ const AuthState = (props) => {
 
 
     //  login user  --------> login and create token
-    const login = () => console.log("Login")
+    const login = async (formData) => {
+		const config = {
+			headers:
+			{
+				"Content-Type": "application/json"
+			} 
+		}
+		
+		try {
+			const res = await axios.post("/api/auth", formData, config)
+			dispatch({
+				type: LOGIN_SUCCESS,
+				payload: res.data
+			})
+			
+			console.log(chalk.green("login Successful"))
+			console.log(chalk.green("the response was = ", res))
+			loadUser()
+			return res
+		} catch (error) {
+			setAlert(error.response.data.msg, "danger")
+			console.log("some error in the catch block of the login function in the AuthState.jsx")
+			console.log("error --> ", error.message)
+			console.log("Error --> ", error.response.data.msg)
+		}
+	}
 
     //  logout user --------> Logout the user
     const logout = () => console.log("Logout")

@@ -18,7 +18,7 @@ const authMiddleware = async (req, res, next) => {
         const decoded =await  jwt.verify(token, config.get('jwtSecret'));
         
         console.log(chalk.red("inside the middleware decoded user = ", await decoded.user))
-        req.user = decoded.user;
+        req.user =await  decoded.user;
 
         next();
     } catch (error) {
