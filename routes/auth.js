@@ -90,7 +90,7 @@ router.post("/",
                     },
                   );
             } catch (error) {
-                console.error(err.message);
+                console.error(error.message);
                 res.status(500).send('Server Error');
             }
 })
@@ -129,7 +129,7 @@ async (accessToken, refreshToken, profile, cb) => {
         // console.log("------------------<><><><><><>-----------------")
     
         const foundUser = await User.findOne({email})
-
+        let id = -1
         if(!foundUser){
             //  create a new user
             const newUser = new User({
@@ -145,13 +145,43 @@ async (accessToken, refreshToken, profile, cb) => {
             await newUser.save()
             console.log("New user was saved to the database")
             console.log(newUser)
+            console.log("ID for the New user = ", newUser.id)
+            id = newUser.id
 
             // res.send("New user saved")
-            return cb(null, profile);
+            // return cb(null, profile);
 
         }else{
             //  User already exists
-            return cb(null, foundUser);
+            // return cb(null, foundUser);
+            id = foundUser.id
+        }
+        if (id !== -1){
+
+            const payload = {                   // we will be using the mongoose id rather that the provider id
+                user: {
+                  id,
+                },
+              };
+              jwt.sign(
+                payload,
+                config.get('jwtSecret'),
+                {
+                  expiresIn: 360000,
+                },
+                (err, token)=>{
+                  
+                  if (err){
+                      console.error("some error in creating token")
+                      throw err;
+                      res.status(500).json({"msg": "Server error in creating jwt in users.js file in the post route"})
+                  } 
+                  cb(err, token)
+                }
+            )
+        }else{
+            console.log("Problem with id generation in auth.js file google strategy section")
+            return
         }
     } catch (error) {
         console.log(chalk.yellow("error in cath statement in creating user from google data in auth get api/auth/google"))
@@ -168,7 +198,12 @@ router.get("/google/callback",
 passport.authenticate("google"),
 (req, res) => {
     console.log("req.user = ", req.user)
-    console.log("req.body = ", req.body)
+    // localStorage.setItem("token", req.user)
+    // localStorage.setItem('token', action.payload.token);
+    // console.log("req.body = ", req.body)
+    // id = req.user.id
+
+    // res.redirect("http://localhost:3000/")
     res.json(req.user)
 });
 

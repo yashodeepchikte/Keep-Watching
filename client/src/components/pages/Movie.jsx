@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useContext, useEffect} from "react"
 
 //  importing component
 import Navigation from "../components/Navigation/Navigation"
@@ -11,7 +11,17 @@ import Actor from "../components/Actor/Actor"
 //  importing custom hook
 import useMovieFetch from "../hooks/useMovieFetch"
 
+// importing context 
+import AuthContext from "../../context/Authentication/authenticationContext"
 const Movie = (props) =>{ 
+    
+    const authContext = useContext(AuthContext)
+    // console.log("AuthContext = ", AuthContext)
+    // console.log("authContext = ", authContext)
+    const {isAuthenticated, loadUser} = authContext
+    useEffect(()=>{
+        loadUser()
+    }, [])
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)

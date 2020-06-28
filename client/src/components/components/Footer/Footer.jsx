@@ -14,7 +14,7 @@ const Footer = () => (
                 Made with  ❤ by Yashodeep
             </a>
             <a href="https://github.com/yashodeepchikte/Keep-Watching">
-                <FontAwesome  className="fa fa-github" name="clock-o" size="1x"/>
+                <FontAwesome  className="fa fa-github" name="clock-o" />
             </a>
         </div>
     </StyledFooter>
