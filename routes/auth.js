@@ -16,7 +16,10 @@ const {check, validationResult} = require('express-validator');
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const router = express.Router();
-router.use(cors());
+router.use(cors({
+    origin: "http://localhost:5000",      // <------- host for the react app
+    credentials: true
+}));
 router.use(passport.initialize());
 
 const User = require("../models/user.model")

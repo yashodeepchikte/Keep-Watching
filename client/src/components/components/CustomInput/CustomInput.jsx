@@ -4,17 +4,17 @@ import {StylisedCustomInput} from "./StylisedCustomInput"
 
 const CustomInput = ({type, name, label, handelChange, required, value}) => {
     return(
-        
-            <tr>
+          
+            <StylisedCustomInput>
                 
-               <td>
+               <td className="first">
                     <label htmlFor={name}>{label}</label>
                </td> 
                <td>
                     <input type={type} name={name} value={value} onChange={handelChange} />
                </td>
            
-            </tr>
+            </StylisedCustomInput>
           
     )
 }

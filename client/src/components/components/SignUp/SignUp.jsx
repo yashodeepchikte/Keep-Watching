@@ -3,6 +3,7 @@ import chalk from "chalk"
 
 //  import components
 import CustomImput from "../CustomInput/CustomInput"
+import GenerPreference from "../GenerSelection/generSelection"
 import {StyledSignedUp} from "./StyledSignUp"
 
 //  importing context
@@ -49,6 +50,7 @@ const SignUp = (props) =>{
 
     const handelSubmit = async (event) => {
         event.preventDefault()
+
         
         try {
             const email = event.target.email.value
@@ -57,13 +59,25 @@ const SignUp = (props) =>{
             const password = event.target.password.value
             const password2 = event.target.password2.value
             const username = event.target.username.value
+            const gener = event.target.gener
+            let generPreference = []
+
+            for(let i = 0; i< 16; i++){
+                if (gener[i].checked){
+                    generPreference.push(gener[i].value)
+                }
+            }
+            
+
 
             if(username==="" || password==="" || email===""){
-                setAlert("Please enter all teh fields", "danger")
+                setAlert("Please enter all the fields", "danger")
             }else if(password !== password2){
                 setAlert("Passwords do not match", "danger")
             }else if(password.length < 6){
                 setAlert("Password must be atleast 6 characters")
+            }else if(generPreference.length < 2){
+                setAlert("Select at least 3 gener")
             }
             else{
 
@@ -73,7 +87,8 @@ const SignUp = (props) =>{
                     email,
                     fname, lname,
                     password, password2,
-                    username
+                    username,
+                    generPreference
                 })
                 console.log("response = ", response )
                 const token = response.data.token
@@ -81,6 +96,7 @@ const SignUp = (props) =>{
             }
            
         } catch (error) {
+            
             console.log("<<<<<<<<<<>>>>>>>>>>>>")
             console.error("error message = ", error.message)
             console.log("some error in the catch block  of the signup component \n")
@@ -100,7 +116,8 @@ const SignUp = (props) =>{
                 <CustomImput type="text" name="fname" label="First Name" handelChange={handelChange} value={fname}/>
                 <CustomImput type="text" name="lname" label="Last Namel" handelChange={handelChange} value={lname}/>
                 <CustomImput type="password" name="password" label="Password" handelChange={handelChange} value={password}/>
-                <CustomImput type="password" name="password2" label="Confirm Password" handelChange={handelChange} value={password2}/>
+                <CustomImput type="password" name="password2" label="Confirm Password" handelChange={handelChange} value={password2}/>    
+                <GenerPreference />          
                 <CustomImput type="submit" name="" label="" handelChange={handelChange} value="Sign Up"/>
                 </tbody>
                 </table>

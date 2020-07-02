@@ -38,7 +38,7 @@ router.post("/",
             return res.status(400).json( { errors: errors.array() } );
         }
 
-        const {fname, lname, email, password, password2, username} = req.body;
+        const {fname, lname, email, password, password2, username, generPreference} = req.body;
 
         try {
             console.log(chalk.yellow("email:", email))
@@ -61,6 +61,7 @@ router.post("/",
                 password: hashedPassword,
                 fname,
                 lname,
+                generPreference,
                 provider: "email",
                 provider_id: uuid()
             })
