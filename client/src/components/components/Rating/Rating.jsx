@@ -7,7 +7,7 @@ import AuthContext from "../../../context/Authentication/authenticationContext"
 
 //  Import styles
 import "./Rating.Styles.css"
-import Axios from "axios"
+
 
 
 const Ratings =  (props) => {
@@ -18,7 +18,7 @@ const Ratings =  (props) => {
     if(!isAuthenticated){
         return(
             <div  className="ratings">
-                <Link to="/signin">Rate this movie</Link>
+                <Link to="/signin" className="button">Rate this movie</Link>
             </div>
         )
     }
@@ -49,24 +49,32 @@ const Ratings =  (props) => {
     if (movieRating === -1){
         //  The user has not yet rated the movie
         return(
-            <form onSubmit={rateMovie}>
-                <select name="rating" id="cars">
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                </select>
-                <button type="submit">Rate</button>
-            </form>
+            <div className="ratings">
+               <h1>Rate this Movie</h1>
+                    <form onSubmit={rateMovie}>
+                        
+                        <select name="rating" id="cars">
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select>
+                        <button type="submit">Rate</button>
+                    </form>
+      
+            </div>
         )
     }else{
         //  user wants to change the rating
 
         // return(<h1>Rate movie</h1>)
 
-        return(<h1>Your Rating : {movieRating}</h1>)
-
+        return(
+            <div className="ratings">
+                <h1>Your Rating : {movieRating}<i class="fa fa-star" aria-hidden="true"></i></h1>
+            </div>
+        )
     }
 }
 

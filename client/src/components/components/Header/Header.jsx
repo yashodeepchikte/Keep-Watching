@@ -27,7 +27,7 @@ const Header = () =>
     return(
     <StyledHeader>
         <div className="header-content" style={style}>
-            <Link to="/">
+            <Link to="/" className="logo">
                 <StyledRMDBLogo src={RMDBLogo} alt="rmdb-logo"/>
             </Link>
             {/* <a href="https://www.themoviedb.org/?language=en-US">
@@ -35,15 +35,14 @@ const Header = () =>
             </a> */}
             {
                 isAuthenticated ?
-                <h1>{user ? user.email : ""}
-                <LogoutButton />
-                </h1>
+                <div className="loginInfo">
+                    <h1>{user ? user.email : ""}</h1>
+                    <LogoutButton />
+                </div>
                 :
-                <div>
-                    
-                        <Link to="/signin">Signin</Link>
-                   
-                    
+                <div className="signinButtons">
+                        <Link to="/signin">Sign In</Link>
+                        <a>|</a>
                         <Link to="/signup">Signup</Link>
                    
                 </div>

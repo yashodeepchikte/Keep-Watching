@@ -1,4 +1,30 @@
 .ratings{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0;
+    background-color: black;
     cursor: pointer;
-    color: red;
+    color: white;
+    font-size: 1rem;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.button{
+    padding: 10px;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.button:hover{
+    background-color: white;
+    color: black;
+    transform: scale(1.05);
+
+    transition: 0.3s;
+}
+.button:active{
+    transform: scale(1.1);
+    transition: 0.01s;
 }
