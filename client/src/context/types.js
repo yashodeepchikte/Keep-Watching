@@ -8,3 +8,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const SET_LOADING_TRUE = "SET_LOADING_TRUE"
+export const SET_LOADING_FALSE = "SET_LOADING_FALSE"
+export const UPDATE_USER = "UPDATE_USER"

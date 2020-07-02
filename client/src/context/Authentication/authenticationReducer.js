@@ -9,11 +9,26 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     CLEAR_ERRORS,
-    SET_ALERT
+	SET_ALERT,
+	SET_LOADING_FALSE,
+	SET_LOADING_TRUE,
+	UPDATE_USER
   } from '../types';
-  import AlertContext from "../AlertContext/AlertContext"
+
+
   export default (state, action) => {
     switch (action.type) {
+
+		case SET_LOADING_FALSE:
+			return{
+				...state,
+				loading: false
+			}
+		case SET_LOADING_TRUE:
+			return{
+				...state,
+				loading: true
+			}
 		case USER_LOADED:
 			return {
 				...state,
@@ -55,7 +70,12 @@ import {
         return {
           ...state,
           error: null
-        };
+		};
+	case UPDATE_USER:
+		return{
+			...state,
+			user: action.payload
+		}
       default:
         return state;
     }

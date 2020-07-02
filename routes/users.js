@@ -38,7 +38,7 @@ router.post("/",
             return res.status(400).json( { errors: errors.array() } );
         }
 
-        const {fname, lname, email, password, password2, username} = req.body;
+        const {fname, lname, email, password, password2, username, generPreference} = req.body;
 
         try {
             console.log(chalk.yellow("email:", email))
@@ -61,6 +61,7 @@ router.post("/",
                 password: hashedPassword,
                 fname,
                 lname,
+                generPreference,
                 provider: "email",
                 provider_id: uuid()
             })
@@ -102,7 +103,30 @@ router.post("/",
 });
 
 //   Update a user
+router.post("/update", async (req, res) => {
+    console.log("i made it to the correct  update function")
+    try{
+        const {userID, updateField, updatedValues} = req.body;
 
+       
+
+        User.findByIdAndUpdate(userID, { ratings:  updatedValues },  (err, doc) => {
+            if(err){
+                console.error(err)
+            }else{
+                console.log("doc = ", doc)
+                doc.ratings = updatedValues
+                doc.save()
+                res.json(doc)
+
+            }
+        })
+    }catch(err){
+        console.log("some error in the catch block on the update user route in the user router file")
+        console.error(err.message)
+        res.status(500).json("server error ")
+    }
+})
 
 
 module.exports = router

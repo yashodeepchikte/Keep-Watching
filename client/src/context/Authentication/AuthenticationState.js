@@ -6,7 +6,10 @@ import AuthContext from './authenticationContext';
 import authReducer from './authenticationReducer';
 
 import axios from "axios"
-import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT } from '../types';
+import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, 
+			AUTH_ERROR, LOGIN_SUCCESS, LOGOUT,
+			SET_LOADING_TRUE, UPDATE_USER,
+			SET_LOADING_FALSE} from '../types';
 
 import setAthToken from "../../utils/setAuthToken"
 // import AlertContext from "../AlertContext/AlertContext"
@@ -28,7 +31,11 @@ const AuthState = (props) => {
 
 	const [state, dispatch] = useReducer(authReducer, initialState);
 	
-
+	const setLoadingTrue = () => {
+		dispatch({
+			type: SET_LOADING_TRUE
+		}) 
+	}
 	
     //  Load user   ----> check for which user is logged in
     const loadUser = async () => {
@@ -61,12 +68,14 @@ const AuthState = (props) => {
     //  Register user -----> create user and token
     const register = async formData => {
 		const config = {
-		headers:
-		{
-			"Content-Type": "application/json"
-		} 
+			headers:
+			{
+				"Content-Type": "application/json"
+			} 
 		}
-
+		
+		setLoadingTrue()
+		
 		try {
 			const res = await axios.post("/api/users/", formData, config)
 			dispatch(
@@ -76,8 +85,10 @@ const AuthState = (props) => {
 				}
 			)
 			loadUser()
+			setLoadingFalse()
 			return res
 		} catch (error) {
+			setLoadingFalse()
 			console.log("ERROR IN authenticationstate.js in the register function catch block")
 			console.log("error = ", error.response.data.msg)
 			setAlert(error.response.data.msg, "danger")
@@ -108,9 +119,11 @@ const AuthState = (props) => {
 			console.log(chalk.green("login Successful"))
 			console.log(chalk.green("the response was = ", res))
 			loadUser()
+			setLoadingFalse()
 			return res
 		} catch (error) {
 			setAlert(error.response.data.msg, "danger")
+			setLoadingFalse()
 			console.log("some error in the catch block of the login function in the AuthState.jsx")
 			console.log("error --> ", error.message)
 			console.log("Error --> ", error.response.data.msg)
@@ -138,10 +151,32 @@ const AuthState = (props) => {
 		dispatch({
 			type: LOGOUT	
 		})
+		setLoadingFalse()
 	}
 
     // clear errors      --------> clear the errors
-    const clearErrors = () => console.log("Clear errors")
+	const clearErrors = () => console.log("Clear errors")
+	
+	//  Set loading true
+	const setLoadingtrue = () =>{
+		dispatch({
+			type: SET_LOADING_TRUE
+		})
+	}
+	//  set Loading fasle
+const setLoadingFalse =() => {
+	dispatch({
+		type: SET_LOADING_FALSE
+	})
+}
+
+// update User
+const updateUser = (user) => {
+	dispatch({
+		actionn: UPDATE_USER,
+		payload: user
+	})
+}
 
 
     return (
@@ -152,6 +187,8 @@ const AuthState = (props) => {
             loading: state.loading,
             user: state.user,
             error: state.error,
+			setLoadingtrue,
+			setLoadingFalse,
             register,
             login,signInWithGoogle,
             logout,
