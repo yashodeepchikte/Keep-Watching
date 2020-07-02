@@ -12,7 +12,7 @@ import Axios from "axios"
 
 const Ratings =  (props) => {
     const authContext = useContext(AuthContext)
-    const {isAuthenticated, user} = authContext
+    const {isAuthenticated, user, loadUser} = authContext
 
     const [rating, setRating] = useState(-1)
     if(!isAuthenticated){
@@ -43,6 +43,7 @@ const Ratings =  (props) => {
         console.log("userRatings = ", userRatings)
         const updatedUser = await axios.post("/api/users/update", {userID, updateField:"ratings" , updatedValues:userRatings})
         console.log("updated user = ",  updatedUser )
+        loadUser()
     }
 
     if (movieRating === -1){
@@ -61,7 +62,11 @@ const Ratings =  (props) => {
         )
     }else{
         //  user wants to change the rating
-        return(<h1>Rate movie</h1>)
+
+        // return(<h1>Rate movie</h1>)
+
+        return(<h1>Your Rating : {movieRating}</h1>)
+
     }
 }
 
