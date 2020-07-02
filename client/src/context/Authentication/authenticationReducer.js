@@ -11,7 +11,8 @@ import {
     CLEAR_ERRORS,
 	SET_ALERT,
 	SET_LOADING_FALSE,
-	SET_LOADING_TRUE
+	SET_LOADING_TRUE,
+	UPDATE_USER
   } from '../types';
 
 
@@ -69,7 +70,12 @@ import {
         return {
           ...state,
           error: null
-        };
+		};
+	case UPDATE_USER:
+		return{
+			...state,
+			user: action.payload
+		}
       default:
         return state;
     }

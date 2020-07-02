@@ -1,18 +1,19 @@
 import React, {useState, useContext } from "react"
 import {Redirect, Link}  from "react-router-dom"
+import axios from "axios"
 
 //  import context
 import AuthContext from "../../../context/Authentication/authenticationContext"
-import UserContext from "../../../context/Users/userContext"
+
 //  Import styles
 import "./Rating.Styles.css"
+import Axios from "axios"
 
 
 const Ratings =  (props) => {
     const authContext = useContext(AuthContext)
     const {isAuthenticated, user} = authContext
-    const userContext = useContext(UserContext)
-    const {loadUser, unloadUser, updateUser, currentUser} = userContext
+
     const [rating, setRating] = useState(-1)
     if(!isAuthenticated){
         return(
@@ -22,9 +23,10 @@ const Ratings =  (props) => {
         )
     }
     
-    const movieID = props.movie;
+    const movieID = props.movieID;
     const userRatings = user.ratings;
-    
+    const userID = user._id;
+
     let movieRating  = -1
     for(let i = 0; i<userRatings.length; i++){
         if (userRatings[i][0] === movieID ){
@@ -32,18 +34,35 @@ const Ratings =  (props) => {
         }
     }
 
-    const handelChange = e => {
-        setRating(e.target.rating.value)
+    const rateMovie = async (event) => {
+        event.preventDefault()
+        console.log("Rating = ", event.target.rating.value)
+        console.log("user id = ", userID)
+        console.log("movie id = ", movieID)
+        userRatings.push( [movieID, Number(event.target.rating.value)] )
+        console.log("userRatings = ", userRatings)
+        const updatedUser = await axios.post("/api/users/update", {userID, updateField:"ratings" , updatedValues:userRatings})
+        console.log("updated user = ",  updatedUser )
     }
-    const handelSubmit = e => {
-        e.preventDefault();
 
+    if (movieRating === -1){
+        //  The user has not yet rated the movie
+        return(
+            <form onSubmit={rateMovie}>
+                <select name="rating" id="cars">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                </select>
+                <button type="submit">Rate</button>
+            </form>
+        )
+    }else{
+        //  user wants to change the rating
+        return(<h1>Rate movie</h1>)
     }
-    return(
-        <div className="ratings">
-            <form onSubmit={handelSubmit}><input type="text" name="rating" value = {rating} onChange={handelChange}/></form>
-        </div>
-    )
 }
 
 export default Ratings

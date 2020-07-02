@@ -8,7 +8,7 @@ import authReducer from './authenticationReducer';
 import axios from "axios"
 import { REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED, 
 			AUTH_ERROR, LOGIN_SUCCESS, LOGOUT,
-			SET_LOADING_TRUE, 
+			SET_LOADING_TRUE, UPDATE_USER,
 			SET_LOADING_FALSE} from '../types';
 
 import setAthToken from "../../utils/setAuthToken"
@@ -167,6 +167,14 @@ const AuthState = (props) => {
 const setLoadingFalse =() => {
 	dispatch({
 		type: SET_LOADING_FALSE
+	})
+}
+
+// update User
+const updateUser = (user) => {
+	dispatch({
+		actionn: UPDATE_USER,
+		payload: user
 	})
 }
 
