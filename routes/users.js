@@ -103,7 +103,21 @@ router.post("/",
 });
 
 //   Update a user
+router.post("/update", async (req, res) => {
+    try{
+        const {userID, updateField, updatedValues} = req.body;
 
+        let user = User.findById(userID)
+        user.updateField = updatedValues
+        await user.save()
+        consolelog("user updated")
+        res.json(user)
+    }catch(err){
+        console.log("some error in the catch block on the update user route in the user router file")
+        console.error(err.message)
+        res.status(500).json("server error ")
+    }
+})
 
 
 module.exports = router
