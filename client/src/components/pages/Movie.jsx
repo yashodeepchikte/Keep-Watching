@@ -19,10 +19,10 @@ const Movie = (props) =>{
     const authContext = useContext(AuthContext)
     // console.log("AuthContext = ", AuthContext)
     // console.log("authContext = ", authContext)
-    const {isAuthenticated, loadUser} = authContext
+    const {isAuthenticated, loadUser, user} = authContext
     useEffect(()=>{
         loadUser()
-    }, [])
+    }, [isAuthenticated])
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
