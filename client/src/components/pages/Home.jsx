@@ -31,6 +31,7 @@ const Home =  () =>{
     const {isAuthenticated, loadUser} = authContext
     useEffect(()=>{
         loadUser()
+        console.log("loadUser() was called")
         // console.log("authContext after loadUser = ", authContext)
      // eslint-disable-next-line
     }, [])

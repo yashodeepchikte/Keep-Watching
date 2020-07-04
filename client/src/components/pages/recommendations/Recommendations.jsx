@@ -13,6 +13,8 @@ import NoImage from "../../images/no_image.jpg"
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../config"
 import { API_URL, API_KEY } from "../../../config"
 
+// importing stylesheet
+import "./Recommendations.styles.css"
 
 //  importing context 
 import AuthContext from "../../../context/Authentication/authenticationContext"
@@ -37,11 +39,15 @@ const RecommendationsPage =(props) => {
         console.log("The use effect for recommendations was called")
         console.log("recommendations in state => ", recommendations)
     }, [recommendations])
-    const generateRecommendations = async () => {
+// ------------------------------------------------------------------------user based handeler------------------------------------------------
+    const generateCollaborativeFilteringRecommendations = async (event) => {
         try {
+            console.log("target.value = ", event.target.value)
+            const recommender_type = event.target.value
             setLoadingtrue()
                 let userRatings = user.ratings;
                 let data = {
+                    recommender_type: await JSON.stringify(recommender_type),
                     userID: await JSON.stringify(user._id),
                     ratings: await JSON.stringify(userRatings)
                 } 
@@ -58,13 +64,17 @@ const RecommendationsPage =(props) => {
                     console.log("Ratings = ", data.ratings)
                     data = await JSON.stringify(data)
                     
-                
-                    const res = await axios.post('http://localhost:8000/recommendations/colaborativefiltering/users', data, config)
+                    let res = []
+                    if (recommender_type=== "userBasedCF"){
+                        res = await axios.post('http://localhost:8000/recommendations/usercolaborativefiltering', data, config)
+                    }else{
+                        res = await axios.post('http://localhost:8000/recommendations/itemcolaborativefiltering', data, config)
+                    }
                     console.log("recommendations = ", res.data)
                     
                     
                     
-                    console.log("Recommendations id recieved making the tmdb api calls")
+                    console.log("Recommendations id recieved --->  making the tmdb api calls")
                     let recommended_movies = []
                     setLoadingtrue()
                     try{
@@ -101,32 +111,40 @@ const RecommendationsPage =(props) => {
         }
     }
 
+  
+
+    
+
    if (recommendations.length  === 0  || loading){ 
        return(
-       <div>
-            recommendations route
+       <div className="recommendation-container">
             {
                 loading ?
                 <Spinner />
                 :
-                <button onClick={generateRecommendations}>Generate Recommendations</button>
+                <div>
+                    <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF">Generate User Based Collaborative Filtering Recommendations</button>
+                    <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF">Generate User Based Collaborative Filtering Recommendations</button>
+                </div>
             }
         </div>)
     }else if (recommendations.length !== 0){
         
         return(
-            <Grid header="Recommended Movies are:" >
-                {recommendations.map(movie => (
-                    <MovieThubm 
-                        key={movie.id}
-                        clickable
-                        image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
-                        movieId={movie.id}
-                        movieName={movie.original_title}
-                    />
-                    ))
-                }
-            </Grid>
+            <div className="recommendation-route">
+                <Grid header="Recommended Movies are:" >
+                    {recommendations.map(movie => (
+                        <MovieThubm 
+                            key={movie.id}
+                            clickable
+                            image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
+                            movieId={movie.id}
+                            movieName={movie.original_title}
+                        />
+                        ))
+                    }
+                </Grid>
+            </div>
             )
     }
 }

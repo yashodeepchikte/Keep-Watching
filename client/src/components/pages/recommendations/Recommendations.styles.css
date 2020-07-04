@@ -1,1 +1,7 @@
-   
+.recommendation-route{
+    width: 70%;
+}
+
+.recommendation-route > button{
+    color: red;
+}
