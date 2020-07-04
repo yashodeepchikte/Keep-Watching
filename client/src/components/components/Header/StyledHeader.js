@@ -18,13 +18,6 @@ export const StyledHeader = styled.div`
 
   .logo{
     background:#1c1c1c;
-    transation: 3s;
-
-  }
-  .logo:hover{
-    background: #1c1c1c;
-    transform: scale(0.99);
-    transation: 3s;
   }
   .signinButtons{
     

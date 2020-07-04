@@ -1,10 +1,134 @@
-import React, {useEffect, useContext} from "react"
+import React, {useEffect, useContext, useState} from "react"
+// eslint-disable-next-line
+import {Link} from "react-router-dom"
 import axios from "axios"
+ 
+//  importing components
+import Spinner from "../../components/Spinner/Spinner"
+import Grid from "../../components/Grid/Grid"
+import MovieThubm from "../../components/MovieThubmnail/MovieThumb"
+import NoImage from "../../images/no_image.jpg"
+
+//  importing endpoint helpers 
+import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../config"
+import { API_URL, API_KEY } from "../../../config"
+
 
 //  importing context 
 import AuthContext from "../../../context/Authentication/authenticationContext"
-const Recommendations =() => {
-    const authContext = useContext(AuthContext)
-    const {user, loading, setLoadingtrue, setLoadingFalse} = authContext;
+import AlertContext from "../../../context/AlertContext/AlertContext"
 
+const RecommendationsPage =(props) => {
+    const authContext = useContext(AuthContext)
+    const alertContext = useContext(AlertContext)
+     // eslint-disable-next-line
+    const {user, loading, setLoadingtrue, setLoadingFalse, ratings, loadUser, isAuthenticated} = authContext;
+    const {setAlert} = alertContext
+   
+    useEffect(  () => {
+        loadUser()
+        console.log("user = ", user)
+     // eslint-disable-next-line
+    }, [ isAuthenticated])
+    
+    
+    const [recommendations, setRecommendations] = useState([])
+    useEffect( () => {
+        console.log("The use effect for recommendations was called")
+        console.log("recommendations in state => ", recommendations)
+    }, [recommendations])
+    const generateRecommendations = async () => {
+        try {
+            setLoadingtrue()
+                let userRatings = user.ratings;
+                let data = {
+                    userID: await JSON.stringify(user._id),
+                    ratings: await JSON.stringify(userRatings)
+                } 
+                // console.log("params = ", params)
+            
+                try{
+                    let config = {
+                        headers:{
+                            'Content-Type': 'application/json;charset=UTF-8',
+                            "Access-Control-Allow-Origin": "*",
+                        }
+                    }
+                    console.log("userID = ", data.userID);
+                    console.log("Ratings = ", data.ratings)
+                    data = await JSON.stringify(data)
+                    
+                
+                    const res = await axios.post('http://localhost:8000/recommendations/colaborativefiltering/users', data, config)
+                    console.log("recommendations = ", res.data)
+                    
+                    
+                    
+                    console.log("Recommendations id recieved making the tmdb api calls")
+                    let recommended_movies = []
+                    setLoadingtrue()
+                    try{
+                        for (let i = 0; i<res.data.length; i++){
+                            let id = res.data[i]
+                            const endpoint = `${API_URL}movie/${id}?api_key=${API_KEY}`
+                            const result = await ( await fetch(endpoint) ).json()
+                            console.log("results after the movie call = ", result)
+                            recommended_movies.push(result)
+                        }
+                    }catch(err){
+                        console.log("some error in the for loop in the recommendations.jsx")
+                    }
+
+                    setRecommendations(recommended_movies)
+                    console.log("All the api calls success : - setting loading to false")
+                    setLoadingFalse()
+                    return 
+
+                }catch(error){
+                    setLoadingFalse()
+                    console.log("error in the catch block of the attempt to fetch recommendations block in the recommendations.jsx")
+                    console.log("error = ", error.message)
+                }
+                setLoadingFalse()
+        } catch (error) {
+            setLoadingFalse()
+            if(error.message === "Cannot read property 'ratings' of null"){
+                setAlert("Please Login to use this feature")
+            }else{
+                console.log("error in the catch block of generateRecommendations in recommendationpage.jsx")
+                console.log("error = ", error.message)
+            }
+        }
+    }
+
+   if (recommendations.length  === 0  || loading){ 
+       return(
+       <div>
+            recommendations route
+            {
+                loading ?
+                <Spinner />
+                :
+                <button onClick={generateRecommendations}>Generate Recommendations</button>
+            }
+        </div>)
+    }else if (recommendations.length !== 0){
+        
+        return(
+            <Grid header="Recommended Movies are:" >
+                {recommendations.map(movie => (
+                    <MovieThubm 
+                        key={movie.id}
+                        clickable
+                        image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
+                        movieId={movie.id}
+                        movieName={movie.original_title}
+                    />
+                    ))
+                }
+            </Grid>
+            )
+    }
 }
+
+export default RecommendationsPage

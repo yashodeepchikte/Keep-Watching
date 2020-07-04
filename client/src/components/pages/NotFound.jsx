@@ -8,10 +8,11 @@ const NotFound = () => {
     const authContext = useContext(AuthContext)
     // console.log("AuthContext = ", AuthContext)
     // console.log("authContext = ", authContext)
-    const {isAuthenticated, loadUser} = authContext
+    const { loadUser} = authContext
     useEffect(()=>{
         loadUser()
-    }, [])
+     // eslint-disable-next-line
+    }, []) 
     return(
         <div>
             <h1>Not Found </h1>

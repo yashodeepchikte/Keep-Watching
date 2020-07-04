@@ -1,15 +1,14 @@
-import {useContext} from "react" // eslint-disable-next-line
+// eslint-disable-next-line
+import {useContext} from "react" 
 import axios from "axios"
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     USER_LOADED,
     AUTH_ERROR,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
+	LOGIN_SUCCESS,
     LOGOUT,
     CLEAR_ERRORS,
-	SET_ALERT,
 	SET_LOADING_FALSE,
 	SET_LOADING_TRUE,
 	UPDATE_USER
@@ -56,6 +55,7 @@ import {
 				error: action.payload
 			};
 		case LOGOUT:
+		     // eslint-disable-next-line
 			delete axios.defaults.headers.common ["x-auth-token"]
 			localStorage.removeItem('token');
 			return {

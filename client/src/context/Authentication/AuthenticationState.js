@@ -41,9 +41,9 @@ const AuthState = (props) => {
     const loadUser = async () => {
 		//  --------> for authentication to work we need to store the token in global header with key
 		//  ---------> X-auth-token
-		console.log("checking token")
+		// console.log("checking token")
 		if (localStorage.token){				//-------> if a token exists in the local storage set it to global header
-			console.log("token found ", localStorage.token)
+			// console.log("token found ", localStorage.token)
 			setAthToken(localStorage.token);     // ---> utility function  
 		}
 		try {
@@ -171,6 +171,7 @@ const setLoadingFalse =() => {
 }
 
 // update User
+ // eslint-disable-next-line
 const updateUser = (user) => {
 	dispatch({
 		actionn: UPDATE_USER,

@@ -23,6 +23,7 @@ const Header = () =>
     const style = {display: "flex", color:"white", justifyContent:"space-between"}
     useEffect( () => {
         // loadUser()
+        // console.log("in the header comp authContext = ", authContext)
     }, [isAuthenticated, user])
     return(
     <StyledHeader>

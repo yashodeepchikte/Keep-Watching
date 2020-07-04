@@ -1,4 +1,5 @@
-import React, {useState, useContext, useEffect} from "react"
+ // eslint-disable-next-line
+import React, { useContext, useEffect} from "react"
 
 //  importing component
 import Navigation from "../components/Navigation/Navigation"
@@ -19,13 +20,16 @@ const Movie = (props) =>{
     const authContext = useContext(AuthContext)
     // console.log("AuthContext = ", AuthContext)
     // console.log("authContext = ", authContext)
+     // eslint-disable-next-line
     const {isAuthenticated, loadUser, user} = authContext
     useEffect(()=>{
         loadUser()
+         // eslint-disable-next-line
     }, [isAuthenticated])
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
+    console.log("MOVIE  = ", movie)
     // console.log("movie= ",movie)
 
     if (error) return <div>Something went wrong</div>

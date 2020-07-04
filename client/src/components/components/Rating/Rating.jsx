@@ -1,5 +1,5 @@
 import React, {useState, useContext } from "react"
-import {Redirect, Link}  from "react-router-dom"
+import { Link}  from "react-router-dom"
 import axios from "axios"
 
 //  import context
@@ -14,6 +14,7 @@ const Ratings =  (props) => {
     const authContext = useContext(AuthContext)
     const {isAuthenticated, user, loadUser} = authContext
 
+     // eslint-disable-next-line
     const [rating, setRating] = useState(-1)
     if(!isAuthenticated){
         return(
@@ -72,7 +73,7 @@ const Ratings =  (props) => {
 
         return(
             <div className="ratings">
-                <h1>Your Rating : {movieRating}<i class="fa fa-star" aria-hidden="true"></i></h1>
+                <h1>Your Rating : {movieRating}<i className="fa fa-star" aria-hidden="true"></i></h1>
             </div>
         )
     }

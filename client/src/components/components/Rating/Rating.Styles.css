@@ -18,13 +18,8 @@
     transition: 0.3s;
 }
 .button:hover{
+    padding: 10px;
     background-color: white;
     color: black;
-    transform: scale(1.05);
-
     transition: 0.3s;
-}
-.button:active{
-    transform: scale(1.1);
-    transition: 0.01s;
 }

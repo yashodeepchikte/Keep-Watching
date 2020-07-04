@@ -15,8 +15,10 @@ import Movie from "./pages/Movie"
 import NotFound from "./pages/NotFound"
 import SignUp from "./components/SignUp/SignUp"
 import SignIn from "./pages/SignIn/Signin"
+import Recommendations from "./pages/recommendations/Recommendations"
 
 // importing states
+ // eslint-disable-next-line
 import UserState from "../context/Users/USerState"
 import AuthState from "../context/Authentication/AuthenticationState"
 import AlertState from "../context/AlertContext/AlertState"
@@ -35,26 +37,25 @@ if(localStorage.token){
 const App = () =>{
     
     return(
-     <AlertState>
-        <AuthState>
-            <UserState>
-                <Router>
-                    <Header />
-                    <Alerts />
-                    <Switch>
-                        <Route exact  path="/" component={Home} />
-                        <Route path="/movie/:movieId" component={Movie} />
-                        <Route exact path="/signup"  component={SignUp} />
-                        <Route exact path="/signin" component={SignIn} />
-                        {/* The next route will be called if none of the above urls match up */}
-                        <Route component={NotFound}/>          
-                    </Switch>
-                    <Footer />        
-                    <GlobalStyle />
-                </Router>
-            </UserState>
-        </AuthState>
-        </AlertState>
+            <AlertState>
+                <AuthState>
+                    <Router>
+                        <Header />
+                        <Alerts />
+                        <Switch>
+                            <Route exact  path="/" component={Home} />
+                            <Route path="/movie/:movieId" component={Movie} />
+                            <Route exact path="/signup"  component={SignUp} />
+                            <Route exact path="/signin" component={SignIn} />
+                            <Route exact path="/recommendation" component={Recommendations} />
+                            {/* The next route will be called if none of the above urls match up */}
+                            <Route component={NotFound}/>          
+                        </Switch>
+                        <Footer />        
+                        <GlobalStyle />
+                    </Router>
+                </AuthState>
+            </AlertState>
     )
 
 }

@@ -25,11 +25,14 @@ const Home =  () =>{
     //    console.log("state = ", state)
 
     const authContext = useContext(AuthContext)
-    // console.log("AuthContext = ", AuthContext)
-    // console.log("authContext = ", authContext)
+    // console.log("AuthContext => ", AuthContext)
+    // console.log("authContext before loadUser = ", authContext)
+     // eslint-disable-next-line
     const {isAuthenticated, loadUser} = authContext
     useEffect(()=>{
         loadUser()
+        // console.log("authContext after loadUser = ", authContext)
+     // eslint-disable-next-line
     }, [])
     
     const [searchTerm, setSearchTerm] = useState("")
