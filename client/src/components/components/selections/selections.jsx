@@ -1,13 +1,10 @@
 import React from "react"
+import "./selections.css"
 
-
-
-const Selections = (props) => {
+const Selections = ({collections, handelClick}) => {
     return(
         <div className="selections">
-            <button value="actors" onClick={props.handelClick}>Actors</button>
-            <button  value="reviews" onClick={props.handelClick}>Reviews</button>
-            <button value="similar_movie" onClick={props.handelClick}>Similar Movies</button>
+            {collections.map(collectionName =>  <button value={collectionName} onClick={handelClick}>{collectionName}</button>)}
         </div>
     )
 }

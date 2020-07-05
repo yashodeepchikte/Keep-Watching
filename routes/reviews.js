@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 //  Get all reviews sorted in latest order
 router.get("/feed", async  (req, res) => {
     try{
-        const reviews = await Review.find({})
+        const reviews = await Review.find({}).sort({"date":-1})
         res.status(200).json(reviews)    
     }catch(error){
         console.log("error in getting all the reviews in the reviews.js file ")

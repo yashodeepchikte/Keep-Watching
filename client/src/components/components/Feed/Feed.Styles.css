@@ -1,9 +1,10 @@
-.ShowReviews{   
+
+.feed{
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 20px;
 }
-
-
+.feed h1{
+    margin-left : 50px;
+}
 .reviewBox-container{
     border: 1px solid gray;
     border-radius: 10px;

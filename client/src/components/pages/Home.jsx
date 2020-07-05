@@ -13,6 +13,9 @@ import  Grid from "../components/Grid/Grid"
 import LoadMoreBtn from "../components/LoadMoreButton/LoadMoreBtn"
 import Spinner from "../components/Spinner/Spinner"
 import MovieThubm from "../components/MovieThubmnail/MovieThumb"
+import Selections from "../components/selections/selections"
+import Feed from "../components/Feed/Feed"
+
 // import Footer from "../components/Footer/Footer"
 import NoImage  from "../images/no_image.jpg"
 
@@ -22,23 +25,21 @@ import useHomeFetch from "../hooks/useHomeFetch"
 //  importing context
 import AuthContext from "../../context/Authentication/authenticationContext"
 const Home =  () =>{
-    //    console.log("state = ", state)
 
     const authContext = useContext(AuthContext)
-    // console.log("AuthContext => ", AuthContext)
-    // console.log("authContext before loadUser = ", authContext)
      // eslint-disable-next-line
     const {isAuthenticated, loadUser} = authContext
+
+    const [selection, setSelection] = useState("Popular Movies")
     useEffect(()=>{
         loadUser()
-        // console.log("authContext after loadUser = ", authContext)
      // eslint-disable-next-line
     }, [])
     
     const [searchTerm, setSearchTerm] = useState("")
     const [{state, loading, error}, fetchMovies] =  useHomeFetch(searchTerm);
    
-   const loadMoreMovies = () =>{
+    const loadMoreMovies = () =>{
         const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${state.currentPage + 1}`;
         const popularEndpoint = `${POPULAR_BASE_URL}&page=${state.currentPage+1}`;
     
@@ -46,15 +47,17 @@ const Home =  () =>{
         // console.log("ENDPOINT + =  ", endpoint)
         fetchMovies(endpoint)
    }
-
-   const searchMovies = (search) => {
+    const handelClick = (event) => {
+        setSelection(event.target.value)
+    }
+    const searchMovies = (search) => {
         const endpoint = search ? SEARCH_BASE_URL + search  : POPULAR_BASE_URL;
         setSearchTerm(search);
         fetchMovies(endpoint);
     }
 
-   if (error) return <div> Something went wromg ....</div>
-   if (!state.movies[0]) return <Spinner />
+    if (error) return <div> Something went wromg ....</div>
+    if (!state.movies[0]) return <Spinner />
     return (
        <div>
         
@@ -66,7 +69,8 @@ const Home =  () =>{
            />)}
                  
            <SearchBar callback={searchMovies}/>
-           <Grid header={searchTerm ? "Search Results:" : "Popular Movies"}>
+           <Selections handelClick={handelClick} collections={["Popular Movies", "Feed"]}/>
+           {selection ==="Popular Movies" && <Grid header={searchTerm ? "Search Results:" : "Popular Movies"}>
                 {state.movies.map(movie => (
                     <MovieThubm 
                         key={movie.id}
@@ -77,7 +81,8 @@ const Home =  () =>{
                     />
                     ))
                 }
-           </Grid>
+           </Grid>}
+           {selection==="Feed" && <Feed />}
            {loading && <Spinner /> }
            <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
            

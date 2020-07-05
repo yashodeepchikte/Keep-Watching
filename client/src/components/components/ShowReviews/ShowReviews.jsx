@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react"
-import axios from "axios"
+import React  from "react"
 
 import useReviewsFetch from "../../hooks/useReviewsFetch"
 import Spinner from "../Spinner/Spinner"
@@ -18,7 +17,7 @@ const ShowReviews = (props) => {
 
     return(
         <div className="ShowReviews">
-        {console.log("movie_reviews.data = ", movie_reviews.data)}
+
         {
             movie_reviews.data.length === 0 && <div className="reviewBox"><h1>No Reviews</h1></div>
         }         

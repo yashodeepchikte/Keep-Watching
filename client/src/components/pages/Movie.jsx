@@ -26,7 +26,7 @@ const Movie = (props) =>{
         loadUser()
         // eslint-disable-next-line
     }, [isAuthenticated])
-    const [selection, setSelection] = useState("actors")
+    const [selection, setSelection] = useState("Actors")
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
@@ -46,8 +46,8 @@ const Movie = (props) =>{
             <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue}/>
             <Rating movieID={movie.id} />
              <Review movieID={movie.id}/>
-             <Selections handelClick={handelClick}/>
-            {selection==="actors" &&<Grid header="Actors">
+             <Selections handelClick={handelClick} collections={["Actors", "Reviews"]}/>
+            {selection==="Actors" &&<Grid header="Actors">
                 {
                     movie.actors.map( actor => (
                         <Actor key={actor.credit_id} actor={actor} />
@@ -55,7 +55,7 @@ const Movie = (props) =>{
                 }
             </Grid>}
             {
-                selection==="reviews" && <ShowReviews movieID={movieId}/>
+                selection==="Reviews" && <ShowReviews movieID={movieId}/>
             }
         </>
     )
