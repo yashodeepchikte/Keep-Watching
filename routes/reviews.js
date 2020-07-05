@@ -65,6 +65,7 @@ router.post("/addReview", async (req, res) => {
         userID: data.user_id,
         review: data.review,
         reting: data.rating,
+        movie_data: data.movie_data
     })
     const user = await User.findById(data.user_id)
     console.log("Found user = ", user)

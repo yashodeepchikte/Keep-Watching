@@ -9,7 +9,8 @@ const reviewSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    movie_data: Object
 })
 
 module.exports = mongoose.model("Keep-Watching-Review", reviewSchema)

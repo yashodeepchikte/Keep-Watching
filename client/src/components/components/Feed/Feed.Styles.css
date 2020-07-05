@@ -5,7 +5,22 @@
 .feed h1{
     margin-left : 50px;
 }
-.reviewBox-container{
+
+
+.thumbnail img{
+    height: 100%;
+    width: 15vh;
+    border-radius: 10px;
+       
+}
+
+.feedBox .feed-info{
+    padding-left: 20px;
+    overflow: auto;
+}
+
+.feedBox-container{
+    display: flex;
     border: 1px solid gray;
     border-radius: 10px;
     width: 80%;
@@ -13,18 +28,19 @@
     padding: 20px;
     margin-bottom: 15px;
     box-shadow: 10px 10px  10px 2px gray;
+    height: 20vh;
 }
 
-.reviewBox-container h2 {
+.feedBox-container h2 {
     margin: 0;
 }
-.reviewBox-container h3 {
-    padding-top: 20px;
+.feedBox-container h3 {
+    
     margin: 0;
-}
-.reviewBox-container h4 {
-    padding-top: 10px;
-    padding-bottom: 20px;
+    font-size: 0.9rem;
 
+}
+.feedBox-container h4 {
+    font-size: 0.9rem;
     margin: 0;
 }

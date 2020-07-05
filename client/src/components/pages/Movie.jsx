@@ -30,7 +30,7 @@ const Movie = (props) =>{
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
-    // console.log("MOVIE  = ", movie)
+    console.log("MOVIE  = ", movie)
     // console.log("movie= ",movie)
 
     if (error) return <div>Something went wrong</div>
@@ -44,8 +44,8 @@ const Movie = (props) =>{
             <Navigation movie={movie.original_title} />
             <MovieInfo movie={ movie }/>
             <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue}/>
-            <Rating movieID={movie.id} />
-             <Review movieID={movie.id}/>
+            <Rating movieID={movie.id}/>
+             <Review movieID={movie.id} movie={movie}/>
              <Selections handelClick={handelClick} collections={["Actors", "Reviews"]}/>
             {selection==="Actors" &&<Grid header="Actors">
                 {

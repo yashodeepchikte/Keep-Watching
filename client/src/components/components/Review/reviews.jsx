@@ -10,6 +10,7 @@ import AlertContext from "../../../context/AlertContext/AlertContext"
 const Reviews =   (props) => {
     
     const movieID = props.movieID
+    const movie_data = props.movie
     
     const authContext = useContext(AuthContext) 
     const {loading, setLoadingtrue, isAuthenticated, user, setLoadingFalse, loadUser} = authContext
@@ -46,13 +47,14 @@ const Reviews =   (props) => {
     else{
         const toggleReadMore = () => setReadMore(!readMore)
         
-        if(isReviewed){        
+        if(isReviewed){      
+            //  if the user has already rated this movie  
             return(
                 <div className="review">
                 <div className="show-review-container">
-                    <h1 className="title">
+                    <h3 className="title">
                         Your Review : 
-                    </h1>
+                    </h3>
                     <h3 className="review-text">
                         {
                          (stateReview.length > 150 && !readMore) ?
@@ -75,6 +77,7 @@ const Reviews =   (props) => {
                 </div>
             )
         }else{
+            //  If the user is logged in and has not rated this movie
             const handelChange = (event) => {
                 console.log(event.target.name ,  " ----> ", event.target.value )
                 setStateReview(event.target.value)
@@ -88,6 +91,7 @@ const Reviews =   (props) => {
                     movie_id : event.target.movie_id.value,
                     review : event.target.review_text.value,
                     username : event.target.username.value,
+                    movie_data
                 }
                 console.log("Data recieved = ", data)
                 if(stateReview.length < 1){

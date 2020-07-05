@@ -3,6 +3,13 @@ import React, {useState, useEffect} from "react"
 import useReviewsFetch from "../../hooks/useFetchFeed"
 import useMovieFetch from "../../hooks/useMovieFetch"
 import Spinner from "../Spinner/Spinner"
+import NoImage from "../../images/no_image.jpg"
+
+import {  
+    IMAGE_BASE_URL, BACKDROP_SIZE, 
+    POSTER_SIZE, SEARCH_BASE_URL, 
+    POPULAR_BASE_URL 
+} from "../../../config"
 
 import MovieThumb from "../MovieThubmnail/MovieThumb"
 
@@ -28,7 +35,7 @@ const Feed = () => {
         const week = Math.floor(days/7)
         const months = Math.floor(days/30)
         const year = Math.floor(months/12)
-        console.log("Days = ", days + "days")
+        // console.log("Days = ", days + "days")
         if(year !== 0) {  
 
             return year + " years ago"
@@ -57,21 +64,30 @@ const Feed = () => {
         const postedTime = date.getTime()
         const currentTime = new Date().getTime()
         const DaysAgo = getDaysAgo(currentTime-postedTime)
-        console.log("Days Ago = ", getDaysAgo(currentTime-postedTime))
+        // console.log("Days Ago = ", getDaysAgo(currentTime-postedTime))
         return [FinalDate, DaysAgo]
     }
+
+  
     return (
-
         <div className="feed">
-
             <h1>Feed</h1>
             {
                 feed.data.map(review => (
-                    <div className="reviewBox">
-                        <div className="reviewBox-container">
-                            <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
-                            <h4>Review: {review.review}</h4>
-                            <h4>Posted : {getDate(review.date)[0]} ( {getDate(review.date)[1]} )</h4>
+                    <div className="feedBox">
+                        <div className="feedBox-container">
+                            <div className="thumbnail">
+                                <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
+                            </div>
+                            <div className="feed-info">
+                                <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
+                                <h3>Movie Name: {review.movie_data.original_title}</h3>
+                                <br/>
+                                <h4>Review: {review.review.length > 250  ? review.review.slice(0, 250) : review.review.length }</h4>
+                                <br />
+                                <hr />
+                                <h4>Posted : {getDate(review.date)[0]} ( {getDate(review.date)[1]} )</h4>
+                            </div>                        
                         </div>
                     </div>
                 ))
