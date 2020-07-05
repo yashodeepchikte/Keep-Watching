@@ -15,11 +15,29 @@
     padding: 10px;
     border: 3px solid white;
     border-radius: 10px;
+    font-size: 28px;
     transition: 0.3s;
 }
 .button:hover{
+    font-size: 28px;
+
     padding: 10px;
     background-color: white;
     color: black;
     transition: 0.3s;
+}
+#ratings {
+    margin: 0 20px;
+    min-width: 160px;
+    font-size: 20px;
+    border: 1px solid red;
+}
+
+
+option{
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }

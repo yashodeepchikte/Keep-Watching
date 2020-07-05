@@ -1,3 +1,5 @@
+
+/* eslint-disable no-unused-vars */
 import React, {useReducer} from "react"
 
 import usersContext from "./userContext"

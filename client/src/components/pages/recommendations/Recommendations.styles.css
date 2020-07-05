@@ -1,5 +1,6 @@
 .recommendation-route{
     width: 70%;
+    margin: 10px auto;
 }
 
 .recommendation-route > button{

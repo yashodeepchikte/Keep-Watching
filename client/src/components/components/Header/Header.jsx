@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useContext, useEffect} from "react"
 
 // importting components
@@ -43,7 +44,7 @@ const Header = () =>
                 :
                 <div className="signinButtons">
                         <Link to="/signin">Sign In</Link>
-                        <a>|</a>
+                        <a href="/">|</a>
                         <Link to="/signup">Signup</Link>
                    
                 </div>

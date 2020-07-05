@@ -1,3 +1,5 @@
+
+
 // import React, { useReducer, useContext } from 'react';
 import React, { useReducer, useContext } from "react"
 import chalk from "chalk"
@@ -117,7 +119,7 @@ const AuthState = (props) => {
 			})
 			
 			console.log(chalk.green("login Successful"))
-			console.log(chalk.green("the response was = ", res))
+			// console.log(chalk.green("the response was = ", res))
 			loadUser()
 			setLoadingFalse()
 			return res

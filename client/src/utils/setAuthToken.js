@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+
+/* eslint-disable  no-whitespace-before-property */
 
 import axios from "axios"
 

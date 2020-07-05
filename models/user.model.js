@@ -20,7 +20,8 @@ const userSchema = mongoose.Schema({
     },
     ratings:{
         type:Array
-    }
+    },
+    movies_reviewed: Array
 });
 
 module.exports = mongoose.model("Keep-Watching-User", userSchema)

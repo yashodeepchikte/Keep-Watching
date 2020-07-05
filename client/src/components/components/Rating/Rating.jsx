@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState, useContext } from "react"
 import { Link}  from "react-router-dom"
 import axios from "axios"
@@ -52,18 +53,16 @@ const Ratings =  (props) => {
         return(
             <div className="ratings">
                <h1>Rate this Movie</h1>
-                    <form onSubmit={rateMovie}>
-                        
-                        <select name="rating" id="cars">
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
+                    <form onSubmit={rateMovie}>         
+                        <select name="rating" id="ratings">
+                            <option value={1}>1 Star</option>
+                            <option value={2}>2 Star</option>
+                            <option value={3}>3 Star</option>
+                            <option value={4}>4 Star</option>
+                            <option value={5}>5 Star</option>
                         </select>
-                        <button type="submit">Rate</button>
+                        <button type="submit" className="button">Rate</button>
                     </form>
-      
             </div>
         )
     }else{
