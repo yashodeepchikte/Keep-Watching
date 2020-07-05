@@ -11,7 +11,6 @@ export const StyledMovieInfoBar = styled.div`
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;
   font-size: 20px;
-  border: 1px solid green;
   border-top: none;
   border-left:none;
   .movieinfobar-content {

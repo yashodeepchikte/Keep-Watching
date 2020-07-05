@@ -27,7 +27,12 @@ const TWITCH = {
     clientSecret: "bz4tt9sztacz4sd8qx8rg8imqbsjjn"
 };
 
+const API_URL = 'https://api.themoviedb.org/3/';
+const API_KEY = '33bb8436c172b0643a6db970caa59640';
+
 module.exports = {
+    API_URL,
+    API_KEY,
     AMAZON,
     GITHUB,
     FACEBOOK,

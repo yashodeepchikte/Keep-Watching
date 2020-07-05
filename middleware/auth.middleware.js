@@ -13,11 +13,9 @@ const authMiddleware = async (req, res, next) => {
     }
 
     try {
-        console.log(chalk.yellow("inside the middleware the key = ", config.get('jwtSecret')))
         
         const decoded =await  jwt.verify(token, config.get('jwtSecret'));
         
-        console.log(chalk.red("inside the middleware decoded user = ", await decoded.user))
         req.user =await  decoded.user;
 
         next();

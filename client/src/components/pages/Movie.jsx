@@ -12,6 +12,7 @@ import Rating from "../components/Rating/Rating"
 import Review from "../components/Review/reviews"
 import Selections from "../components/selections/selections"
 import ShowReviews from "../components/ShowReviews/ShowReviews"
+import SimilarMovies from "../components/similarMovies/SimilarMovies"
 
 //  importing custom hook
 import useMovieFetch from "../hooks/useMovieFetch"
@@ -30,8 +31,6 @@ const Movie = (props) =>{
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
-    console.log("MOVIE  = ", movie)
-    // console.log("movie= ",movie)
 
     if (error) return <div>Something went wrong</div>
     if (loading) return <Spinner />
@@ -41,12 +40,12 @@ const Movie = (props) =>{
     }
     return(
         <>
-            <Navigation movie={movie.original_title} />
+            {/* <Navigation movie={movie.original_title} /> */}
             <MovieInfo movie={ movie }/>
             <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue}/>
             <Rating movieID={movie.id}/>
              <Review movieID={movie.id} movie={movie}/>
-             <Selections handelClick={handelClick} collections={["Actors", "Reviews"]}/>
+             <Selections handelClick={handelClick} collections={["Actors", "Reviews", "Similar Movies"]}/>
             {selection==="Actors" &&<Grid header="Actors">
                 {
                     movie.actors.map( actor => (
@@ -56,6 +55,9 @@ const Movie = (props) =>{
             </Grid>}
             {
                 selection==="Reviews" && <ShowReviews movieID={movieId}/>
+            }
+            {
+                selection==="Similar Movies" && <SimilarMovies movieID={movieId} />
             }
         </>
     )

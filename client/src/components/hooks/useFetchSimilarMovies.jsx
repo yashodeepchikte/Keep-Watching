@@ -1,17 +1,16 @@
 import {useState, useEffect, useCallback} from "react"
 import axios from "axios"
 
-const useFetchFeed = (movieID) => {
+const useFetchSimilarMovies = (movieID) => {
     const [state, setState] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false) 
-
+ 
     const fetchData = useCallback(async () => {
         setError(false)
         setLoading(true)
- 
         try {
-            const endpoint = "/api/reviews/feed"
+            const endpoint = "/api/similarMovies/" + movieID
             const result = await axios.get(endpoint)
             console.log("resilt in useFetchFeed = ", result)
             setState({
@@ -26,24 +25,25 @@ const useFetchFeed = (movieID) => {
     }, [movieID])
 
     useEffect( () => {
-        if(localStorage["feed"] && localStorage["feed"]!=={}){
+        if(localStorage[movieID+"similar"]){
             setLoading(false)
-            console.log("grabbing Feed from local storage")
-            setState(JSON.parse(localStorage["feed"]))
+            console.log("grabbing similar movies for"+ movieID +"from local storage")
+            setState(JSON.parse(localStorage[movieID+"similar"]))
             setLoading(false)
         }else{
-            console.log("making an api req for getting the feed")
+            console.log("making an api req for getting movies similar to " + movieID)
             fetchData()
         }
-    }, [fetchData, movieID])
+    }, [fetchData, movieID])   
 
     useEffect(
         () => {
-            localStorage.setItem("feed",  JSON.stringify(state))
+            
+            localStorage.setItem(movieID+"similar",  JSON.stringify(state))
         },
         [movieID, state]
     )
     return [state, loading, error]
 }
 
-export default useFetchFeed
+export default useFetchSimilarMovies

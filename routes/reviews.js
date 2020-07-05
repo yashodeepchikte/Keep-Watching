@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 const Review = require("../models/review.models")
 const User = require("../models/user.model")
+const axios = require("axios")
 
 const express = require("express")
 const router = express.Router()
@@ -46,7 +47,6 @@ router.get("/review/:id", async (req, res) => {
 
     try {
         let review = await Review.findById(reviewID)
-        console.log("found review = ", review)
         res.status(200).json(review)
     } catch (error) {
         console.log("error in the catch block of the reviews .js page getreviewById function")

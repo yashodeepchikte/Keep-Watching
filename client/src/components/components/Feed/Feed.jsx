@@ -1,17 +1,12 @@
-import React, {useState, useEffect} from "react"
+import React from "react"
 
 import useReviewsFetch from "../../hooks/useFetchFeed"
-import useMovieFetch from "../../hooks/useMovieFetch"
 import Spinner from "../Spinner/Spinner"
-import NoImage from "../../images/no_image.jpg"
 
 import {  
-    IMAGE_BASE_URL, BACKDROP_SIZE, 
-    POSTER_SIZE, SEARCH_BASE_URL, 
-    POPULAR_BASE_URL 
+    IMAGE_BASE_URL, POSTER_SIZE, 
 } from "../../../config"
 
-import MovieThumb from "../MovieThubmnail/MovieThumb"
 
 import "./Feed.Styles.css"
 
@@ -28,7 +23,6 @@ const Feed = () => {
     }
     if (loading) return <Spinner />
 
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const getDaysAgo = (difference) => {
         // takes in difference between 2 dates in milliseconds and returns days ago
         const days = Math.floor(difference/(24*60*60*1000))
@@ -37,7 +31,7 @@ const Feed = () => {
         const year = Math.floor(months/12)
         // console.log("Days = ", days + "days")
         if(year !== 0) {  
-
+ 
             return year + " years ago"
         }else if(months !== 0) {
             return months + " month ago"
@@ -83,7 +77,7 @@ const Feed = () => {
                                 <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
                                 <h3>Movie Name: {review.movie_data.original_title}</h3>
                                 <br/>
-                                <h4>Review: {review.review.length > 250  ? review.review.slice(0, 250) : review.review.length }</h4>
+                                <h4>Review: {review.review.length > 250  ? review.review.slice(0, 250) : review.review }</h4>
                                 <br />
                                 <hr />
                                 <h4>Posted : {getDate(review.date)[0]} ( {getDate(review.date)[1]} )</h4>

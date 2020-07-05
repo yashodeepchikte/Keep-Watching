@@ -76,11 +76,7 @@ router.post("/",
                     },
                 };
                 
-                if (config.get("jwtSecret")){
-                    console.log(chalk.green("JWT = ", config.get("jwtSecret")))
-                }else{
-                    console.log(chalk.red("Something is wrong with config.get(jwtsectete) in the auth.js file"))   
-                }
+                
                 jwt.sign(
                     payload,
                     config.get('jwtSecret'),
