@@ -19,6 +19,9 @@ const Reviews =   (props) => {
     
     const [stateReview, setStateReview] = useState("")
     const [isReviewed, setIsReviewed] = useState(false)
+    const [readMore, setReadMore] = useState(false)
+
+
     let movieReviewed = false
     useEffect( () => {
         const fetchReview = async () => {
@@ -36,19 +39,43 @@ const Reviews =   (props) => {
                 setStateReview(review)}
         }
         fetchReview()
-    }, [isAuthenticated, user])
+    }, [isAuthenticated, user, readMore])
 
     if (!isAuthenticated){
-        return(<div className="review"><Link to = "/signin"> Log in to leave a review for this movie</Link></div>)
+        return(<div className="review"><div  className="SigninLink-container"><Link to = "/signin" className="SigninLink"> Log in to leave a review for this movie</Link></div></div>)
     }
     else{
         console.log("movie reviewed = ", movieReviewed)
+        const toggleReadMore = () => setReadMore(!readMore)
+        
         if(isReviewed){        
             return(
                 <div className="review">
-                    <h1>
-                        Your Review : {stateReview}
+                <div className="show-review-container">
+                    <h1 className="title">
+                        Your Review : 
                     </h1>
+                    <h3 className="review-text">
+                        {console.log("readMore = ", readMore)}
+                        {console.log("stateReview.length =", stateReview.length )}
+                        {
+                         (stateReview.length > 150 && !readMore) ?
+                            <>
+                                {(stateReview.slice(0, 150) + "...")}
+                                <button onClick={toggleReadMore}>
+                                    Read More
+                                </button>
+                            </>
+                                :
+                            <>
+                                {stateReview}
+                                {
+                                    (stateReview.length > 150 )&& <button onClick={toggleReadMore}> Show Less</button>
+                                }
+                            </>                     
+                        }
+                    </h3>
+                </div>
                 </div>
             )
         }else{
@@ -86,13 +113,16 @@ const Reviews =   (props) => {
             }
             return(
                 <div className="review">
-                    <form onSubmit={handelSubmit}>
-                            <input type="hidden" value={user._id} name="user_id"/>
-                            <input type="hidden"  value={movieID} name="movie_id" />
-                            <input type="hidden"  value={user.username} name="username"/>
-                            <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/>
-                            <button type="submit" className="button">Post Review</button>
-                    </form>
+                    <div className="leave-review-container">
+                        <form onSubmit={handelSubmit} className="leave-review">
+                                <input type="hidden" value={user._id} name="user_id"/>
+                                <input type="hidden"  value={movieID} name="movie_id" />
+                                <input type="hidden"  value={user.username} name="username"/>
+                                {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
+                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
+                                <button type="submit" className="post">Post Review</button>
+                        </form>
+                    </div>
                 </div>
             )
         }
