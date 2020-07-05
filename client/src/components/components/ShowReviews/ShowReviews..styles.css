@@ -1,0 +1,31 @@
+.ShowReviews{   
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+.reviewBox{
+
+}
+
+.reviewBox-container{
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 10px 10px  10px 2px gray;
+}
+
+.reviewBox-container h2 {
+    margin: 0;
+}
+.reviewBox-container h3 {
+    padding-top: 20px;
+    margin: 0;
+}
+.reviewBox-container h4 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    margin: 0;
+}

@@ -23,6 +23,21 @@ router.get("/feed", async  (req, res) => {
     }
 })
 
+//  get all the reviews for a given movie by its id
+router.get("/movie/:movieID", async (req, res) => {
+    const movieID = req.params.movieID
+    try {
+        console.log("movieID =>> ", movieID)
+        const reviews = await Review.find({tmdbMovieId: movieID})
+        res.status(200).json(reviews)
+    } catch (error) {
+        console.log("error = ", error.message)
+        res.status(500).json("error in finding recommendations in database")
+    }
+    
+})
+
+
 // get review by its id
 router.get("/review/:id", async (req, res) => {
 
@@ -39,22 +54,6 @@ router.get("/review/:id", async (req, res) => {
         res.status(500).json(error.message)
     }
 })
-//  get all review fro a perticular movie by a perticular user
-router.get("/:movieID/:userID", async  (req, res) => {
-    console.log("moveiID = ", req.params.movieID)
-    console.log("userID = ", req.params.userID)
-    const movieID = req.params.movieID
-    try{
-        const reviews = await Review.find({tmdbMovieId: tmdbMovieId})
-        res.status(200).json(reviews)    
-    }catch(err){
-        console.log("error in getting all the reviews in the reviews.js file ")
-        console.log(error.message)
-        res.status(500).json(error.message)
-    }
-})
-
-
 
 //  Add a review 
 router.post("/addReview", async (req, res) => {

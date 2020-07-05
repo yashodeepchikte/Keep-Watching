@@ -1,5 +1,5 @@
  /* eslint-disable no-unused-vars */
-import React, { useContext, useEffect} from "react"
+import React, { useContext, useEffect, useState} from "react"
 
 //  importing component
 import Navigation from "../components/Navigation/Navigation"
@@ -10,6 +10,8 @@ import Spinner from "../components/Spinner/Spinner"
 import Actor from "../components/Actor/Actor"
 import Rating from "../components/Rating/Rating"
 import Review from "../components/Review/reviews"
+import Selections from "../components/selections/selections"
+import ShowReviews from "../components/ShowReviews/ShowReviews"
 
 //  importing custom hook
 import useMovieFetch from "../hooks/useMovieFetch"
@@ -24,6 +26,7 @@ const Movie = (props) =>{
         loadUser()
         // eslint-disable-next-line
     }, [isAuthenticated])
+    const [selection, setSelection] = useState("actors")
     
     const movieId = props.match.params.movieId
     const [movie, loading, error] = useMovieFetch(movieId)
@@ -33,6 +36,9 @@ const Movie = (props) =>{
     if (error) return <div>Something went wrong</div>
     if (loading) return <Spinner />
 
+    const handelClick = (event) => {
+        setSelection(event.target.value)
+    }
     return(
         <>
             <Navigation movie={movie.original_title} />
@@ -40,13 +46,17 @@ const Movie = (props) =>{
             <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue}/>
             <Rating movieID={movie.id} />
              <Review movieID={movie.id}/>
-            <Grid header="Actors">
+             <Selections handelClick={handelClick}/>
+            {selection==="actors" &&<Grid header="Actors">
                 {
                     movie.actors.map( actor => (
                         <Actor key={actor.credit_id} actor={actor} />
                     ))
                 }
-            </Grid>
+            </Grid>}
+            {
+                selection==="reviews" && <ShowReviews movieID={movieId}/>
+            }
         </>
     )
 }

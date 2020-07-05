@@ -35,7 +35,6 @@ const Reviews =   (props) => {
                 }
                 let review = await axios.get("/api/reviews/review/"+reviewID)
                 review = review.data.review 
-                console.log("<<<<<<<<<<setting state of the review in useeffect()>>>>>>>>>>> ") 
                 setStateReview(review)}
         }
         fetchReview()
@@ -45,7 +44,6 @@ const Reviews =   (props) => {
         return(<div className="review"><div  className="SigninLink-container"><Link to = "/signin" className="SigninLink"> Log in to leave a review for this movie</Link></div></div>)
     }
     else{
-        console.log("movie reviewed = ", movieReviewed)
         const toggleReadMore = () => setReadMore(!readMore)
         
         if(isReviewed){        
@@ -56,8 +54,6 @@ const Reviews =   (props) => {
                         Your Review : 
                     </h1>
                     <h3 className="review-text">
-                        {console.log("readMore = ", readMore)}
-                        {console.log("stateReview.length =", stateReview.length )}
                         {
                          (stateReview.length > 150 && !readMore) ?
                             <>

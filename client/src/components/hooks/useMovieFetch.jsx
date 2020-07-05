@@ -33,11 +33,11 @@ const useMovieFetch = (movieId) => {
 
     useEffect( () =>{
         if (localStorage[movieId]){
-            console.log("grabbing from local storage")
+            console.log("grabbing movie info from local storage")
             setState(JSON.parse(localStorage[movieId]))
             setLoading(false)
         }else{
-            console.log("Grabbing from the api")
+            console.log("making api call to tmdb")
             fetchData();
         }
     }, [fetchData, movieId])

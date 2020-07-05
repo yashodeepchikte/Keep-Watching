@@ -6,6 +6,7 @@
     
     background: black;
     color: White;
+    padding-bottom: 25px;
 }
 
 
@@ -69,6 +70,7 @@ textarea{
     font-size: 2rem;
     border: none;
     outline: none;
+
 }
 
 .leave-review button{
