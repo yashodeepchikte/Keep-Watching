@@ -27,7 +27,8 @@ const ShowReviews = (props) => {
             <div className="reviewBox">
                 <div className="reviewBox-container">
                     <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
-                    <h4>Review: {review.review}</h4>
+                    <h3>Review</h3>
+                    <p>{review.review}</p>
                 </div>
             </div>))
         }   

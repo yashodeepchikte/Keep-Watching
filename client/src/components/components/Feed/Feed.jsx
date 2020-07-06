@@ -2,6 +2,8 @@ import React from "react"
 
 import useReviewsFetch from "../../hooks/useFetchFeed"
 import Spinner from "../Spinner/Spinner"
+import Grid from "../Grid/Grid"
+import {Link} from "react-router-dom"
 
 import {  
     IMAGE_BASE_URL, POSTER_SIZE, 
@@ -54,7 +56,7 @@ const Feed = () => {
         const Month = month[date.getMonth()]
         const ddate = date.getDate()
         const day = days[date.getDay()]
-        const FinalDate = String(day) + " " + String(ddate) + " " +String(Month) + " " +String(Year) 
+        const FinalDate =  String(ddate) + " " +String(Month) + " " +String(Year) 
         const postedTime = date.getTime()
         const currentTime = new Date().getTime()
         const DaysAgo = getDaysAgo(currentTime-postedTime)
@@ -62,33 +64,55 @@ const Feed = () => {
         return [FinalDate, DaysAgo]
     }
 
+
   
     return (
+        <>
+        <h1>Feed</h1>
         <div className="feed">
-            <h1>Feed</h1>
             {
                 feed.data.map(review => (
                     <div className="feedBox">
+                        
                         <div className="feedBox-container">
+                           
                             <div className="thumbnail">
                                 <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
                             </div>
-                            <div className="feed-info">
-                                <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
-                                <h3>Movie Name: {review.movie_data.original_title}</h3>
-                                <br/>
-                                <h4>Review: {review.review.length > 250  ? review.review.slice(0, 250) : review.review }</h4>
-                                <br />
-                                <hr />
-                                <h4>Posted : {getDate(review.date)[0]} ( {getDate(review.date)[1]} )</h4>
-                            </div>                        
+                            
+                            <div className="feedinfo">
+                                
+                                <div className="username">
+                                    <i className="fa fa-user" aria-hidden="true"></i> {review.username}
+                                </div>
+
+                                <div className="movie-title">
+                                    {review.movie_data.original_title}
+                                </div>
+
+                                <div className="review-text">
+                                    <p>{review.review.length > 150  ? <span>{review.review.slice(0, 250)}  <Link to={"/movie/"+review.tmdbMovieId}> Read More... </Link> </span>: review.review }</p>
+                                    {console.log("review.tmdbMovieId = ", review.tmdbMovieId)}
+
+                                    <span className="postedAt"> 
+                                            <i className="fa fa-clock-o" aria-hidden="true"></i>   <span>{ getDate(review.date)[0]}</span>
+                                    </span>
+                                </div>
+                                
+                            </div>
+                            
+                            
+                                              
                         </div>
+
                     </div>
                 ))
             }
         </div>
+</>
     )
 }
+
 
 
 export default Feed

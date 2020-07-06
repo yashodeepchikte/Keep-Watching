@@ -43,13 +43,14 @@ export const StyledSearchBarContent = styled.div`
     background: transparent;
     color: #fff;
     box-sizing: border-box;
+    font-size:22px;
 
     :focus {
       outline: none;
     }
 
     @media screen and (max-width: 720px) {
-      ${'' /* font-size: 28px; */}
+      font-size: 28px;
     }
   }
 `;
