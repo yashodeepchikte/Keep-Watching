@@ -1,10 +1,11 @@
+
 import styled from 'styled-components';
 
 export const StyledSearchBar = styled.div`
   width: 100%;
-  height: 105px;
+  height: 10vh;
   background: #1c1c1c;
-  padding: 25px 20px 0px 20px;
+  padding: 1.5vh 20px 1.5vh 20px;
   box-sizing: border-box;
   color: #fff;
 `;
@@ -12,32 +13,34 @@ export const StyledSearchBar = styled.div`
 export const StyledSearchBarContent = styled.div`
   max-width: 1280px;
   width: 100%;
-  height: 55px;
+  height: 7vh;
   background: #353535;
   margin: 0 auto;
   border-radius: 40px;
   position: relative;
   color: #fff;
-
+  .search-content{
+    border:1px solid red;
+  }
   .fa-search {
+    font-size: 3vh;
     position: absolute;
-    left: 20px;
-    top: 12px;
+    left:30px;
+    top: 2vh;
     color: #fff;
     z-index: 1000;
   }
 
   input {
     font-family: 'Abel', sans-serif;
-    font-size: 28px;
     position: absolute;
+    height: 7vh;
     left: 0px;
-    margin: 8px 0;
+    ${'' /* margin: 8px 0; */}
     padding: 0 0 0 60px;
     border: 0;
     width: 95%;
     background: transparent;
-    height: 40px;
     color: #fff;
     box-sizing: border-box;
 
@@ -46,7 +49,7 @@ export const StyledSearchBarContent = styled.div`
     }
 
     @media screen and (max-width: 720px) {
-      font-size: 28px;
+      ${'' /* font-size: 28px; */}
     }
   }
 `;

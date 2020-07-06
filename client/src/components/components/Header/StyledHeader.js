@@ -4,16 +4,14 @@ export const StyledHeader = styled.div`
   background: #1c1c1c;
   padding: 0 2px;
   box-sizing: border-box;
+  height: 10vh;
+  padding: 1vh 0;
+
   a{
     color:white;
     font-size: 1rem;
     margin: 0.2rem;
     border-radius: 5px;
-  }
-  a:hover{
-    color:black;
-    background-color: white;
-    transition:0.3s;
   }
 
   .logo{
@@ -43,10 +41,20 @@ export const StyledHeader = styled.div`
     }
 
   }
+
+  .loginInfo-container{
+    cursor:pointer;
+    margin-right: 10px;
+  }
+  .loginInfo{
+    
+  }
+
+
   .header-content {
     max-width: 1280px;
-    min-height: 120px;
-    padding: 20px 0px;
+    ${'' /* padding: 20px 0px; */}
+    height: 8vh;
     margin: 0 auto;
     box-sizing: border-box;
     display: flex;
@@ -61,11 +69,13 @@ export const StyledHeader = styled.div`
 `;
 
 export const StyledRMDBLogo = styled.img`
-  width: 250px;
-  margin-top: 20px;
+  ${'' /* margin-top: 20px; */}
+  ${'' /* border: 1px solid red; */}
+  width: 35vh;
+
   
   @media screen and (max-width: 500px) {
-    width: 150px;
+    ${'' /* width: 150px; */}
     margin-top: 5px;
   }
 `;

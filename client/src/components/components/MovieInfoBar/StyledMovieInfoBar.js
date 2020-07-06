@@ -4,10 +4,11 @@ export const StyledMovieInfoBar = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 100px;
+  min-height: 50px;
+  height: 10vh
   height: auto;
   background: #1c1c1c;
-  padding: 20px;
+  padding: 10px 20px;
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;
   font-size: 20px;

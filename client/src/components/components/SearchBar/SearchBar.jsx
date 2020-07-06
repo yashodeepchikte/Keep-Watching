@@ -19,6 +19,7 @@ const SearchBar = ( { callback } ) => {
     return (
         <StyledSearchBar>
             <StyledSearchBarContent>
+
                 <FontAwesome className="fa-search" name="search" size="2x" />
                 <input
                     type="text"

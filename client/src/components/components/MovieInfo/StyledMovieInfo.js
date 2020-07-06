@@ -12,6 +12,7 @@ export const StyledMovieInfo = styled.div`
   padding: 40px 20px;
   box-sizing: border-box;
   animation: animateMovieinfo 1s;
+  height: 80vh;
 
   .movieinfo-content {
     max-width: 1280px;
@@ -23,6 +24,7 @@ export const StyledMovieInfo = styled.div`
   }
 
   .movieinfo-thumb {
+    min-height: 450px;
     width: 300px;
     float: left;
 

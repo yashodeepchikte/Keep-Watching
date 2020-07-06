@@ -6,9 +6,7 @@ export const StyledFooter = styled.div`
   padding: 0 20px;
   box-sizing: border-box;
   font-family: 'Abel', sans-serif;  
-  border: 1px solid yellow;
   height:10vh;
-
   a{
       color: white;
       text-decoration: none;
@@ -16,11 +14,14 @@ export const StyledFooter = styled.div`
 
   }
   .footer-content {
-    // border: 1px solid white;
     max-width: 1280px;
     min-height: 30px;
-    padding: 20px  0;
+    height: 10vh;
+    padding: 0.5vh  0;
     
+    a{
+      font-size: 5vh;
+    }
     margin: 0 auto;
     box-sizing: border-box;
     display: flex;

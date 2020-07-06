@@ -119,7 +119,7 @@ const Reviews =   (props) => {
                                 <input type="hidden"  value={movieID} name="movie_id" />
                                 <input type="hidden"  value={user.username} name="username"/>
                                 {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
-                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
+                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange} spellcheck="false">Leave  review</textarea>
                                 <button type="submit" className="post">Post Review</button>
                         </form>
                     </div>

@@ -21,7 +21,7 @@ export const StyledHeader = styled.div`
 
 export const StyledRMDBLogo = styled.img`
   width: 250px;
-  margin-top: 20px;
+  ${'' /* margin-top: 20px; */}
 
   @media screen and (max-width: 500px) {
     width: 150px;

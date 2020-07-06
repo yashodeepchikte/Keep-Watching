@@ -5,8 +5,11 @@
     margin: 0 auto;
     
     background: #1c1c1c;
+    /* background-color: #141618; */
+
     color: White;
     padding-bottom: 25px;
+    overflow: scroll;
 }
 
 
@@ -28,6 +31,7 @@
     width: 80%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
    
 }
 
@@ -63,22 +67,77 @@
 }
 
 textarea{
-    height: 100px;
-    width: 90%; 
+    height: 15px;
+    width: 100%; 
     display: block;
     margin: 0 auto;
-    font-size: 2rem;
     border: none;
     outline: none;
-
+    transition: 0.5s;
+    padding: 10px;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
+    background-color: #21252d;
+    color: #fff;
+    border-radius: 5px;
 }
+textarea:focus{
+    height: 200px;
+    transition: 0.5s;
+}
+
+textarea::placeholder { 
+    transition: 0.5s;
+    font-weight: 700;
+}
+
+textarea:focus::placeholder{
+    transition: 0.4s;
+    color: #21252d;
+}
+
+
+  
+/* Hide scrollbar for Chrome, Safari and Opera */
+textarea::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  textarea {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.review::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .review {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+
 
 .leave-review button{
     margin: 0;
     margin-top: 10px;
-    width: 100%;
-
+    border: none;
     padding: 10px;
-    border: 1px solid green;
-    font-size: 2rem;
+    background-color: #316aff;
 }
+.leave-review button:hover{
+    
+    transition: 0.5s;
+    transform: scale(1.03);
+    color:White;
+    margin: 0;
+    margin-top: 10px;
+    border: none;
+    padding: 10px;
+    background-color: #316aff;
+}
+
