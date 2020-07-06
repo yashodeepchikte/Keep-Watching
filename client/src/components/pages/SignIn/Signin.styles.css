@@ -1,0 +1,131 @@
+.signin ::selection {
+    color: #fff;
+    background: red;
+}
+
+.signin-container{
+    height: 90vh;
+    box-sizing: border-box;
+    font-family:  Helvetica,Arial, sans-serif;
+    padding: 30px;
+    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+    color: #21252d;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    display: flex;
+}
+
+.signin{
+    justify-content: center;
+    max-width: 430px;;
+    margin: auto;
+    text-align:  center;
+}
+.signin .eggLogo{
+    width: 50px;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
+.signin h3{
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.signin form{
+    box-sizing: border-box;
+}
+.signin .label{
+    font-size: .75rem;
+    cursor: default;
+    color: #21252d;
+    line-height: 1.5;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem ;
+}
+.red-font{
+    color: red;
+}
+.signin input{
+    height: 46px;
+    font-size: 15px;
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: .5rem;
+    padding: 0.5rem 0.5rem;
+    background-color: #fff;
+    border: 1px solid #b0b6be;
+    border-radius: .25rem;
+    overflow: visible;
+    transition: 0.5s;
+    font-family: sans-serif;
+}
+.signin input:focus{
+    transition: 0.5s;
+    border: 1px solid #6c94fb;
+    outline: none;
+
+}
+.signin .inputField{
+    position: relative;
+}
+.signin .showPassEgg {
+    width: 30px;
+    height: 46px;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+.signin .tooltip{
+    position: absolute;
+    font-size: 0.5rem;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    padding-bottom: 2px;
+    transition: 0.1s;
+    width: 60px;
+    height: 12px;
+    right:-65px;
+    bottom:  10px;
+}
+.signin .notvisible{
+    width: 0;
+    height: 0;
+    font-size: 0;
+    transition: 0.1s;
+    visibility: hidden;
+}
+.signin input[type="submit"].notAllowed{
+    cursor: not-allowed;
+    background: #21252d;
+    color: white;
+    border: none;
+}
+
+.signin input[type="submit"]{
+    border-color: #316aff;
+    background-color: #316aff;
+    color: white;
+    transition: 0.2s;
+    height: 46px;
+    width: 98%;
+}
+.signin input[type="submit"]:hover{
+    transition: 0.2s;
+    width: 100%;
+}
+
+.signin .signUpBlock{
+    text-align:  center;
+    margin-top: 2rem;
+    font-size: 1rem;
+}
+.signin .signUpBlock a{
+    color: #316aff;
+}
+

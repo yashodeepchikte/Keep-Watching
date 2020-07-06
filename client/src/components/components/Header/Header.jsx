@@ -5,6 +5,8 @@ import React, {useState, useContext, useEffect} from "react"
 import RMDBLogo from "../../images/reactMovie_logo.png"
 import TMDBLogo from "../../images/tmdb_logo.svg"
 import LogoutButton from "../LogoutButton/LogoutButton"
+import {ReactComponent as EggLogo} from "../../images/egg.svg"
+
 
 //  importing context
 import AuthContext from "../../../context/Authentication/authenticationContext"
@@ -45,11 +47,8 @@ const Header = () =>
     <StyledHeader>
         <div className="header-content" style={style}>
             <Link to="/" className="logo">
-                <StyledRMDBLogo src={RMDBLogo} alt="rmdb-logo"/>
+                <EggLogo className="logo"/>
             </Link>
-            {/* <a href="https://www.themoviedb.org/?language=en-US">
-                <StyledTMDBLogo src={TMDBLogo} alt="tldb-logo"/>
-            </a> */}
             {
                 isAuthenticated ?
                 <div className="loginInfo-container">
@@ -58,10 +57,9 @@ const Header = () =>
                 </div>
                 :
                 <div className="signinButtons">
-                        <Link to="/signin">Sign In</Link>
-                        <a href="/">|</a>
-                        <Link to="/signup">Signup</Link>
-                   
+                        <Link to="/signin" style={{marginRight:"5px"}}>Sign In </Link>
+                        <a href="/"> | </a>
+                        <Link to="/signup" style={{marginLeft:"5px"}}> Signup</Link>
                 </div>
             }
         </div>
