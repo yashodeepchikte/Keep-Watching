@@ -29,9 +29,9 @@ app.use("/api/similarMovies", require("./routes/similarMovies"))
 //     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 // });
 
-app.get("/", (req, res)=>{
-    res.send("server route")
-})
+// app.get("/", (req, res)=>{
+//     res.send("server route")
+// })
 
 
 //  serving the static files if we are in production
