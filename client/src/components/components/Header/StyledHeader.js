@@ -68,7 +68,7 @@ export const StyledHeader = styled.div`
     width: 220px;
     overflow: hidden;
     position: absolute;
-    top: 5vh;
+    top: 8vh;
     z-index:201;
     background: #1f2735;
 
