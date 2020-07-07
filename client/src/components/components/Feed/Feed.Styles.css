@@ -21,6 +21,7 @@
     box-shadow: 0 0 15px -1px rgba(0,0,0,0.1);
     border-radius: 10px;
     border: 1px solid rgba(0,0,0,0.05);
+
 }
 
 .feedBox-container .thumbnail{
@@ -40,20 +41,23 @@
 }
 .feedinfo .username{
     font-weight: 250;
-    height: 20%;
-    padding-top: 15px;
+    /* height: 20%; */
+    padding-top: 3px;
     padding-bottom: 3px;
     box-sizing: border-box;
     display: flex;
-    align-items: center;
-    font-size:  22px;
+    font-size:  13px;
+    font-weight: 200;
 }
+
 .feedBox .movie-title{
-    font-size: 1rem;
+    font-size: 15px;
+    font-weight: 300;
     box-sizing: border-box;
-    height: 20%;
+    /* height: 20%; */
     box-sizing: border-box;
-    padding-top: 10px;
+    padding-top: 5px;
+    
 }
 .feedBox .review-text{    
     font-weight: 100;
@@ -63,11 +67,11 @@
     flex-wrap: wrap;
     box-sizing: border-box;
     font-size: small;
-    height: 70%;
+    /* height: 70%; */
     overflow-y: auto;
     position: relative;
     box-sizing: border-box;
-    padding-top: 10px;
+    padding-top: 5px;
 
 }
 
@@ -79,18 +83,17 @@
 }
 
 .feedBox  .postedAt{
-    position: absolute;
+    
     font-size:  13px;
-    color: rgba(0,0,0,.7);
-    text-align: right;
+    color: black;
+   text-align: right;
     height: 15px;;
-    bottom:60;
+    display: flex;
+    flex-wrap: nowrap;
     min-width: 95px;
-    /* left:0; */
     right: 5px;
-    /* left: 0; */
-    top: 55px;
-    /* background-color: #ffffff; */
+
+
 }
 
 .fa-clock-o{

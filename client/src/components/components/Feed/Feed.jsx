@@ -65,6 +65,7 @@ const Feed = () => {
     }
 
 
+
   
     return (
         <>
@@ -83,22 +84,25 @@ const Feed = () => {
                             </div>
                             
                             <div className="feedinfo">
-                                
-                                <div className="username">
-                                    <i className="fa fa-user" aria-hidden="true"></i> {review.username}
-                                </div>
-
                                 <div className="movie-title">
                                     {review.movie_data.original_title}
                                 </div>
+                                
+                                <div className="username">
+                                    <span className="uaername">
+                                        <i className="fa fa-user" aria-hidden="true"></i> {review.username}
+                                    </span>
+                                    <span className="postedAt"> 
+                                            <i className="fa fa-clock-o" aria-hidden="true"></i>   <span>{ getDate(review.date)[0]}</span>
+                                    </span>
+                                </div>
+
 
                                 <div className="review-text">
                                     <p>{review.review.length > 150  ? <span>{review.review.slice(0, 250)}  <Link to={"/movie/"+review.tmdbMovieId}> Read More... </Link> </span>: review.review }</p>
                                     {console.log("review.tmdbMovieId = ", review.tmdbMovieId)}
 
-                                    <span className="postedAt"> 
-                                            <i className="fa fa-clock-o" aria-hidden="true"></i>   <span>{ getDate(review.date)[0]}</span>
-                                    </span>
+                                    
                                 </div>
                                 
                             </div>
