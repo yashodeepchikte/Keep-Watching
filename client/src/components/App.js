@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, {useEffect}  from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -19,7 +19,6 @@ import Recommendations from "./pages/recommendations/Recommendations"
 
 // importing states
  // eslint-disable-next-line
-import UserState from "../context/Users/USerState"
 import AuthState from "../context/Authentication/AuthenticationState"
 import AlertState from "../context/AlertContext/AlertState"
 
@@ -35,7 +34,7 @@ if(localStorage.token){
 }
 
 const App = () =>{
-    
+    useEffect(()=>console.clear(), [])
     return(
             <AlertState>
                 <AuthState>

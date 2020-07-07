@@ -31,9 +31,12 @@ const Header = () =>
 
     const [show, setShow] = useState(false)
     const loginInfo = (
-            <div className="loginInfo">
-                <h1>{user ? user.email : ""}</h1>
-                <LogoutButton />
+            <div className={show ? "loginInfo": "loginInfo hidden" }>
+           { console.log("user = ", user)}
+                <div className="logininfo-item">{user ? user.email : ""}</div>
+                <div className="logininfo-item">Movies Rated : {user? user.ratings.length:""}</div>
+                <div className="logininfo-item">Movies Reviewed : {user? user.movies_reviewed.length:""}</div>
+                <div className="logininfo-item"><LogoutButton /></div>
             </div>
     )
     const test = "yashodeep";
@@ -52,8 +55,8 @@ const Header = () =>
             {
                 isAuthenticated ?
                 <div className="loginInfo-container">
-                    <i className="fa fa-user" aria-hidden="true" onClick={toggleShow}></i>
-                    {show && loginInfo }
+                    <i className={show?"fa fa-user menu-shown":"fa fa-user menu-hidden"} aria-hidden="true" onClick={toggleShow}></i>
+                    {loginInfo }
                 </div>
                 :
                 <div className="signinButtons">

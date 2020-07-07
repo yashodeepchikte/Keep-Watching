@@ -29,7 +29,6 @@ export const StyledHeader = styled.div`
     height: 8vh;
   }
   .signinButtons{
-    
     font-family: 'Abel', sans-serif;
     border-radius: 10px;
     display: flex;
@@ -37,6 +36,89 @@ export const StyledHeader = styled.div`
     justify-content: center;
     align-items: center;
     padding: 5px;
+  }
+  .logOutButton{
+    font-family: 'Abel', sans-serif;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+  }
+  .loginInfo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 220px;
+    overflow: wrap;
+    text-align:right;
+    irems-align: right;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .loginInfo{
+    transition: 0.5s;
+    height: 300px;
+    width: 220px;
+    overflow: hidden;
+    position: absolute;
+    top: 5vh;
+    z-index:20;
+    background: #1f2735;
+
+    h1{
+    font-size: 16px;
+    margin: 0;
+    }
+  }
+  .hidden{
+    height: 0;
+    transition: 0.5s;
+  }
+  .menu-hidden{
+    color: white;
+    cursor: pointer;
+  }
+  .menu-shown{
+    color: #316aff;
+    corsor: pointer;
+  }
+  .logininfo-item{
+    overflow:visible;
+    height: 40px;
+    font-size: 13px;
+    display: flex;
+    font-family: arial;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid white;
+    transition: 0.3s;
+  }
+  .logininfo-item:hover{
+    transition: 0.3s;
+    color: white;
+    background-color: #316aff;
+    cursor: pointer;
+    border-bottom: 1px solid white;
+  }
+  .logininfo-item{
+    button{
+      border: none;
+      width: 100%;
+      height: 100%;
+      background-color: #1f2735;
+    }
+    button:hover{
+      border: none;
+      border-radius: none;
+      background-color: #316aff;
+      color: white;
+
+    }
   }
 `;
 

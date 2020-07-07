@@ -11,11 +11,11 @@ const LogoutButton = (props) => {
     const {logout} = authContext
     
     return(
-    <div className="logOutButton">
-        <button onClick={logout} >
-            Logout
+   
+        <button onClick={logout}    >
+            Sign Out
         </button>
-    </div>)
+  )
 
 }
 

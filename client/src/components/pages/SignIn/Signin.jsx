@@ -4,6 +4,7 @@ import React, {useState, useContext, useEffect} from "react"
 import {Link} from "react-router-dom"
 // import chalk from "chalk"
 
+
 //  Importing components
 import CustomInput from "../../components/CustomInput/CustomInput"
 import SigninWithGoogle from "../../components/SignInWithGoogle/SignInWithGoogle"
@@ -154,15 +155,14 @@ const SignIn = (props) => {
             <EggLogo className="eggLogo"/>
             <h3>Sign in to keepwatching.io</h3>
             
-            <form onSubmit={handelSubmit} autocomplete="off">
-                
-        
-                       
-                <label className="label" >
-                    <span>Email address</span>
-                    <span className="red-font">*email is required</span>
-                </label>
-                <input type="email" name="email" label="Email" onChange={handelChange} value={email} />
+            <form onSubmit={handelSubmit} autocomplete="off">                     
+            <div className="inputField">
+                    <label className="label" >
+                        <span>Email address</span>
+                        <span className="red-font">*email is required</span>
+                    </label>
+                    <input type="email" name="email" label="Email" onChange={handelChange} value={email} />
+                </div>
                 <div className="inputField">
                     <label className="label" >
                         <span>Password</span>
