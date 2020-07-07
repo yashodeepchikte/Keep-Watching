@@ -141,3 +141,6 @@ textarea::-webkit-scrollbar {
     background-color: #316aff;
 }
 
+.show-review-container{
+    border: 1px solid red;
+}

@@ -6,6 +6,7 @@ const useFetchSimilarMovies = (movieID) => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false) 
  
+    
     const fetchData = useCallback(async () => {
         setError(false)
         setLoading(true)

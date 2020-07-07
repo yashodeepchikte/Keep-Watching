@@ -77,7 +77,9 @@ const Feed = () => {
                         <div className="feedBox-container">
                            
                             <div className="thumbnail">
-                                <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
+                                <Link to={"/movie/"+review.tmdbMovieId}>
+                                    <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
+                                </Link>
                             </div>
                             
                             <div className="feedinfo">

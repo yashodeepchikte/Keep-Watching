@@ -1,0 +1,16 @@
+.alert{
+    background-color: white;
+    margin: 1vh auto;
+    z-index: 202;
+    border: 2px solid green;
+    color: green;
+} 
+
+.alert-danger{
+    border: 2px solid red;
+    color: red;
+}
+
+.alert p{
+    margin: 10px auto;
+}

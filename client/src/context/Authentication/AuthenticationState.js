@@ -124,7 +124,7 @@ const AuthState = (props) => {
 			setLoadingFalse()
 			return res
 		} catch (error) {
-			setAlert(error.response.data.msg, "danger")
+			setAlert(error.message, "danger")
 			setLoadingFalse()
 			console.log("some error in the catch block of the login function in the AuthState.jsx")
 			console.log("error --> ", error.message)

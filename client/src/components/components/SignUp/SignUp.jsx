@@ -9,6 +9,8 @@ import GenerPreference from "../GenerSelection/generSelection"
 import {ReactComponent as LoadingSvg} from '../../images/loading.svg';
 import {ReactComponent as EggLogo} from "../../images/egg.svg";
 
+import Alerts from "../Alerts/Alerts"
+
 import "./SignUp.styles.css"
 
 
@@ -172,7 +174,9 @@ const SignUp = (props) =>{
     },  [state])
 
 
-
+    const sendToTheTop = () => {
+        props.history.push("/signup/#top")
+    }
     const handelChange = (event) => {
         setstate(
             
@@ -260,9 +264,8 @@ const SignUp = (props) =>{
             <div className="signin">
                 <EggLogo className="eggLogo"/>
                 <h3>Sign in to keepwatching.io</h3>
-                
+                <a name="#top" id="top"></a>
                 <form onSubmit={handelSubmit} autocomplete="off">
-                    
                     {/* <CustomImput type="email" name="email" label="Email" handelChange={handelChange} value={email}/> */}
                     <div className="inputField">
                         <label className="label" >
@@ -275,7 +278,7 @@ const SignUp = (props) =>{
                     <div className="inputField">
                         <label className="label" >
                             <span>Username</span>
-                            <span className="red-font">*Username is required</span>
+                            <span className="red-font">*required</span>
                         </label>
                          <input type="text" name="username" label="Username" onChange={handelChange} value={username} />
                     </div>
@@ -322,10 +325,13 @@ const SignUp = (props) =>{
                         <LoadingSvg /> 
                                 :
                         <div className="submit-button">
-                            <input type="submit"  value="Sign Up" className={isAllowed ?"" :  "notAllowed"}/>
+                            <a href="#top">
+                                <Alerts />
+                                <input type="submit"  value="Sign Up" className={isAllowed ?"" :  "notAllowed"}  />
+                            </a>
                         </div>
                     }
-                    
+                
                 </form>
                 <div className="signUpBlock">
                     Already  have an account?  <Link to="/signin">Sign In here</Link>

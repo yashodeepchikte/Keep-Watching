@@ -10,6 +10,7 @@ import CustomInput from "../../components/CustomInput/CustomInput"
 import SigninWithGoogle from "../../components/SignInWithGoogle/SignInWithGoogle"
 import {ReactComponent as LoadingSvg} from '../../images/loading.svg';
 import {ReactComponent as EggLogo} from "../../images/egg.svg"
+import Alerts from "../../components/Alerts/Alerts"
 // Importing Context
 import AuthContext from "../../../context/Authentication/authenticationContext"
 import AlertContext from "../../../context/AlertContext/AlertContext"
@@ -159,14 +160,14 @@ const SignIn = (props) => {
             <div className="inputField">
                     <label className="label" >
                         <span>Email address</span>
-                        <span className="red-font">*email is required</span>
+                        <span className="red-font">*required</span>
                     </label>
                     <input type="email" name="email" label="Email" onChange={handelChange} value={email} />
                 </div>
                 <div className="inputField">
                     <label className="label" >
                         <span>Password</span>
-                        <span className="red-font">*Password is required</span>
+                        <span className="red-font">*required</span>
                     </label>
                     <input type={showPassword?"text":"password"} name="password" label="Password" onChange={handelChange} value={password}/>
                     <div className="showPassword" id="showPassEgg" onClick={togglePassword} onMouseOver={toolTipTrue} onMouseOut={toolTIpFalse}><EggLogo className="showPassEgg"/></div>
@@ -176,6 +177,7 @@ const SignIn = (props) => {
                         <LoadingSvg />
                         :
                         <div className="submit-button">
+                            <Alerts />
                             <input type="submit"  value="Sign In" className={isAllowed ?"" :  "notAllowed"}/>
                         </div>
                 }

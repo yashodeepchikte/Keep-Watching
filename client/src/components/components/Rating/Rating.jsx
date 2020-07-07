@@ -53,7 +53,7 @@ const Ratings =  (props) => {
         //  The user has not yet rated the movie
         return(
             <div className="ratings">
-               <h1>Rate this Movie</h1>
+               <p>Rate this Movie</p>
                     <form onSubmit={rateMovie}>         
                         <select name="rating" id="ratings">
                             <option value={1}>1 Star</option>
@@ -73,7 +73,7 @@ const Ratings =  (props) => {
 
         return(
             <div className="ratings">
-                <h1>Your Rating : {movieRating}<i className="fa fa-star" aria-hidden="true"></i></h1>
+                <p>Your Rating : {movieRating}<i className="fa fa-star" aria-hidden="true"></i></p>
             </div>
         )
     }

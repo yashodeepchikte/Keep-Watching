@@ -50,11 +50,11 @@ const Reviews =   (props) => {
         if(isReviewed){      
             //  if the user has already rated this movie  
             return(
-                <div className="review">
                 <div className="show-review-container">
-                    <h3 className="title">
+                <div className="review">
+                    <p className="title">
                         Your Review : 
-                    </h3>
+                    </p>
                     <h3 className="review-text">
                         {
                          (stateReview.length > 150 && !readMore) ?
@@ -99,7 +99,7 @@ const Reviews =   (props) => {
                     setAlert("please fill in a rreview to submit")
                     return
                 }
-     
+    
                 try {
                     console.log("making the post request")
                     const res = await axios.post("/api/reviews/addReview", data)
@@ -119,7 +119,7 @@ const Reviews =   (props) => {
                                 <input type="hidden"  value={movieID} name="movie_id" />
                                 <input type="hidden"  value={user.username} name="username"/>
                                 {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
-                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange} spellcheck="false">Leave  review</textarea>
+                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
                                 <button type="submit" className="post">Post Review</button>
                         </form>
                     </div>

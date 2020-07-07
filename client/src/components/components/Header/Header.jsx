@@ -6,7 +6,7 @@ import RMDBLogo from "../../images/reactMovie_logo.png"
 import TMDBLogo from "../../images/tmdb_logo.svg"
 import LogoutButton from "../LogoutButton/LogoutButton"
 import {ReactComponent as EggLogo} from "../../images/egg.svg"
-
+import Alerts from "../Alerts/Alerts"
 
 //  importing context
 import AuthContext from "../../../context/Authentication/authenticationContext"
@@ -54,7 +54,7 @@ const Header = () =>
             </Link>
             {
                 isAuthenticated ?
-                <div className="loginInfo-container">
+                <div className="loginInfo-container" onClick={toggleShow}>
                     <i className={show?"fa fa-user menu-shown":"fa fa-user menu-hidden"} aria-hidden="true" onClick={toggleShow}></i>
                     {loginInfo }
                 </div>

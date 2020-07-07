@@ -55,17 +55,21 @@ export const StyledHeader = styled.div`
     overflow: wrap;
     text-align:right;
     irems-align: right;
+    align-items: end;
+
     position: relative;
     box-sizing: border-box;
+    z-index: 200;
   }
   .loginInfo{
+    border-radius: 10px;
     transition: 0.5s;
     height: 300px;
     width: 220px;
     overflow: hidden;
     position: absolute;
     top: 5vh;
-    z-index:20;
+    z-index:201;
     background: #1f2735;
 
     h1{
