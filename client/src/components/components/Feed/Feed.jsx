@@ -68,7 +68,7 @@ const Feed = () => {
   
     return (
         <>
-        <h1>Feed</h1>
+        <h1 style={{marginLeft: "25px", fontFamily:"helvatica, arial"}}>Feed</h1>
         <div className="feed">
             {
                 feed.data.map(review => (

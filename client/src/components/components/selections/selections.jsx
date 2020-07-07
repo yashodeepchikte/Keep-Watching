@@ -4,7 +4,9 @@ import "./selections.css"
 const Selections = ({collections, handelClick}) => {
     return(
         <div className="selections">
-            {collections.map(collectionName =>  <button value={collectionName} onClick={handelClick} key={collectionName}>{collectionName}</button>)}
+            <div className="selections-container">
+                {collections.map(collectionName =>  <button value={collectionName} onClick={handelClick} key={collectionName} className="selections-item">{collectionName}</button>)}
+            </div>
         </div>
     )
 }

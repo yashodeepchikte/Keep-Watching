@@ -19,5 +19,6 @@ export const StyledLoadMoreBtn = styled.button`
 
   :hover {
     opacity: 0.8;
+    border: 3px solid black;
   }
 `;

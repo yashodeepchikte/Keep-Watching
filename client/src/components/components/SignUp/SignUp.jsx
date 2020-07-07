@@ -149,20 +149,16 @@ const SignUp = (props) =>{
              // password2 > 6 character
              if(password2.length > 5){
                 // password1 = =password2
-                if(password === password2){
+               
                     setIsValid(isValid => ({...isValid, password2: true}) )
-                    setLoadingFalse()
-                }else{
-                    setIsValid(isValid => ({...isValid, password2: false}) )
-                    setLoadingFalse()
-                }
+                    setLoadingFalse()    
             }else{
                 setIsValid(isValid => ({...isValid, password2: false}) )
                 setLoadingFalse()
             }
             
             if(isValid["email"] && isValid["password"] && isValid["username"] && isValid["fname"]
-                && isValid["password"]){
+                && isValid["password"] && isValid["password2"]){
                 setIsAllowed( () =>  true) 
             }
             else{
@@ -223,7 +219,7 @@ const SignUp = (props) =>{
                 setAlert("Passwords do not match", "danger")
                 setLoadingFalse()
             }else if(!checkAlphabetic(fname)){
-                setAlert("The First Name must not contain numbers, apaces or special characters")
+                setAlert("The First Name must not contain numbers, spaces or special characters", "danger")
                 setLoadingFalse()
             }
             else if(password.length < 6){

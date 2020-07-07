@@ -1,3 +1,40 @@
 .selections{
-    margin-top: 10px;
+    /* border: 1px solid red; */
+    background-color: black;
+    width: 100%;
+    box-sizing: border-box;;
+}
+.selections-container{
+    width: 95%;
+    height: 8vh;
+    /* border: 1px solid orange; */
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.selections-item{
+    transition: 0.2s;
+    height: 5vh;
+    width: 40%;
+    background-color:#3a72ff ;
+    color: white;
+    margin-right: 25px;
+    border: none;
+    border-radius: 0;
+}
+.selections-item:hover{
+    border-radius: 10px;;
+    transition: 0.2s;
+    height: 5vh;
+    width: 40%;
+    background-color: #316aff;
+    color: white;
+    margin-right: 25px;
+    border: none;
+}
+.selections-item:focus{
+border: none;
+outline: none;
 }

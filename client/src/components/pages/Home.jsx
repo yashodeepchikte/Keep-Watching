@@ -84,7 +84,7 @@ const Home =  () =>{
            </Grid>}
            {selection==="Feed" && <Feed />}
            {loading && <Spinner /> }
-           <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+           {loading || <LoadMoreBtn text="Load More" callback={loadMoreMovies} />}
            
        </div>
    )
