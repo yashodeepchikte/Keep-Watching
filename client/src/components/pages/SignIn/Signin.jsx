@@ -171,7 +171,7 @@ const SignIn = (props) => {
                     </label>
                     <input type={showPassword?"text":"password"} name="password" label="Password" onChange={handelChange} value={password}/>
                     <div className="showPassword" id="showPassEgg" onClick={togglePassword} onMouseOver={toolTipTrue} onMouseOut={toolTIpFalse}><EggLogo className="showPassEgg"/></div>
-                    <span className={ showTooltip ? "tooltip" : "tooltip notvisible"} >Show Password</span>
+                    {/* <span className={ showTooltip ? "tooltip" : "tooltip notvisible"} >Show Password</span> */}
                 </div>
                 {   loading ? 
                         <LoadingSvg />
