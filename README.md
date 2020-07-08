@@ -9,19 +9,24 @@ This project uses SurpriseLib for dealing with Cosine similarity based nearest n
 For implimentation purpose dummy users are created using moviewlens 100K dataset. Each user has at least 20 movie ratings. 
 <hr />
 
-<img alt="home page image" src="images/homepage.PNG"> 
+
+![](Images/homepage.PNG)
 
 # Features
 <ul>
   <li>
     Recommendations are based on similar users(UserBased Collaborative Filtering) and similar movies (itemBased colaborative filtering)
     <br/>(in deployment the item based model exceeds the available memory limit on the free tier of Heroku do this has not been included)
-    <img alt="recommendationspage img1"  src="images/recommendations1.PNG">
-    <img alt="recommendation pqge img2"  src="images/recommendations2.PNG"/>
+
+    ![](Images/recommendations1.PNG)
+    ![](Images/homepage.PNG)
+    ![](Images/recommendations2.PNG)
   </li>
   <li>
     signin/sugnup with email <br>
     Signin in with Google Signin with Github (not added to the deployed build yet)
+    <br/>![](Images/sign-page.PNG)
+    ![](Images/recommendations2.PNG)
   </li>
   <li>
     Follow users to see their activity in your Feed
@@ -30,6 +35,8 @@ For implimentation purpose dummy users are created using moviewlens 100K dataset
   <li>
     Search Movies and See their description, imdb ratings, budget, Earnings, director, cast etc.
     <img src="images/searchMovies.PNG" alt="searchMovies.PNG" />
+    ![](Images/searchMovies.PNG)
+    ![](Images/movie.PNG)
   </li>
   <li>
     Add Movies to WishList
@@ -55,10 +62,10 @@ For Developement <br />
 
 #### For deployment npm was used so avoid using yarn to avooid the .loc file conflicts in deployment
 
-in the root folder
+in the root folder<br/>
 <code>
   // in  the root folder in the cmd run <br/>
-  npm run dev   // this will run both the client and the server in the same command prompt
+  npm run dev   <br/>// this will run both the client and the server in the same command prompt
 </code> <br />
 Otherwise to run the client and server seperately <br />
 in the root folder run<br />
