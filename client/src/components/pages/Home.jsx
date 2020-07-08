@@ -1,4 +1,5 @@
 import React, {useState, useContext, useEffect}  from "react"
+import axios from "axios"
 import {  
     IMAGE_BASE_URL, BACKDROP_SIZE, 
     POSTER_SIZE, SEARCH_BASE_URL, 
@@ -15,6 +16,7 @@ import Spinner from "../components/Spinner/Spinner"
 import MovieThubm from "../components/MovieThubmnail/MovieThumb"
 import Selections from "../components/selections/selections"
 import Feed from "../components/Feed/Feed"
+import Recommendation from "../pages/recommendations/Recommendations"
 
 // import Footer from "../components/Footer/Footer"
 import NoImage  from "../images/no_image.jpg"
@@ -24,6 +26,7 @@ import useHomeFetch from "../hooks/useHomeFetch"
 
 //  importing context
 import AuthContext from "../../context/Authentication/authenticationContext"
+import Axios from "axios"
 const Home =  () =>{
 
     const authContext = useContext(AuthContext)
@@ -31,13 +34,22 @@ const Home =  () =>{
     const {isAuthenticated, loadUser} = authContext
 
     const [selection, setSelection] = useState("Popular Movies")
+    const [movieIndex , setMovieIndex] = useState(0)
     useEffect(()=>{
         loadUser()
+        // this will spin up  the recommendation server
+        axios.get("https://keepwatching-server.herokuapp.com/")
      // eslint-disable-next-line
     }, [])
     
     const [searchTerm, setSearchTerm] = useState("")
     const [{state, loading, error}, fetchMovies] =  useHomeFetch(searchTerm);
+
+    const [heroImageState, setHeroImageState] = useState({
+        image:"",
+        title:"",
+        text:""
+        })
    
     const loadMoreMovies = () =>{
         const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${state.currentPage + 1}`;
@@ -56,6 +68,8 @@ const Home =  () =>{
         fetchMovies(endpoint);
     }
 
+
+
     if (error) return <div> Something went wromg ....</div>
     if (!state.movies[0]) return <Spinner />
     return (
@@ -69,7 +83,7 @@ const Home =  () =>{
            />)}
                  
            <SearchBar callback={searchMovies}/>
-           <Selections handelClick={handelClick} collections={["Popular Movies", "Feed"]}/>
+           <Selections handelClick={handelClick} collections={["Popular Movies", "Feed", "Recommendations"]}/>
            {selection ==="Popular Movies" && <Grid header={searchTerm ? "Search Results:" : "Popular Movies"}>
                 {state.movies.map(movie => (
                     <MovieThubm 
@@ -83,6 +97,7 @@ const Home =  () =>{
                 }
            </Grid>}
            {selection==="Feed" && <Feed />}
+           {selection==="Recommendations" && <Recommendation/>}
            {loading && <Spinner /> }
            {loading || <LoadMoreBtn text="Load More" callback={loadMoreMovies} />}
            

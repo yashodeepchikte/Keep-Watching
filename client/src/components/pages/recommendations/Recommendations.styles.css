@@ -1,7 +1,26 @@
-.recommendation-route{
+.recommendation-container{
+    width: 100%;
+    min-height:80vh;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.recommendations{
+    margin:0 auto;
     width: 70%;
-    margin: 10px auto;
+    display:flex;
+    justify-content: center;
 }
 
-.recommendation-route > button{
+.generateRecBtn{
+    border: none;
+    color: white;
+    background-color: #1168fd;
+    height: 50px;
+    transition: 0.3s;
+}
+.generateRecBtn:hover{
+    border: 1px solid black;
+    color: black;
+    transition: 0.3s;
+    padding: 0 30px 
 }

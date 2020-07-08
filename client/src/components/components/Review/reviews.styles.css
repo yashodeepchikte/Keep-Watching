@@ -12,7 +12,6 @@
     overflow: scroll;
 }
 
-
 .review > .show-review-container{
     
     width: 70%;
@@ -142,5 +141,4 @@ textarea::-webkit-scrollbar {
 }
 
 .show-review-container{
-    border: 1px solid red;
 }

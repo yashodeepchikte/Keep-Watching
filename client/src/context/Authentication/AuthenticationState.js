@@ -124,11 +124,11 @@ const AuthState = (props) => {
 			setLoadingFalse()
 			return res
 		} catch (error) {
-			setAlert(error.message, "danger")
+			setAlert(error.response.data.msg, "danger")
 			setLoadingFalse()
 			console.log("some error in the catch block of the login function in the AuthState.jsx")
 			console.log("error --> ", error.message)
-			console.log("Error --> ", error.response.data.msg)
+			console.log("Error --> oobjb ", error.response.data.msg)
 		}
 	}
 	//  Signin with Google

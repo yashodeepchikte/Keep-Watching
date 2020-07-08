@@ -66,9 +66,11 @@ const RecommendationsPage =(props) => {
                     
                     let res = []
                     if (recommender_type=== "userBasedCF"){
-                        res = await axios.post('http://localhost:8000/recommendations/usercolaborativefiltering', data, config)
+                        console.log("making pst request to 'https://keepwatching-server.herokuapp.com/recommendations/usercolaborativefiltering'")
+                        res = await axios.post('https://keepwatching-server.herokuapp.com/recommendations/usercolaborativefiltering', data, config)
                     }else{
-                        res = await axios.post('http://localhost:8000/recommendations/itemcolaborativefiltering', data, config)
+                        console.log("making pst request to 'https://keepwatching-server.herokuapp.com/recommendations/itemcolaborativefiltering'")
+                        res = await axios.post('https://keepwatching-server.herokuapp.com/recommendations/itemcolaborativefiltering', data, config)
                     }
                     console.log("recommendations = ", res.data)
                     
@@ -118,13 +120,19 @@ const RecommendationsPage =(props) => {
    if (recommendations.length  === 0  || loading){ 
        return(
        <div className="recommendation-container">
+        <div className="recommendations">
+            <h1>Recommendations</h1>
+        </div>
+        <br />
             {
                 loading ?
                 <Spinner />
                 :
-                <div>
-                    <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF">Generate User Based Collaborative Filtering Recommendations</button>
-                    <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF">Generate User Based Collaborative Filtering Recommendations</button>
+                <div className="recommendations">
+
+
+                    <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
+                    {/* <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF">Generate Item Based Collaborative Filtering Recommendations</button> */}
                 </div>
             }
         </div>)
@@ -132,6 +140,7 @@ const RecommendationsPage =(props) => {
         
         return(
             <div className="recommendation-route">
+
                 <Grid header="Recommended Movies are:" >
                     {recommendations.map(movie => (
                         <MovieThubm 

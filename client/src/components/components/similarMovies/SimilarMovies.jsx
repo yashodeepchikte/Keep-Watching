@@ -29,7 +29,6 @@ const SimilarMovies = (props) => {
     return (
         <div>
             {console.log("Final return = ", similarMovies.data)}
-            Movies Similar to Joker are
             <Grid header={"Similar Movies"}>
                 {similarMovies.data.map(movie => (
                     <MovieThubm 
