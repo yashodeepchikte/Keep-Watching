@@ -27,16 +27,20 @@ signin/sugnup with email <br>
 Signin in with Google Signin with Github (not added to the deployed build yet)
 <br/>
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/sign-page.PNG" alt="" />
+  <br />
 <img alt="" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/signup%20page.PNG" />
 </li>
 <li>
 Follow users to see their activity in your Feed
 <img alt="user feed image" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/Feed.PNG" />
+  <hr />
 </li>
 <li>
 Search Movies and See their description, imdb ratings, budget, Earnings, director, cast etc.
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/searchMovies.PNG" alt="searchMovies.PNG" />
+  <br />
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/movie.PNG" alt="searchMovies.PNG" />
+  <hr />
 </li>
 <li>
 Add Movies to WishList
@@ -83,7 +87,7 @@ you can Sign up using any valid email (dosent have to be a valid email)
 </li>
 <li>
 you can use this dummy user<br />
-email : keepwatchin@gmail.com <br />
+email : keepwatching@gmail.com <br />
 Password : 123456
 </li>
 </ul>
