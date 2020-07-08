@@ -9,8 +9,8 @@ This project uses SurpriseLib for dealing with Cosine similarity based nearest n
 For implimentation purpose dummy users are created using moviewlens 100K dataset. Each user has at least 20 movie ratings. 
 <hr />
 
-
-![](Images/homepage.PNG)
+<br />
+![](Images/homepage.PNG)<br />
 
 # Features
 <ul>
@@ -18,8 +18,9 @@ For implimentation purpose dummy users are created using moviewlens 100K dataset
 
 Recommendations are based on similar users(UserBased Collaborative Filtering) and similar movies (itemBased colaborative filtering)
 <br/>(in deployment the item based model exceeds the available memory limit on the free tier of Heroku do this has not been included)
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations1.PNG" alt="" />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations2.PNG" alt="" />
+<br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations1.PNG" alt="" /><br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations2.PNG" alt="" /><br />
 
 </li>
 <li>
@@ -28,10 +29,10 @@ Signin in with Google Signin with Github (not added to the deployed build yet)
 <br/>
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/sign-page.PNG" alt="" />
   <br />
-<img alt="" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/signup%20page.PNG" />
+<img alt="" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/signup%20page.PNG" /><br />
 </li>
 <li>
-Follow users to see their activity in your Feed
+Follow users to see their activity in your Feed<br />
 <img alt="user feed image" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/Feed.PNG" />
   <hr />
 </li>
