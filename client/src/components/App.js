@@ -40,7 +40,6 @@ const App = () =>{
                 <AuthState>
                     <Router>
                         <Header />
-                        <Alerts />
                         <Switch>
                             <Route exact  path="/" component={Home} />
                             <Route path="/movie/:movieId" component={Movie} />

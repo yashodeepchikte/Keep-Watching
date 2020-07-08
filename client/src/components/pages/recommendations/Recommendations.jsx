@@ -8,6 +8,7 @@ import Spinner from "../../components/Spinner/Spinner"
 import Grid from "../../components/Grid/Grid"
 import MovieThubm from "../../components/MovieThubmnail/MovieThumb"
 import NoImage from "../../images/no_image.jpg"
+import Alerts from "../../components/Alerts/Alerts"
 
 //  importing endpoint helpers 
 import { IMAGE_BASE_URL, POSTER_SIZE } from "../../../config"
@@ -124,6 +125,7 @@ const RecommendationsPage =(props) => {
             <h1>Recommendations</h1>
         </div>
         <br />
+        <Alerts />
             {
                 loading ?
                 <Spinner />
