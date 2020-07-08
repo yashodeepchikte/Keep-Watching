@@ -259,7 +259,7 @@ const SignUp = (props) =>{
         <div className="signin-container">
             <div className="signin">
                 <EggLogo className="eggLogo"/>
-                <h3>Sign in to keepwatching.io</h3>
+                <h3>Sign Up to keepwatching.io</h3>
                 <a name="#top" id="top"></a>
                 <form onSubmit={handelSubmit} autocomplete="off">
                     {/* <CustomImput type="email" name="email" label="Email" handelChange={handelChange} value={email}/> */}
