@@ -126,16 +126,16 @@ const RecommendationsPage =(props) => {
         </div>
         <br />
         <Alerts />
+            {!isAuthenticated &&<Link to="/signin">Sign in to Get Recommendations</Link>}
             {
                 loading ?
                 <Spinner />
                 :
-                <div className="recommendations">
-
-
+                
+            <div className="recommendations">
                     <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
-                    {/* <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF">Generate Item Based Collaborative Filtering Recommendations</button> */}
-                </div>
+                    <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF" className="generateRecBtn">Generate Item Based Collaborative Filtering Recommendations</button>
+            </div>
             }
         </div>)
     }else if (recommendations.length !== 0){

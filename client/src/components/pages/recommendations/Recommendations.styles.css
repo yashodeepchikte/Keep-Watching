@@ -6,8 +6,9 @@
 }
 .recommendations{
     margin:0 auto;
-    width: 70%;
-    display:flex;
+    min-width: 500px;
+    width:25%;
+
     justify-content: center;
 }
 
@@ -17,10 +18,12 @@
     background-color: #1168fd;
     height: 50px;
     transition: 0.3s;
+    width: 100%;
+    margin-top: 20px;;
 }
 .generateRecBtn:hover{
+    display: block;
     border: 1px solid black;
     color: black;
     transition: 0.3s;
-    padding: 0 30px 
 }
