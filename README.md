@@ -10,7 +10,7 @@ For implimentation purpose dummy users are created using moviewlens 100K dataset
 <hr />
 
 <br />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage.PNG" /> <br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage.PNG" alt="homepage image"/> <br />
 
 # Features
 <ul>
