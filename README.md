@@ -79,6 +79,7 @@ in another command prompt in the client folder run<br />
 <code>npm start </code><br />
 
 # Login Credentials
+You can use either one of these methods 
 <ul>
 <li>
 you can login with your Google or GitHub account
