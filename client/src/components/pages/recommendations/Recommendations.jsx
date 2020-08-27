@@ -32,7 +32,10 @@ const RecommendationsPage =(props) => {
     useEffect(  () => {
         loadUser()
         console.log("user = ", user)
-        console.log("user.ratings = ", user.ratings )
+        if (user){
+
+            console.log("user.ratings = ", user.ratings )
+        }
        
      // eslint-disable-next-line
     }, [ isAuthenticated])
@@ -47,6 +50,7 @@ const RecommendationsPage =(props) => {
     }, [recommendations])
 // ------------------------------------------------------------------------user based handeler------------------------------------------------
     const generateCollaborativeFilteringRecommendations = async (event) => {
+
         try {
             console.log("target.value = ", event.target.value)
             const recommender_type = event.target.value
@@ -111,6 +115,7 @@ const RecommendationsPage =(props) => {
         } catch (error) {
             setLoadingFalse()
             if(error.message === "Cannot read property 'ratings' of null"){
+                
                 setAlert("Please Login to use this feature")
             }else{
                 console.log("error in the catch block of generateRecommendations in recommendationpage.jsx")
@@ -126,23 +131,24 @@ const RecommendationsPage =(props) => {
    if (recommendations.length  === 0  || loading){ 
        return(
        <div className="recommendation-container">
-        <div className="recommendations">
-            <h1>Recommendations</h1>
-        </div>
-        <br />
-        <Alerts />
-            {!isAuthenticated &&<Link to="/signin">Sign in to Get Recommendations</Link>}
-            {
-                loading ?
-                <Spinner />
-                :
-                
             <div className="recommendations">
-                    <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
-                    <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF" className="generateRecBtn">Generate Item Based Collaborative Filtering Recommendations</button>
+                <h1>Recommendations</h1>
             </div>
-            }
+            <br />
+            <Alerts />
+                {!isAuthenticated &&<Link to="/signin">Sign in to Get Recommendations</Link>}
+                {
+                    loading ?
+                    <Spinner />
+                    :
+                    
+                <div className="recommendations">
+                        <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
+                        <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF" className="generateRecBtn">Generate Item Based Collaborative Filtering Recommendations</button>
+                </div>
+                }
         </div>)
+
     }else if (recommendations.length !== 0){
         
         return(
