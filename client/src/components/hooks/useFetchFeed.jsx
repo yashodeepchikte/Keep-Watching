@@ -27,7 +27,6 @@ const useFetchFeed = (movieID) => {
 
     useEffect( () => {
         if(localStorage["feed"] && localStorage["feed"]!=={}){
-            setLoading(false)
             console.log("grabbing Feed from local storage")
             setState(JSON.parse(localStorage["feed"]))
             setLoading(false)

@@ -27,12 +27,17 @@ const RecommendationsPage =(props) => {
      // eslint-disable-next-line
     const {user, loading, setLoadingtrue, setLoadingFalse, ratings, loadUser, isAuthenticated} = authContext;
     const {setAlert} = alertContext
-   
+
+
     useEffect(  () => {
         loadUser()
         console.log("user = ", user)
+        console.log("user.ratings = ", user.ratings )
+       
      // eslint-disable-next-line
     }, [ isAuthenticated])
+
+
     
     
     const [recommendations, setRecommendations] = useState([])
