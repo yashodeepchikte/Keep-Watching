@@ -10,7 +10,7 @@ For implimentation purpose dummy users are created using moviewlens 100K dataset
 <hr />
 
 <br />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage.PNG" /> <br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage.PNG" alt="homepage image"/> <br />
 
 # Features
 <ul>
@@ -79,6 +79,7 @@ in another command prompt in the client folder run<br />
 <code>npm start </code><br />
 
 # Login Credentials
+You can use either one of these methods 
 <ul>
 <li>
 you can login with your Google or GitHub account
@@ -93,3 +94,4 @@ Password : 123456
 </li>
 </ul>
 
+##### PS:- i don't own or claim the logo used for the favicon it was copied from google images
