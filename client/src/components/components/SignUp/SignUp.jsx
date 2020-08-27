@@ -4,8 +4,6 @@ import {Link} from "react-router-dom"
 // import chalk from "chalk"
 
 //  import components
-import CustomImput from "../CustomInput/CustomInput"
-import GenerPreference from "../GenerSelection/generSelection"
 import {ReactComponent as LoadingSvg} from '../../images/loading.svg';
 import {ReactComponent as EggLogo} from "../../images/egg.svg";
 
@@ -19,25 +17,23 @@ import "./SignUp.styles.css"
 import AlertContext from "../../../context/AlertContext/AlertContext"
 import AuthContext from "../../../context/Authentication/authenticationContext"
 
+//  Helper Function
+const validateEmail = (email) =>  {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{1,4})$/;
+    if (reg.test(email) )
+    {return (true);}else{return false}
+}
+
+//  Helpwer function
+const checkAlphabetic = (inputtxt) => {
+    var alphabets = /^[a-zA-Z]+$/;
+    if(inputtxt.match(alphabets)){ return true;}else{ return false; }
+}
+
+
 const SignUp = (props) =>{
-    const authContext = useContext(AuthContext)
-    const { register, isAuthenticated, loadUser,    
-                setLoadingtrue, setLoadingFalse, loading} = authContext
     
-    // console.log("AlertContext inside the signup is =", AlertContext)
-    // console.log("alert context inside the signup is =", alertContext)
-    const alertContext = useContext(AlertContext)
-    const setAlert = alertContext.setAlert;
-    
-    useEffect( () =>{
-        loadUser();
-
-        if(isAuthenticated){
-            props.history.push("/");
-        }
-    }, [isAuthenticated, props.history])
-
-    const [state, setstate] = useState({
+    const [state, setState] = useState({
         username:"",
         password:"",
         password2:"",
@@ -45,6 +41,7 @@ const SignUp = (props) =>{
         lname:"",
         email:""
     })
+
     const [isValid, setIsValid] = useState({
         email: false,
         username: false,
@@ -55,29 +52,18 @@ const SignUp = (props) =>{
     const [isAllowed, setIsAllowed] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [showPassword2, setShowPassword2] = useState(false)
-    const [showTooltip, setShowToolTIp] = useState(false)
 
     const { username, password, password2, fname, lname, email } = state
 
+    const authContext = useContext(AuthContext)
+    const { register, isAuthenticated, loadUser, setLoadingtrue, setLoadingFalse, loading} = authContext
+    
+    const alertContext = useContext(AlertContext)
+    const setAlert = alertContext.setAlert;
+    
 
-    const validateEmail = (email) =>  {
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{1,4})$/;
-        if (reg.test(email) )
-        {
-            return (true);
-        }else{
-            return false
-        }
-    }
 
-    const checkAlphabetic = (inputtxt) => {
-        var alphabets = /^[a-zA-Z]+$/;
-        if(inputtxt.match(alphabets)){  
-            return true;
-        }else{ 
-            return false; 
-        }
-    }
+   
     const togglePassword = (event) => {
         setShowPassword(showPassword=>!showPassword)
         setTimeout(() => setShowPassword(false) , 6000)
@@ -86,100 +72,85 @@ const SignUp = (props) =>{
         setShowPassword2(showPassword2=>!showPassword2)
         setTimeout(() => setShowPassword2(false) , 6000)
     } 
-    const toolTipTrue = () => setShowToolTIp(true)
-    const toolTIpFalse = () => setShowToolTIp(false)
-
- 
-    useEffect(() => {console.log("third use effect called")}, [isValid, isAllowed])
-    
-    useEffect( () => {
-        console.clear()
-        const username = state.username
-        const password = state.password
-        const password2 = state.password2
-        const fname = state.fname
-        const lname = state.lname
-        const emai = state.emai
 
 
-        console.log("state = ", state)
-        console.log("emai = ", email)
-        console.log("username = ", username)
-        console.log("fname = ", fname)
-        console.log("lname = ", lname)
-        console.log("password = ", password)
-        console.log("password2 = ", password2)
-
-        console.log("\npassword length = ", password.length)
-        console.log("valid email = ",validateEmail(email) )
-        setLoadingtrue()
-        // email valid
-        if(!validateEmail(email)){
-            setIsValid(isValid => ({...isValid, email: false}) )
-            setLoadingFalse()
-        }else{
-            setIsValid(isValid => ({...isValid, email: true}) )
-            setLoadingFalse()
+    useEffect( () =>{
+        loadUser();
+        if(isAuthenticated){
+            props.history.push("/");
         }
-        // username ! empty and atleast 4characters
-        if(username.length > 3){
-            setIsValid(isValid => ({...isValid, username: true}) )
-            setLoadingFalse()
-        }else{
-            setIsValid(isValid => ({...isValid, username: false}) )
-            setLoadingFalse()
+        // eslint-disable-next-line
+    }, [isAuthenticated, props.history])
+
+    useEffect(() => {
+
+        if(isValid["email"]  && isValid["username"] && isValid["fname"] && isValid["password"] && isValid["password2"]){
+            setIsAllowed( () =>  true) 
         }
-        // fname is not empty and no numbers 
-        if(fname.length > 0 ){
-            console.log("===>>", fname)
-            setIsValid(isValid => ({...isValid, fname: true}) )
-            setLoadingFalse()
-        }else{
-            setIsValid(isValid => ({...isValid, fname: false}) )
-            setLoadingFalse()
+        else{
+            setIsAllowed(() => false)
         }
-        //  password is > 6 characters
-            if(password.length > 5){
-                setIsValid(isValid => ({...isValid, password: true}) )
-                setLoadingFalse()
-            }else{
-                setIsValid(isValid => ({...isValid, password: false}) )
-                setLoadingFalse()
-            }
-             // password2 > 6 character
-             if(password2.length > 5){
-                // password1 = =password2
-               
-                    setIsValid(isValid => ({...isValid, password2: true}) )
-                    setLoadingFalse()    
-            }else{
-                setIsValid(isValid => ({...isValid, password2: false}) )
-                setLoadingFalse()
-            }
-            
-            if(isValid["email"] && isValid["password"] && isValid["username"] && isValid["fname"]
-                && isValid["password"] && isValid["password2"]){
-                setIsAllowed( () =>  true) 
-            }
-            else{
-                setIsAllowed(() => false)
-            }
-            console.log("isValid = ", isValid)
-            console.log("is allowed = ", isAllowed)
 
-    },  [state])
+    }, [isValid])
 
-
-    const sendToTheTop = () => {
-        props.history.push("/signup/#top")
-    }
     const handelChange = (event) => {
-        setstate(
-            
-            {...state,
-            [event.target.name] : event.target.value
-           } 
-           )
+        console.clear()
+
+        let name = event.target.name
+        let value = event.target.value
+
+
+
+        //  in the next if else if statements put the validation statements
+        if(name=="email"){
+
+            if(!validateEmail(value)){
+                setIsValid(isValid => ({...isValid, email: false}) )
+            }else{
+                setIsValid(isValid => ({...isValid, email: true}) )
+            }
+
+        }else if(name =="username"){
+
+            if(value.length > 3){
+                setIsValid(isValid => ({...isValid, username: true}) )
+            }else{
+                setIsValid(isValid => ({...isValid, username: false}) )
+            }
+     
+        }else if(name =="fname"){
+
+
+            if(value.length > 0 ){
+                setIsValid(isValid => ({...isValid, fname: true}) )
+            }else{
+                setIsValid(isValid => ({...isValid, fname: false}) )
+            }
+
+        }else if(name =="password"){
+
+            if(value.length < 6){
+                setIsValid(isValid => ({...isValid, password: false}) )
+            }else{
+                setIsValid(isValid => ({...isValid, password: true}) )
+            }
+
+        }else if(name =="password2"){
+
+            if(value.length < 6){
+                setIsValid(isValid => ({...isValid, password2: false}) )
+            }else{
+                setIsValid(isValid => ({...isValid, password2: true}) )
+            }
+
+        }
+
+        //  Now set the state
+        setState(state => ({
+            ...state,
+            [name]: value
+        }))
+    
     }
 
     const handelSubmit = async (event) => {
@@ -198,19 +169,6 @@ const SignUp = (props) =>{
             const gener = event.target.gener
             let generPreference = []
 
-            // for(let i = 0; i< 16; i++){
-            //     if (gener[i].checked){
-            //         generPreference.push(gener[i].value)
-            //     }
-            // }
-            
-
-            console.log("emai = ", email)
-            console.log("username = ", username)
-            console.log("fname = ", fname)
-            console.log("lname = ", lname)
-            console.log("password = ", password)
-            console.log("password2 = ", password2)
 
             if(username==="" || password==="" || email===""){
                 setAlert("Please enter all the fields", "danger")
@@ -225,10 +183,8 @@ const SignUp = (props) =>{
             else if(password.length < 6){
                 setAlert("Password must be atleast 6 characters")
                 setLoadingFalse()
-            }// else if(generPreference.length < 2){
-            //     setAlert("Select at least 3 gener")
-            //     setLoadingFalse()
-            // }
+            }
+
             else{
                 setLoadingtrue()
                 console.log("---<> making the server request <> ---")
@@ -248,10 +204,9 @@ const SignUp = (props) =>{
            
         } catch (error) {
             
-            console.log("<<<<<<<<<<>>>>>>>>>>>>")
             console.error("error message = ", error.message)
             console.log("some error in the catch block  of the signup component \n")
-            console.log("<<<<<<<<<<>>>>>>>>>>>>")
+
         }
     }
 
@@ -301,7 +256,7 @@ const SignUp = (props) =>{
                             <span className="red-font">*required</span>
                         </label>
                         <input type={showPassword?"text":"password"} name="password" label="Password" onChange={handelChange} value={password}/>
-                        <div className="showPassword" id="showPassEgg" onClick={togglePassword} onMouseOver={toolTipTrue} onMouseOut={toolTIpFalse}><EggLogo className="showPassEgg"/></div>
+                        <div className="showPassword" id="showPassEgg" onClick={togglePassword} ><EggLogo className="showPassEgg"/></div>
                         {/* <span className={ showTooltip ? "tooltip" : "tooltip notvisible"} >Show Password</span> */}
                     </div>
                     {/* <CustomImput type="password" name="password2" label="Confirm Password" handelChange={handelChange} value={password2}/>     */}
@@ -311,7 +266,7 @@ const SignUp = (props) =>{
                             <span className="red-font">*required</span>
                         </label>
                         <input type={showPassword2?"text":"password"} name="password2" label="Password" onChange={handelChange} value={password2}/>
-                        <div className="showPassword" id="showPassEgg" onClick={togglePassword2} onMouseOver={toolTipTrue} onMouseOut={toolTIpFalse}><EggLogo className="showPassEgg"/></div>
+                        <div className="showPassword" id="showPassEgg" onClick={togglePassword2} ><EggLogo className="showPassEgg"/></div>
                         {/* <span className={ showTooltip ? "tooltip" : "tooltip notvisible"} >Show Password</span> */}
                     </div>
                     {/* <GenerPreference />           */}

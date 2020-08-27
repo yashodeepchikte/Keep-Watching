@@ -6,25 +6,23 @@ import {Link} from "react-router-dom"
 
 
 //  Importing components
-import CustomInput from "../../components/CustomInput/CustomInput"
-import SigninWithGoogle from "../../components/SignInWithGoogle/SignInWithGoogle"
 import {ReactComponent as LoadingSvg} from '../../images/loading.svg';
 import {ReactComponent as EggLogo} from "../../images/egg.svg"
 import Alerts from "../../components/Alerts/Alerts"
+
 // Importing Context
 import AuthContext from "../../../context/Authentication/authenticationContext"
 import AlertContext from "../../../context/AlertContext/AlertContext"
 
 import "./Signin.styles.css"
-const validateEmail = (email) =>  {        
+
+//  Helper function
+const validateEmail = (email) =>  {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{1,4})$/;
     if (reg.test(email) )
-    {
-        return (true);
-    }else{
-        return false
-    }
-}    
+    {return (true);}else{return false}
+}
+ 
 
 const SignIn = (props) => {
     const [state, setState] = useState({
@@ -34,7 +32,7 @@ const SignIn = (props) => {
     const [isValid, setIsValid] = useState({email: false,password: false})
     const [isAllowed, setIsAllowed] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const [showTooltip, setShowToolTIp] = useState(false)
+    
     const {email, password} = state;
 
     const authContext = useContext(AuthContext)
@@ -43,17 +41,25 @@ const SignIn = (props) => {
     const alertContext = useContext(AlertContext)
     const {setAlert} = alertContext
 
+    const togglePassword = (event) => {
+        setShowPassword(!showPassword)
+        setTimeout(() => setShowPassword(false) , 5000)
+    } 
+
     useEffect(() =>{
         loadUser()
         setLoadingFalse()
         if(isAuthenticated){
             props.history.push("/")
         }
-        // eslint-disable-next-line
+
     }, [isAuthenticated, props.history])
 
 
     useEffect( () => {
+
+
+
         if(isValid["email"] && isValid["password"]){
             setIsAllowed( () =>  true) 
         }
@@ -67,6 +73,9 @@ const SignIn = (props) => {
 
         let name = event.target.name
         let value = event.target.value
+
+
+
 
         if (name == "email"){
 
@@ -87,20 +96,19 @@ const SignIn = (props) => {
             }
     
         }   
+
         setState(state => ({
             ...state,
             [name]: value
         }))  
     }
 
-    const togglePassword = (event) => {
-        setShowPassword(!showPassword)
-        setTimeout(() => setShowPassword(false) , 5000)
-    } 
+
 
 
  
     const handelSubmit = async (event) => {
+        console.clear()
         event.preventDefault()
         setLoadingtrue()
         const email =  event.target.email.value;
