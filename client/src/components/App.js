@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound"
 import SignUp from "./components/SignUp/SignUp"
 import SignIn from "./pages/SignIn/Signin"
 import Recommendations from "./pages/recommendations/Recommendations"
+import UserPage from "./pages/UserPage/UserPage"
 
 // importing states
  // eslint-disable-next-line
@@ -46,6 +47,7 @@ const App = () =>{
                             <Route exact path="/signup"  component={SignUp} />
                             <Route exact path="/signin" component={SignIn} />
                             <Route exact path="/recommendation" component={Recommendations} />
+                            <Route exact path="/user/:userID" component={UserPage} />
                             {/* The next route will be called if none of the above urls match up */}
                             <Route component={NotFound}/>          
                         </Switch>

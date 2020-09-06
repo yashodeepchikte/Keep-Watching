@@ -81,6 +81,22 @@ router.post("/addReview", async (req, res) => {
         res.status(500).json(error.message)
     }
 })
+//  Get all the reviews for a perticular user
+router.get("/user/:userID", async(req, res)=>{
+    const {userID} = req.params;
+    console.log("User ID comming to the get method = ",  userID)
+    try {
+        const reviews = await Review.find({userID: userID}).sort({"date":-1})
+        // console.log("Reviews found = ", reviews)
+        res.status(200).json(reviews)   
+    } catch (error) {
+        console.error("error in the catch bkock of get ", error)
+        res.status(500).json(error.message)
+    }
+})
+
+
+
 
 
 module.exports = router 

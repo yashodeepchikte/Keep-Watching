@@ -21,17 +21,25 @@
     width: 25%;
     color: white;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 3px;
     overflow: hidden;
     word-break:break-all;
+     
+    color: #24292e;
+    background-color: #fafbfc;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.04), inset 0 1px 0 hsla(0,0%,100%,.25);
+    transition: background-color .2s cubic-bezier(.3,0,.5,1);
 
 }
 .selections-item:hover{
-    border-radius: 10px;
     transition: 0.2s;
-    background-color: white;
     color: black;
-    border: none;
+    border-radius: 3px; 
+    background-color: #2ea44f;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.1), inset 0 1px 0 hsla(0,0%,100%,.03);
+    color: #ffffff;
 }
 .selections-item:active{
     transform: scale(0.9);

@@ -27,6 +27,7 @@ const Movie = (props) =>{
         loadUser()
         // eslint-disable-next-line
     }, [isAuthenticated])
+    
     const [selection, setSelection] = useState("Actors")
     
     const movieId = props.match.params.movieId

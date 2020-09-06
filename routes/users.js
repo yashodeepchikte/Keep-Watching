@@ -129,4 +129,12 @@ router.post("/update", async (req, res) => {
 })
 
 
+//  Get a user from their user id
+router.get("/:userID", async (req, res) => {
+    const {userID} = req.params;
+    console.log("user id =><<<<<<<<<>>> ", userID)
+    const user =await User.findOne({_id: userID})
+    console.log("User =<<<<<<<<<<.", user)
+    res.status(200).json(user)
+})
 module.exports = router

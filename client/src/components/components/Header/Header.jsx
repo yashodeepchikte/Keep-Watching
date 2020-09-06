@@ -33,6 +33,7 @@ const Header = () =>
     const loginInfo = (
             <div className={show ? "loginInfo": "loginInfo hidden" }>
            { console.log("user = ", user)}
+                {user && <div className="logininfo-item"><Link to={"/user/"+user._id}>My account</Link></div>}
                 <div className="logininfo-item">{user ? user.email : ""}</div>
                 <div className="logininfo-item">Movies Rated : {user? user.ratings.length:""}</div>
                 <div className="logininfo-item">Movies Reviewed : {user? user.movies_reviewed.length:""}</div>

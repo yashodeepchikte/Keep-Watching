@@ -24,10 +24,13 @@
     /* border: 1px solid green; */
     width: 100%;
     padding: 10px;
+    box-sizing: border-box;;
 }
 
-.feeditem .username{
+.feeditem .username {
     font-size: 12px;
+    
+  
 }
 
 
@@ -35,8 +38,12 @@
     font-size: 12px;
 }
 
-.review-text a{
-    color: #3A72ff
+
+.username a{
+    color: black;
+}
+.username a:hover{
+    color: #3A72ff;
 }
 
 .review-text p{

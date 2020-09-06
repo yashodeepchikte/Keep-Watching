@@ -14,7 +14,7 @@ import  {
 
 const FeedItem = (props) => {
     let {review} = props
-    console.log("Review.movie_data ==>> ", review.movie_data)
+    // console.log("Review.movie_data ==>> ", review.movie_data)
     if (review.movie_data){
         return (
         <div className="feeditem">
@@ -27,7 +27,9 @@ const FeedItem = (props) => {
                 </div>
 
                 <div className="username">
+                <Link to={"/user/" + review.userID}>
                     <i className="fa fa-user" aria-hidden="true"></i> {review.username}
+                </Link>
                 </div>
 
                 <div className="postedAt"> 
