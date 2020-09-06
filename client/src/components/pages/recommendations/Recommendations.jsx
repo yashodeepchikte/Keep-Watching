@@ -132,21 +132,21 @@ const RecommendationsPage =(props) => {
        return(
        <div className="recommendation-container">
             <div className="recommendations">
-                <h1>Recommendations</h1>
-            </div>
-            <br />
-            <Alerts />
+
+                <h1>Recommendation</h1>
+                {/* <br /> */}
+                <Alerts />
                 {!isAuthenticated &&<Link to="/signin">Sign in to Get Recommendations</Link>}
-                {
-                    loading ?
-                    <Spinner />
-                    :
-                    
-                <div className="recommendations">
-                        <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
-                        <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF" className="generateRecBtn">Generate Item Based Collaborative Filtering Recommendations</button>
-                </div>
-                }
+                    {
+                        loading ?
+                        <Spinner />
+                        :   
+                    <div >
+                            <button onClick={generateCollaborativeFilteringRecommendations} value="userBasedCF" className="generateRecBtn">Generate User Based Collaborative Filtering Recommendations</button>
+                            <button onClick={generateCollaborativeFilteringRecommendations} value="itemBasedCF" className="generateRecBtn">Generate Item Based Collaborative Filtering Recommendations</button>
+                    </div>
+                    }
+            </div>
         </div>)
 
     }else if (recommendations.length !== 0){

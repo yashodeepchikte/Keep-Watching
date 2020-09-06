@@ -47,7 +47,7 @@ export const StyledHeader = styled.div`
     padding: 0px;
   }
   .loginInfo-container{
-    display: flex;
+    ${'' /* display: flex; */}
     flex-direction: column;
     align-items: center;
     padding: 10px;
@@ -64,11 +64,12 @@ export const StyledHeader = styled.div`
   .loginInfo{
     ${'' /* border-radius: 10px; */}
     transition: 0.5s;
-    height: 300px;
+    height: 160px;
     width: 220px;
     overflow: hidden;
     position: absolute;
     top: 6vh;
+    left: -10px;
     z-index:201;
     background: #1f2735;
 

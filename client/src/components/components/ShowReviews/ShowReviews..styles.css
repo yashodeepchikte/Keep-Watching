@@ -29,3 +29,6 @@
 
     margin: 0;
 }
+.reviewBox-container p{
+    word-break: break-all;
+}

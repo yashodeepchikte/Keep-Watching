@@ -18,7 +18,9 @@ const FeedItem = (props) => {
     if (review.movie_data){
         return (
         <div className="feeditem">
-            <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
+            <Link to={"/movie/"+review.movie_data.id}>
+                <img src={review.movie_data.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${review.movie_data.poster_path}`: ""}/>
+            </Link>
             <div className="feed-info">
                 <div className="movie-title">
                     {review.movie_data.original_title}
@@ -33,8 +35,16 @@ const FeedItem = (props) => {
                 </div>
 
                 <div className="review-text">
-                        <p>{review.review.length > 150  ? <span>Review :   {review.review.slice(0, 250)}  <Link to={"/movie/"+review.tmdbMovieId}> Read More... </Link> </span>: "Review : " + review.review }</p>
-                    </div>      
+                    <p>
+                        {review.review.length > 150  ? 
+                            <span><strong>Review :</strong>   {review.review.slice(0, 250)}  <Link to={"/movie/"+review.tmdbMovieId}> Read More... </Link> </span>
+                                : 
+                            <span>
+                            <strong>Review :</strong> { review.review }
+                            </span>
+                        }
+                        </p>
+                </div>      
             </div>
         </div>
         

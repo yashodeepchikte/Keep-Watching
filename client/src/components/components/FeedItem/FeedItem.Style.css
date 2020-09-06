@@ -48,4 +48,5 @@ overflow-y: auto;
 .review-text{
     overflow-y: auto;
     font-weight: 500;
+    word-break:break-all;
 }

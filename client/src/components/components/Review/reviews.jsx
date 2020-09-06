@@ -30,6 +30,7 @@ const Reviews =   (props) => {
                     if (user.movies_reviewed[i][0] === String(movieID)){
                         setIsReviewed(true)
                         reviewID = user.movies_reviewed[i][1] 
+
                         break
                     }
                 }
@@ -49,30 +50,30 @@ const Reviews =   (props) => {
         if(isReviewed){      
             //  if the user has already rated this movie  
             return(
-                <div className="show-review-container">
-                <div className="review">
-                    <p className="title">
-                        Your Review : 
-                    </p>
-                    <h3 className="review-text">
-                        {
-                         (stateReview.length > 150 && !readMore) ?
-                            <>
-                                {(stateReview.slice(0, 150) + "...")}
-                                <button onClick={toggleReadMore}>
-                                    Read More
-                                </button>
-                            </>
-                                :
-                            <>
-                                {stateReview}
-                                {
-                                    (stateReview.length > 150 )&& <button onClick={toggleReadMore}> Show Less</button>
-                                }
-                            </>                     
-                        }
-                    </h3>
-                </div>
+                <div className="review-container">
+                    <div className="review">
+                        <p className="title">
+                            Your Review : 
+                        </p>
+                        <div className="review-content">
+                            {
+                            (stateReview.length > 150 && !readMore) ?
+                                <>
+                                    {(stateReview.slice(0, 150) + "...   ")}
+                                    <button onClick={toggleReadMore}>
+                                        Read More
+                                    </button>
+                                </>
+                                    :
+                                <>
+                                    {stateReview + "           "}
+                                    {
+                                        (stateReview.length > 150 )&& <button onClick={toggleReadMore}> Show Less</button>
+                                    }
+                                </>                     
+                            }
+                        </div>
+                    </div>
                 </div>
             )
         }else{
@@ -115,13 +116,15 @@ const Reviews =   (props) => {
 
             if(loading){
                 return(
-                    <div className="review">
-                        Loading
+                    <div className="review-container">
+                        <div class="review">
+                            Loading
+                        </div>
                     </div>
                     ) 
-            }else{
+            }else {
                 return(
-                    <div className="review">
+                    <div className="review-container">
                         <div className="leave-review-container">
                             <form onSubmit={handelSubmit} className="leave-review">
                                     <input type="hidden" value={user._id} name="user_id"/>

@@ -9,7 +9,7 @@ export const StyledMovieInfo = styled.div`
   background-size: cover !important;
   background-position: center !important;
   width: 100%;
-  padding: 40px 20px;
+  padding: 20px;
   box-sizing: border-box;
   animation: animateMovieinfo 1s;
 
