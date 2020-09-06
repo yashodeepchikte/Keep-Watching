@@ -65,7 +65,7 @@ const Reviews =   (props) => {
                             </>
                                 :
                             <>
-                                {stateReview}
+                                {stateReview  +  "   "}
                                 {
                                     (stateReview.length > 150 )&& <button onClick={toggleReadMore}> Show Less</button>
                                 }
