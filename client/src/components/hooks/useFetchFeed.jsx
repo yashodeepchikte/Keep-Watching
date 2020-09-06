@@ -27,14 +27,14 @@ const useFetchFeed = (movieID) => {
     }, [movieID])
 
     useEffect( () => {
-        if(sessionStorage["feed"] && sessionStorage["feed"]!=={}){
-            console.log("grabbing Feed from session storage")
-            setState(JSON.parse(sessionStorage["feed"]))
-            setLoading(false)
-        }else{
+        // if(sessionStorage["feed"] && sessionStorage["feed"]!=={}){
+        //     console.log("grabbing Feed from session storage")
+        //     setState(JSON.parse(sessionStorage["feed"]))
+        //     setLoading(false)
+        // }else{
             console.log("making an api req for getting the feed")
             fetchData()
-        }
+        // }
     }, [fetchData, movieID])
 
     useEffect(

@@ -96,7 +96,7 @@ const Reviews =   (props) => {
                 console.log("Data recieved = ", data)
                 if(stateReview.length < 1){
                     console.log("submit cancelled because review.length < 1")
-                    setAlert("please fill in a rreview to submit")
+                    setAlert("please fill in a review to submit")
                     return
                 }
     

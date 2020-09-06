@@ -5,9 +5,6 @@ import Spinner from "../Spinner/Spinner"
 import Feeditem from "../FeedItem/FeedItem.component"
 import {Link} from "react-router-dom"
 
-import {  
-    IMAGE_BASE_URL, POSTER_SIZE, 
-} from "../../../config"
 
 
 import "./Feed.Styles.css"
@@ -25,6 +22,7 @@ const Feed = () => {
     }
     if (loading) return <Spinner />
 
+    console.log("Feed in feed.jsx ==> ", feed)
     return (
 
 
