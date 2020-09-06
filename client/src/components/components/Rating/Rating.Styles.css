@@ -12,22 +12,18 @@
    
 }
 .button{
-    margin: 0;
     margin-top: 10px;
-    border: none;
     padding: 10px;
-    background-color: #316aff;
+    color: white;
+    border: none;
+    transition: 0.5s;
+    border-radius: 3px;
 }
 .button:hover{
-
     transition: 0.5s;
-    transform: scale(1.03);
-    color:White;
-    margin: 0;
-    margin-top: 10px;
-    border: none;
-    padding: 10px;
-    background-color: #316aff;
+    color:black;
+    background-color: white;
+
 }
 .button:active{
     border:none;
@@ -46,6 +42,8 @@ select{
     background-color: #21252d;
     border: none;
     border-radius: 4px;
+    outline: none;
+    padding: 5px;
 }
 option{
     display: flex;
@@ -54,5 +52,6 @@ option{
     align-items: center;
     outline: none;
     background-color: #21252d;
-    border: none
+    border: none;
+    outline: none;
 }

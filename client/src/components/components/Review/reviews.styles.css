@@ -126,18 +126,21 @@ textarea::-webkit-scrollbar {
     margin-top: 10px;
     border: none;
     padding: 10px;
-    background-color: #316aff;
+    color: white;
+    transition: 0.8s;
+    
 }
 .leave-review button:hover{
     
-    transition: 0.5s;
-    transform: scale(1.03);
+    transition: 0.8s;
+    /* transform: scale(1.03); */
     color:White;
     margin: 0;
     margin-top: 10px;
     border: none;
     padding: 10px;
-    background-color: #316aff;
+    background-color: white;
+    color: black
 }
 
 .show-review-container{

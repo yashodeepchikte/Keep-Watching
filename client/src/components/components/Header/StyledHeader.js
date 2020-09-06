@@ -62,13 +62,13 @@ export const StyledHeader = styled.div`
     z-index: 200;
   }
   .loginInfo{
-    border-radius: 10px;
+    ${'' /* border-radius: 10px; */}
     transition: 0.5s;
     height: 300px;
     width: 220px;
     overflow: hidden;
     position: absolute;
-    top: 8vh;
+    top: 6vh;
     z-index:201;
     background: #1f2735;
 
@@ -110,17 +110,19 @@ export const StyledHeader = styled.div`
     border-bottom: 1px solid white;
   }
   .logininfo-item{
+    background-color: black;
+
     button{
       border: none;
       width: 100%;
       height: 100%;
-      background-color: #1f2735;
     }
     button:hover{
       border: none;
       border-radius: none;
       background-color: #316aff;
       color: white;
+
 
     }
   }

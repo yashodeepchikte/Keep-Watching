@@ -1,5 +1,6 @@
 import {useState, useEffect, useCallback} from "react"
 import axios from "axios"
+import { session } from "passport"
 
 const useFetchFeed = (movieID) => {
     const [state, setState] = useState({})
@@ -26,9 +27,9 @@ const useFetchFeed = (movieID) => {
     }, [movieID])
 
     useEffect( () => {
-        if(localStorage["feed"] && localStorage["feed"]!=={}){
-            console.log("grabbing Feed from local storage")
-            setState(JSON.parse(localStorage["feed"]))
+        if(sessionStorage["feed"] && sessionStorage["feed"]!=={}){
+            console.log("grabbing Feed from session storage")
+            setState(JSON.parse(sessionStorage["feed"]))
             setLoading(false)
         }else{
             console.log("making an api req for getting the feed")
@@ -38,7 +39,7 @@ const useFetchFeed = (movieID) => {
 
     useEffect(
         () => {
-            localStorage.setItem("feed",  JSON.stringify(state))
+            sessionStorage.setItem("feed",  JSON.stringify(state))
         },
         [movieID, state]
     )

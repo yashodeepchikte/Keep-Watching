@@ -1,0 +1,51 @@
+.feeditem{
+    border: 0.1px solid black;
+    display: flex;
+    /* border-radius: 7.5px 0 0 7.5px; */
+    margin: 10px 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 20vh;
+    overflow: hidden;
+
+    box-shadow: 0 0 10px -1px rgba(0,0,0,.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.05);
+}
+
+
+
+.feeditem img{
+    /* border-radius: 7.5px 0 0 7.5px;/ */
+    height: 20vh;
+}
+
+.feeditem .feed-info{
+    /* border: 1px solid green; */
+    width: 100%;
+    padding: 10px;
+}
+
+.feeditem .username{
+    font-size: 12px;
+}
+
+
+.feeditem .postedAt{
+    font-size: 12px;
+}
+
+.review-text a{
+    color: #3A72ff
+}
+
+.review-text p{
+margin: 2px;
+font-size: 15px;
+overflow-y: auto;
+}
+
+.review-text{
+    overflow-y: auto;
+    font-weight: 500;
+}
