@@ -1,10 +1,12 @@
 .review-container{
+    /* padding-top: 10px; */
     background: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+
     width:  100%;
 }
 
 .review{
-    font-family: Arial, Helvetica, sans-serif;
     width: 80%;
     margin: 0 auto;
     background: #1c1c1c;
@@ -23,18 +25,23 @@
 }
 
  .SigninLink-container{
-    width: 70%;
+    /* width: 70%; */
     margin: 0 auto;
     display: flex;
-    padding: 20px
+    /* padding: 20px */
 }
  .SigninLink{
     transition: 0.3s;
-    border: 2px solid white;
+    width: 70%;
+    max-width: 500px;
+    border: 1px solid white;
     border-radius: 10px;
     margin: 0 auto ;
     padding: 20px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 15px ;
+    margin-top: 15px;
 }
 
 .SigninLink:hover{

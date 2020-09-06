@@ -42,7 +42,7 @@ const Reviews =   (props) => {
     }, [isAuthenticated, user, readMore])
 
     if (!isAuthenticated){
-        return(<div className="review"><div  className="SigninLink-container"><Link to = "/signin" className="SigninLink"> Log in to leave a review for this movie</Link></div></div>)
+        return(<div className="review-container"><div  className="SigninLink-container"><Link to = "/signin" className="SigninLink"> Log in to leave a review for this movie</Link></div></div>)
     }
     else{
         const toggleReadMore = () => setReadMore(!readMore)

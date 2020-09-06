@@ -22,8 +22,8 @@ const Ratings =  (props) => {
 
     if(!isAuthenticated){
         return(
-            <div  className="ratings">
-                <Link to="/signin" className="button">Rate this movie</Link>
+            <div>
+                {/* <Link to="/signin" className="button">Rate this movie</Link> */}
             </div>
         )
     }
