@@ -23,7 +23,6 @@ const Reviews =   (props) => {
     const [readMore, setReadMore] = useState(false)
 
 
-    let movieReviewed = false
     useEffect( () => {
         const fetchReview = async () => {
             if(isAuthenticated){let reviewID = -1
@@ -84,7 +83,8 @@ const Reviews =   (props) => {
             }
             const handelSubmit = async (event) => {
                 event.preventDefault()
-                
+                console.log("setting loading to true")
+                setLoadingtrue()
 
                 const data = {
                     user_id : event.target.user_id.value,
@@ -104,27 +104,37 @@ const Reviews =   (props) => {
                     console.log("making the post request")
                     const res = await axios.post("/api/reviews/addReview", data)
                     console.log("the response of the post req = ", res.data)
-                    console.log("calling load user")
+                    console.log("calling load user in the reviews function" )
                     loadUser()
                 } catch (error) {
                     console.log("Error in the catch block inn the onSubmit function in the reviews.jsx")
                     console.log("error = ",  error.message)
                 }
+                setLoadingFalse()
             }
-            return(
-                <div className="review">
-                    <div className="leave-review-container">
-                        <form onSubmit={handelSubmit} className="leave-review">
-                                <input type="hidden" value={user._id} name="user_id"/>
-                                <input type="hidden"  value={movieID} name="movie_id" />
-                                <input type="hidden"  value={user.username} name="username"/>
-                                {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
-                                <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
-                                <button type="submit" className="post">Post Review</button>
-                        </form>
+
+            if(loading){
+                return(
+                    <div className="review">
+                        Loading
                     </div>
-                </div>
-            )
+                    ) 
+            }else{
+                return(
+                    <div className="review">
+                        <div className="leave-review-container">
+                            <form onSubmit={handelSubmit} className="leave-review">
+                                    <input type="hidden" value={user._id} name="user_id"/>
+                                    <input type="hidden"  value={movieID} name="movie_id" />
+                                    <input type="hidden"  value={user.username} name="username"/>
+                                    {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
+                                    <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
+                                    <button type="submit" className="post">Post Review</button>
+                            </form>
+                        </div>
+                    </div>
+                )
+            }
         }
     }
 }

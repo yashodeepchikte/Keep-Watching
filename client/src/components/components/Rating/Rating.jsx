@@ -16,8 +16,10 @@ const Ratings =  (props) => {
     const authContext = useContext(AuthContext)
     const {isAuthenticated, user, loadUser} = authContext
 
+    const [loading, setLoading] = useState(false);
      // eslint-disable-next-line
-    const [rating, setRating] = useState(-1)
+    // const [rating, setRating] = useState(-1)
+
     if(!isAuthenticated){
         return(
             <div  className="ratings">
@@ -39,6 +41,7 @@ const Ratings =  (props) => {
 
     const rateMovie = async (event) => {
         event.preventDefault()
+        setLoading(true)
         console.log("Rating = ", event.target.rating.value)
         console.log("user id = ", userID)
         console.log("movie id = ", movieID)
@@ -47,6 +50,16 @@ const Ratings =  (props) => {
         const updatedUser = await axios.post("/api/users/update", {userID, updateField:"ratings" , updatedValues:userRatings})
         console.log("updated user = ",  updatedUser )
         loadUser()
+        setLoading(false)
+    }
+
+    if(loading){
+        return(
+            <div className="ratings">
+
+                Loaging
+            </div>
+        )
     }
 
     if (movieRating === -1){
@@ -68,12 +81,9 @@ const Ratings =  (props) => {
         )
     }else{
         //  user wants to change the rating
-
-        // return(<h1>Rate movie</h1>)
-
         return(
             <div className="ratings">
-                <p>Your Rating : {movieRating}<i className="fa fa-star" aria-hidden="true"></i></p>
+                <p>Your Rating : {movieRating + " "}<i className="fa fa-star" aria-hidden="true"></i></p>
             </div>
         )
     }
