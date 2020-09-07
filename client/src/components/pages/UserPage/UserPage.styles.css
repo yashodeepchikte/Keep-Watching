@@ -45,19 +45,19 @@
 
 .user-reviews{
     /* border: 1px solid green; */
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: scroll;
     padding: 0 10px ;
 }
 .userWatchlist{
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: scroll;
     padding: 0 10px ;
 }
 
 .activity{
     max-width: 600px;
-    max-height: 500px;
+    max-height: 600px;
     min-width: 30   0px;
     width: 48%;
     /* border: 1px solid rgba(0,0,0,.05); */
@@ -201,13 +201,13 @@
         align-items: center;
     }
     .activity{
-        max-height: 600px;
+        max-height: 700px;
     }
     .user-reviews{
-        max-height: 500px;
+        max-height: 600px;
     }
     .userWatchlist{
-        max-height: 500px;
+        max-height: 600px;
         overflow-y: scroll;
         padding: 0 10px ;
     }

@@ -45,8 +45,8 @@ const Movie = (props) =>{
             {/* <Navigation movie={movie.original_title} /> */}
             <MovieInfo movie={ movie }/>
             <MovieInfoBar time={movie.runtime} budget={movie.budget} revenue={movie.revenue}/>
-            <Rating movieID={movie.id}/>
-             <Review movieID={movie.id} movie={movie}/>
+            {/* <Rating movieID={movie.id}/> */}
+             {/* <Review movieID={movie.id} movie={movie}/>  */}
              <Selections handelClick={handelClick} collections={["Actors", "Reviews", "Similar Movies"]}/>
              <AddToWatchList movieID={movie.id} movieInfo = {movie}/>
             {selection==="Actors" &&<Grid header="Actors">
