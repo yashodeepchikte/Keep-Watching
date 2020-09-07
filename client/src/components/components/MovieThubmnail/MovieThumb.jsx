@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 
+
 //  importing the style
 import { StyledMovieThumb } from "./StyledMovieThumb"
 import { Link } from "react-router-dom"

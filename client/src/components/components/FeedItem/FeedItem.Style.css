@@ -35,12 +35,17 @@
 
 
 .feeditem .postedAt{
-    font-size: 12px;
+    font-size: 10px;
+    color: #586069!important;
+    line-height: 1.5;
 }
 
 
 .username a{
-    color: black;
+    color: #666;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 300;
 }
 .username a:hover{
     color: #3A72ff;
@@ -54,6 +59,6 @@ overflow-y: auto;
 
 .review-text{
     overflow-y: auto;
-    font-weight: 500;
+    /* font-weight: 500; */
     word-break:break-all;
 }

@@ -64,7 +64,7 @@ export const StyledHeader = styled.div`
   .loginInfo{
     ${'' /* border-radius: 10px; */}
     transition: 0.5s;
-    height: 240px;
+    height: 200px;
     width: 220px;
     overflow: hidden;
     position: absolute;

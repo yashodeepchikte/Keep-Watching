@@ -28,7 +28,7 @@ const FeedItem = (props) => {
 
                 <div className="username">
                 <Link to={"/user/" + review.userID}>
-                    <i className="fa fa-user" aria-hidden="true"></i> {review.username}
+                    <i className="fa fa-user" aria-hidden="true"></i>  {review.username}
                 </Link>
                 </div>
 

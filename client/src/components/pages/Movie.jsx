@@ -13,6 +13,7 @@ import Review from "../components/Review/reviews"
 import Selections from "../components/selections/selections"
 import ShowReviews from "../components/ShowReviews/ShowReviews"
 import SimilarMovies from "../components/similarMovies/SimilarMovies"
+import AddToWatchList  from "../components/AddToWatchList/AddToWatchList"
 
 //  importing custom hook
 import useMovieFetch from "../hooks/useMovieFetch"
@@ -47,6 +48,7 @@ const Movie = (props) =>{
             <Rating movieID={movie.id}/>
              <Review movieID={movie.id} movie={movie}/>
              <Selections handelClick={handelClick} collections={["Actors", "Reviews", "Similar Movies"]}/>
+             <AddToWatchList movieID={movie.id} movieInfo = {movie}/>
             {selection==="Actors" &&<Grid header="Actors">
                 {
                     movie.actors.map( actor => (

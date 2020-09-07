@@ -46,17 +46,20 @@
 .user-reviews{
     /* border: 1px solid green; */
     max-height: 400px;
-    
     overflow-y: scroll;
     padding: 0 10px ;
-
-    
 }
+.userWatchlist{
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 0 10px ;
+}
+
 .activity{
     max-width: 600px;
     max-height: 500px;
     min-width: 30   0px;
-    width: 50%;
+    width: 48%;
     /* border: 1px solid rgba(0,0,0,.05); */
     /* position: relative; */
     box-sizing: border-box;
@@ -159,8 +162,13 @@
     display: none;
   }
 
+ 
+.first-row{
+    display: flex;
+    justify-content: space-between;
+}
 
-  @media (max-width: 600px) { 
+  @media (max-width: 750px) { 
     .activity{
         width: 100%;
     }
@@ -186,7 +194,23 @@
         margin-right: 10px;
     }
     .first{
-        font-size: 20px;
+        font-size: 20px;    
     }
+    .first-row{
+        flex-direction: column;
+        align-items: center;
+    }
+    .activity{
+        max-height: 600px;
+    }
+    .user-reviews{
+        max-height: 500px;
+    }
+    .userWatchlist{
+        max-height: 500px;
+        overflow-y: scroll;
+        padding: 0 10px ;
+    }
+
    }
   

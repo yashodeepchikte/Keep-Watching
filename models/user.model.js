@@ -31,6 +31,9 @@ const userSchema = mongoose.Schema({
         type: String,
         default: () => "user"
     },
+    watchlist:{
+        type: Array
+    },
     movies_reviewed: Array
 });
 

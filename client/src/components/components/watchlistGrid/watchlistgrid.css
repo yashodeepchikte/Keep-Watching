@@ -1,0 +1,41 @@
+
+.watchlist-grid{
+  max-width: 640px;
+  margin: 10px auto;
+  padding: 0 20px
+
+}
+
+.watchlist-content{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-gap: 10px;
+    position: relative;
+}
+
+
+
+
+@media (max-width :  1000px) {
+    .watchlist-content{
+
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+  }
+
+  @media  (max-width: 380px) {
+    .watchlist-content{
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+  }
+  @media (max-width: 250px) {
+        .watchlist-content{
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+@media (max-width: 400px) {
+    h1{
+           font-size: 22px;
+    }
+  }

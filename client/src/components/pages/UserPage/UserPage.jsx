@@ -2,12 +2,25 @@
  import React, { useContext, useEffect, useState} from "react"
  import { useParams } from "react-router";
 import {Link} from "react-router-dom"
+
+import {  
+
+    IMAGE_BASE_URL, BACKDROP_SIZE, 
+    POSTER_SIZE, SEARCH_BASE_URL, 
+    POPULAR_BASE_URL 
+}
+from "../../../config"
+
+
 //   Imporiting all the components
 import Spinner from "../../components/Spinner/Spinner"
 import FeedItem from "../../components/FeedItem/FeedItem.component"
 import {ReactComponent as EggLogo} from "../../images/egg.svg"
 import FollowUnfollowButton from "../../components/FolllowUnfollowButton/FollowUnfollowButton"
-
+import Grid from "../../components/Grid/Grid"
+import MovieThumb from  "../../components/MovieThubmnail/MovieThumb"
+import NoImage from "../../images/no_image.jpg"
+import WatchlistGrid from "../../components/watchlistGrid/watchlistGrid"
 
 // Importing Context 
 import AuthContext from "../../../context/Authentication/authenticationContext"
@@ -26,7 +39,6 @@ const UserPage = (props) => {
     const { userID } = useParams()
     const authContext = useContext(AuthContext)
     const {isAuthenticated, loadUser, user} = authContext
-
     useEffect(()=>{
 
         // console.clear()
@@ -118,34 +130,61 @@ const UserPage = (props) => {
                                    {currentUser.data && currentUser.data.movies_reviewed.length}
                                 </span>
                             </div>
-                            {/* <div class="grid-item">7</div>
-                            <div class="grid-item">8</div>
-                            <div class="grid-item">9</div> */}
                         </div>
                     </div>
-    
-                    <div className="activity">
-                        <div className="avtivity-title">
-                            <span>
-                                Recent activity 
-                            </span>
-                        </div>
-                        <div className="user-reviews">
-                            {    
-                                loading ? 
-                                <Spinner />
-                                        :
-                                <>
-                                   { userReviews.data.length > 0 ?userReviews.data.map(review=>(
-                                            <FeedItem review={review} />
-                                        )) 
-                                            :   
-                                        <span className="second medium-font pl5">No Activity</span> 
-                                        
-                                    } 
-                                </>
-                            }
                     
+                    <div className="first-row">
+
+                        <div className="activity">
+                            <div className="avtivity-title">
+                                <span>
+                                    Recent activity 
+                                </span>
+                            </div>
+                            <div className="user-reviews">
+                                {    
+                                    loading ? 
+                                    <Spinner />
+                                            :
+                                    <>
+                                    { userReviews.data.length > 0 ?userReviews.data.map(review=>(
+                                                <FeedItem review={review} />
+                                            )) 
+                                                :   
+                                            <span className="second medium-font pl5">No Activity</span> 
+                                            
+                                        } 
+                                    </>
+                                }
+                        
+                            </div>
+                        </div>
+
+                        <div className="activity">
+                            <div className="avtivity-title">
+                                <span>
+                                {
+                                    currentUser.data.email == user.email ?  "Watchlist" : "Some other Information"
+                                }   
+                                </span>
+                                </div>
+                                <div className="userWatchlist">
+                                {user.watchlist ? 
+                                    <WatchlistGrid > 
+                                            {   
+                                                user.watchlist.map(movie=> {
+                                                    return (<MovieThumb 
+                                                        key={movie.id}
+                                                        image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
+                                                        movieId={movie.id}
+                                                        movieName={movie.original_title}
+                                                    />)
+                                                })
+                                            }
+                                    </WatchlistGrid>
+                                            : 
+                                    <span className="second">Wishlist is empty</span>}
+                            </div>
                         </div>
                     </div>
         

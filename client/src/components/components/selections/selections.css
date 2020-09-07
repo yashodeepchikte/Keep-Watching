@@ -1,6 +1,6 @@
 .selections{
     /* border: 1px solid red; */
-    background-color: #1c1c1c;
+    /* background-color: #1c1c1c; */
     
     width: 100%;
     box-sizing: border-box;
@@ -17,7 +17,7 @@
 }
 .selections-item{
     transition: 0.2s;
-    height: 5vh;
+    height: 6vh;
     width: 25%;
     color: white;
     border: 1px solid white;

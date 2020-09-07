@@ -158,4 +158,22 @@ router.post("/follow", async(req, res) => {
     }
 
 })
+
+//  Add remove movies from watchlist
+router.post("/updateWatchlist", async(req, res)=>{
+    console.log("req.body = ", req.body)
+    const {watchlist, userID} = req.body;
+    console.log("watchlist<<<<<<<", watchlist)
+    console.log("userid<<<<<", userID)
+    try{
+        const oldwatchlist = await User.findByIdAndUpdate({_id: userID}, {"watchlist" : watchlist})
+        console.log("old watchlist  = ", oldwatchlist)
+        // const next_user = await User.findByIdAndUpdate({_id: req.body.nextUser_id}, {"followers" : req.body.updatednextFollowers})
+        // console.log("response2 = ", next_user)
+        res.status(200).send(oldwatchlist)
+    }catch(error){
+        console.log("some errror in updating the watchlist the followers in  the database")
+        console.error(error.message)
+    }
+})
 module.exports = router

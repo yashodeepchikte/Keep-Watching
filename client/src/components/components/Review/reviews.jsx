@@ -53,7 +53,9 @@ const Reviews =   (props) => {
                 <div className="review-container">
                     <div className="review">
                         <p className="title">
-                            Your Review : 
+                            <span className="first">
+                                Your Review : 
+                            </span>
                         </p>
                         <div className="review-content">
                             {
@@ -132,7 +134,7 @@ const Reviews =   (props) => {
                                     <input type="hidden"  value={user.username} name="username"/>
                                     {/* <input type="text" value = {stateReview} name="review_text" onChange={handelChange}/> */}
                                     <textarea value = {stateReview} placeholder="Leave a review" name="review_text" onChange={handelChange}>Leave  review</textarea>
-                                    <button type="submit" className="post">Post Review</button>
+                                    <button type="submit" className="selections-item">Post Review</button>
                             </form>
                         </div>
                     </div>

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const StyledGrid = styled.div`
   max-width: 1280px;
-  margin: 10px auto;
+  margin:  auto;
   padding: 0 20px;
   h1 {
     font-family: 'Abel', sans-serif;
     font-size: 42px;
+    margin-top: 0;
 
     @media screen and (max-width: 768px) {
       font-size: 22px;
