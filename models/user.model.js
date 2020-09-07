@@ -21,6 +21,16 @@ const userSchema = mongoose.Schema({
     ratings:{
         type:Array
     },
+    followers:{
+        type:Array
+    },
+    following:{
+        type: Array
+    },
+    role:{
+        type: String,
+        default: () => "user"
+    },
     movies_reviewed: Array
 });
 

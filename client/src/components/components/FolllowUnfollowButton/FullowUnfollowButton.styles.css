@@ -1,0 +1,73 @@
+.follow-btn-follow:hover{
+ 
+    color: #24292e;
+    background-color: #fafbfc;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.04), inset 0 1px 0 hsla(0,0%,100%,.25);
+    transition: background-color .2s cubic-bezier(.3,0,.5,1);
+}
+.follow-btn-follow{
+    width: 100%;
+    color: #ffffff;
+    background-color: #2ea44f;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.1), inset 0 1px 0 hsla(0,0%,100%,.03);
+    outline: none;
+}
+
+.follow-btn-disabled{
+    
+    width: 100%;
+    cursor: not-allowed;
+    background: #21252d;
+    color: white;
+    border: none;  
+}
+
+.follow-btn-disabled:hover{
+    cursor: not-allowed;
+    background: #21252d;
+    color: white;
+    border: none;
+}
+
+.follow-btn-unfollow{
+    width: 100%;
+    color: #cb2431;
+    transition: none;
+    background-color: #fafbfc;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.04), inset 0 1px 0 hsla(0,0%,100%,.25);
+}
+.center{
+    text-align: center;
+}
+.pl5{
+    padding-left: 50px;
+}
+.follow-btn-unfollow:hover{
+    color:  #fafbfc;
+    transition: none;
+    background-color:#be222e;
+    
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.04), inset 0 1px 0 hsla(0,0%,100%,.25);
+}
+
+.follow-btn-followBack{
+    width: 100%;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.1), inset 0 1px 0 hsla(0,0%,100%,.03);
+    outline: none;
+    color: #fff;
+    background-color: #0366d6;
+    width: 100%
+}
+.follow-btn-followBack:hover{
+    width: 100%;
+    color: #ffffff;
+    background-color: #2ea44f;
+    border-color: rgba(27,31,35,.15);
+    box-shadow: 0 1px 0 rgba(27,31,35,.1), inset 0 1px 0 hsla(0,0%,100%,.03);
+    outline: none;
+}

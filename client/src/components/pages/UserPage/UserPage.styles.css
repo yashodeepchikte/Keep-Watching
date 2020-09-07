@@ -41,22 +41,7 @@
 }
 
 
-.follow-btn:hover{
- 
-    color: #24292e;
-    background-color: #fafbfc;
-    border-color: rgba(27,31,35,.15);
-    box-shadow: 0 1px 0 rgba(27,31,35,.04), inset 0 1px 0 hsla(0,0%,100%,.25);
-    transition: background-color .2s cubic-bezier(.3,0,.5,1);
-}
-.follow-btn{
-    width: 100%;
-    color: #ffffff;
-    background-color: #2ea44f;
-    border-color: rgba(27,31,35,.15);
-    box-shadow: 0 1px 0 rgba(27,31,35,.1), inset 0 1px 0 hsla(0,0%,100%,.03);
-    outline: none;
-}
+
 
 .user-reviews{
     /* border: 1px solid green; */
@@ -118,7 +103,7 @@
 
   }
 
-  .grid-item .first{
+ .first{
     /* font-size: 110%;
     font-weight: 600; */
     font-size: 26px;
@@ -126,7 +111,7 @@
 
     
 }
-.grid-item .second{
+.second{
     font-size: 15px;
     font-style: normal;
     font-weight: 300;
@@ -134,7 +119,9 @@
     color: #666;
 }
 
-
+.medium-font{
+    font-size: 20px
+}
 
 
 
@@ -190,11 +177,16 @@
         border: 1px solid rgba(0,0,0,.1);
         margin-bottom: 1px;
         width: 100%;
+        justify-content: space-between;
+        font-size: 20px;
         /* border-radius: 2px ; */
 
     }
     .grid-item span{
         margin-right: 10px;
+    }
+    .first{
+        font-size: 20px;
     }
    }
   

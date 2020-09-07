@@ -6,10 +6,12 @@ import {Link} from "react-router-dom"
 import Spinner from "../../components/Spinner/Spinner"
 import FeedItem from "../../components/FeedItem/FeedItem.component"
 import {ReactComponent as EggLogo} from "../../images/egg.svg"
+import FollowUnfollowButton from "../../components/FolllowUnfollowButton/FollowUnfollowButton"
+
 
 // Importing Context 
 import AuthContext from "../../../context/Authentication/authenticationContext"
-import AlertContext from "../../../context/AlertContext/AlertContext"
+// import AlertContext from "../../../context/AlertContext/AlertContext"
 
 
 //  Inporting hooks
@@ -34,8 +36,15 @@ const UserPage = (props) => {
 
     const [userReviews, loading, error] = useUserReviewFech(userID)
     const [currentUser, userLoading, userError] = useUserinformationFetch(userID)
+    const [followers, setFollowers] = useState(0)
+    const [following, setFollowing] = useState(0)
+    useEffect(()=>{
+            if(!userLoading){
 
-
+                setFollowers(currentUser.data.followers.length)
+                setFollowing(currentUser.data.following.length)
+            }
+    }, [userLoading])
     if(isAuthenticated){
         if (userLoading){
             return (
@@ -44,8 +53,10 @@ const UserPage = (props) => {
                 </div>
             )
         }else{
-            console.log("user ====> ", user)
-            console.log("current user.data = ", currentUser.data)
+            console.clear()
+            console.log("user = <>", user)
+            console.log("currrentuser =<> ", currentUser)
+            console.log("currentuser.data =<> ", currentUser.data.followers.length)
             return (
                 <div className="user-page-container">
                
@@ -55,7 +66,7 @@ const UserPage = (props) => {
              
                         <div className="displaypic">
                             <EggLogo />
-                            {currentUser.data.email != user.email ?  <button class="follow-btn">Follow </button> : <></>}
+                            {currentUser.data.email != user.email ? <FollowUnfollowButton user={user}  nextUser={currentUser} setFollowingCount={setFollowing} setFollowersCount={setFollowers}/>: <></> }
                         </div>
                         <div class="grid-container">
                             <div class="grid-item"> 
@@ -86,49 +97,31 @@ const UserPage = (props) => {
                                 <span className="first">
                                     Followers
                                 </span>
-                                <span  className="second">
-
+                                <span  className="second pl5">
+                                    {currentUser.data && followers}
                                 </span>
                                 </div>
                             <div class="grid-item">
                                 <span className="first">
                                     Following
                                 </span>
-                                <span className="second">
+                                <span className="second pl5">
 
+                                    {currentUser.data && following}
                                 </span>
                             </div>
-                            {/* <div class="grid-item">movies reviewed : {user && user.movies_reviewed.length}</div> */}
+                            <div class="grid-item">
+                                <span className="first">
+                                    Reviewes given
+                                </span> 
+                                <span className="second pl5">
+                                   {currentUser.data && currentUser.data.movies_reviewed.length}
+                                </span>
+                            </div>
                             {/* <div class="grid-item">7</div>
                             <div class="grid-item">8</div>
                             <div class="grid-item">9</div> */}
                         </div>
-                        {/* <div>
-                            <div>
-                                userName : {user && user.username}
-                            </div>
-                            <div>
-                                Name : {user && user.fname} {user && user.lname}
-                            </div>
-                            <div>
-                                email : {user && user.email}
-    
-                            </div>
-                            <div>
-    
-                                Followers
-                            </div>
-                            <div>
-    
-                                Following
-                            </div>
-                            <div>
-    
-                                movies reviews
-                            </div>                            
-    
-                   
-                        </div> */}
                     </div>
     
                     <div className="activity">
@@ -142,11 +135,15 @@ const UserPage = (props) => {
                                 loading ? 
                                 <Spinner />
                                         :
-                                
-                            userReviews.data.map(review=>(
-                                    <FeedItem review={review} />
-                                )
-                                )  
+                                <>
+                                   { userReviews.data.length > 0 ?userReviews.data.map(review=>(
+                                            <FeedItem review={review} />
+                                        )) 
+                                            :   
+                                        <span className="second medium-font pl5">No Activity</span> 
+                                        
+                                    } 
+                                </>
                             }
                     
                         </div>
