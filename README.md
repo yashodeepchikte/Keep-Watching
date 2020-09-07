@@ -1,7 +1,7 @@
 # Keep-Watching
 Keep-Watching is a movie recommendation and review app build using React for the front-end, express for the back-end, 
 flask for handelling the recommendations and similar movies section, mongoDB for the database<br />
-### Here is the final website : https://keepwatching.herokuapp.com/
+## Here is the final website : https://keepwatching.herokuapp.com/
 
 ### Here is the flask server  https://github.com/yashodeepchikte/Keep-Watching-server
 
@@ -10,50 +10,62 @@ For implimentation purpose dummy users are created using moviewlens 100K dataset
 <hr />
 
 <br />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage.PNG" alt="homepage image"/> <br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/homepage2.png" alt="homepage image"/> <br />
+<hr />
 
 # Features
-<ul>
-<li>
 
 Recommendations are based on similar users(UserBased Collaborative Filtering) and similar movies (itemBased colaborative filtering)
-<br/>(in deployment the item based model exceeds the available memory limit on the free tier of Heroku do this has not been included)
-<br />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations1.PNG" alt="" /><br />
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations2.PNG" alt="" /><br />
-
-</li>
-<li>
-signin/sugnup with email <br>
-Signin in with Google Signin with Github (not added to the deployed build yet)
+<br/>(in deployment the item based model exceeds the available memory limit on the free tier of Heroku so this has not been included)
 <br/>
-<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/sign-page.PNG" alt="" />
-  <br />
-<img alt="" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/signup%20page.PNG" /><br />
-</li>
-<li>
-Follow users to see their activity in your Feed<br />
-<img alt="user feed image" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/Feed.PNG" />
+<br/>
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations1.PNG" alt="" /><br />
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/recommendations3.PNG" alt="" /><br />
+
+<hr/>
+
+## Similar Movies
+If you like a movie you can easily look for more movies similar to the one you liked in the sililar-movies section available for all the movie-pages
+<img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/similar.PNG" alt="" /><br />
+
+<hr/>
+
+
+## signin/sugnup with email <br>
+Signin in with Google, Signin with Github have been tested in developement but have not been added to the deployed build yet.
+<br/>
+
+<img alt="" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/signIn-signUp.PNG" /><br />
+<hr/>
+
+## Follow users to see their activity in your Feed<br />
+<img alt="user feed image" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/followingOtherUsers.PNG" /><br/>
+<img alt="user feed image" src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/feed2.PNG" />
+  
   <hr />
-</li>
-<li>
-Search Movies and See their description, imdb ratings, budget, Earnings, director, cast etc.
+
+## Search Movies and See their description, imdb ratings, budget, Earnings, director, cast etc.
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/searchMovies.PNG" alt="searchMovies.PNG" />
   <br />
 <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/movie.PNG" alt="searchMovies.PNG" />
   <hr />
-</li>
-<li>
-Add Movies to WishList
-</li>
-<li>
-Admin View
-</li>
-<li>
-User activity page
-</li>
 
-</ul>
+
+# Add Movies to WishList
+  <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/watchlist.PNG" /><br/>
+
+
+## Admin View
+<hr/>
+
+
+##  User's page
+  <img src="https://github.com/yashodeepchikte/Keep-Watching/blob/master/Images/userpage.PNG" /><br/>
+   
+  <hr/>
+
+
+
 
 # Setup And Usage
 Clone the repo or download and unzip it <br />
@@ -65,7 +77,7 @@ navigate to the Client folder and run <br />
 
 For Developement <br />
 
-#### For deployment npm was used so avoid using yarn to avooid the .loc file conflicts in deployment
+#### For deployment npm was used so avoid using yarn to avoid the .loc file conflicts in deployment
 
 in the root folder<br/>
 <code>
@@ -89,9 +101,15 @@ you can Sign up using any valid email (dosent have to be a valid email)
 </li>
 <li>
 you can use this dummy user<br />
-email : keepwatching@gmail.com <br />
+email : abcd@gmail.com <br />
 Password : 123456
 </li>
 </ul>
+## To be done 
+<ul>
+  <li>Admin view, admin should be able to see all the activity on the website</li>
+  <li></li>
+  <li></li>
+</ul>
+##### PS:- i don't own or claim the egg logo used for the favicon it was copied from google images
 
-##### PS:- i don't own or claim the logo used for the favicon it was copied from google images
