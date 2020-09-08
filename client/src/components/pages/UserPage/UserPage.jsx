@@ -48,15 +48,18 @@ const UserPage = (props) => {
 
     const [userReviews, loading, error] = useUserReviewFech(userID)
     const [currentUser, userLoading, userError] = useUserinformationFetch(userID)
-    const [followers, setFollowers] = useState(0)
-    const [following, setFollowing] = useState(0)
+    const [followers, setFollowers] = useState([])
+    const [following, setFollowing] = useState([])
     useEffect(()=>{
             if(!userLoading){
 
-                setFollowers(currentUser.data.followers.length)
-                setFollowing(currentUser.data.following.length)
+                setFollowers(currentUser.data.followers)
+                setFollowing(currentUser.data.following)
             }
     }, [userLoading])
+    useEffect(()=>{
+        console.log("Use effect for followers called")
+    }, [followers]);
     if(isAuthenticated){
         if (userLoading){
             return (
@@ -65,10 +68,12 @@ const UserPage = (props) => {
                 </div>
             )
         }else{
-            console.clear()
-            console.log("user = <>", user)
-            console.log("currrentuser =<> ", currentUser)
-            console.log("currentuser.data =<> ", currentUser.data.followers.length)
+            // console.clear()
+            // console.log("user.followers = <>", user.following)
+            // console.log("currrentuser =<> ", currentUser)
+            // console.log("currentuser.followers =<> ", currentUser.data.followers)
+            console.log("Followers = ", followers)
+            // console.log("following = ", following)
             return (
                 <div className="user-page-container">
                
@@ -78,7 +83,7 @@ const UserPage = (props) => {
              
                         <div className="displaypic">
                             <EggLogo />
-                            {currentUser.data.email != user.email ? <FollowUnfollowButton user={user}  nextUser={currentUser} setFollowingCount={setFollowing} setFollowersCount={setFollowers}/>: <></> }
+                            {currentUser.data.email != user.email ? <FollowUnfollowButton user={user}  nextUser={currentUser} setFollowing={setFollowing} setFollowers={setFollowers} />: <></> }
                         </div>
                         <div class="grid-container">
                             <div class="grid-item"> 
@@ -110,7 +115,7 @@ const UserPage = (props) => {
                                     Followers
                                 </span>
                                 <span  className="second pl5">
-                                    {currentUser.data && followers}
+                                    {currentUser.data && followers.length}
                                 </span>
                                 </div>
                             <div class="grid-item">
@@ -119,7 +124,7 @@ const UserPage = (props) => {
                                 </span>
                                 <span className="second pl5">
 
-                                    {currentUser.data && following}
+                                    {currentUser.data && following.length}
                                 </span>
                             </div>
                             <div class="grid-item">
@@ -132,7 +137,54 @@ const UserPage = (props) => {
                             </div>
                         </div>
                     </div>
-                    
+                    <div className="first-row">
+                     <div className="activity">
+                            <div className="avtivity-title">
+                                <span>
+                                   Followers  
+                                </span>
+                            </div>
+                            <div className="userWatchlist">
+                                <div classNam="user-reviews">
+                                    {
+                                        followers.length > 0 ? 
+                                            followers.map(follower => {
+                                                return (
+                                                    <div className="styled-border m5 p5">
+                                                        <Link to={"/user/" + follower[0]}><i className="fa fa-user" aria-hidden="true"></i> {follower[1]}</Link>
+                                                    </div>
+                                                )
+                                            })
+                                            :
+                                        <span className="second">No Followers</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div className="activity">
+                            <div className="avtivity-title">
+                                <span>
+                                   Following
+                                </span>
+                            </div>
+                            <div className="userWatchlist">
+                                <div classNam="user-reviews">
+                                    {   
+                                        following.length > 0 ?
+                                            following.map(follower => {
+                                                return (
+                                                    <div className="styled-border m5 p5">
+                                                        <Link to={"/user/" + follower[0]}><i className="fa fa-user" aria-hidden="true"></i> {follower[1]}</Link>
+                                                    </div>
+                                                )
+                                            })
+                                            :
+                                        <span className="second">Not Following any user</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="first-row">
 
                         <div className="activity">
@@ -167,8 +219,8 @@ const UserPage = (props) => {
                                     currentUser.data.email == user.email ?  "Watchlist" : "Some other Information"
                                 }   
                                 </span>
-                                </div>
-                                <div className="userWatchlist">
+                            </div>
+                            <div className="userWatchlist">
                                 {
                                     currentUser.data.email == user.email ?
 
@@ -194,7 +246,8 @@ const UserPage = (props) => {
                             </div>
                         </div>
                     </div>
-        
+
+
                 </div>
             )
         }

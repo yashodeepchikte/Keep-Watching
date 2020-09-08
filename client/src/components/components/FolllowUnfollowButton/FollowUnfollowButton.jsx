@@ -1,31 +1,22 @@
  /* eslint-disable no-unused-vars */
- import React, { useContext, useEffect, useState} from "react"
+ import React, {  useEffect, useState} from "react"
  import axios from "axios"
 
-import AuthContext from "../../../context/Authentication/authenticationContext"
 
 //   importing styles
 import "./FullowUnfollowButton.styles.css"
 
  const FollowUnfollowButton =  (props) => {
-    let {user, nextUser, setFollowingCount, setFollowersCount} = props
+    let {user, nextUser, setFollowing, setFollowers} = props
     let [loading, setLoading] = useState(true)
-    let [success, setSuccess] = useState(false)
     let [operationType, setOperationType] = useState("follow")
-    const authContext = useContext(AuthContext)
-    const {loadUser} = authContext;
-    // console.clear()
-    // console.log(user)
-    // console.log("currrentuser.data = ", nextUser)
-    // console.log("user.followers = ", user.followers)
-    // console.log("user.following = ", user.following)
-
-    // console.log("nextUser.data.followers = ", nextUser.data.followers)
-    // console.log("nextUser.data.following = ", nextUser.data.following)
+  
 
     const user_id = user._id
     const nextUser_id  = nextUser.data._id
 
+    const user_userName = user.username
+    const next_user_username = nextUser.data.username
 
     let userFollowers = user.followers
     let userFollowing = user.following
@@ -36,23 +27,32 @@ import "./FullowUnfollowButton.styles.css"
     let updatedUserFollowing = userFollowing;
     let updatednextFollowers = nextFollowers;
 
-    // console.log("user_id = ", user_id)
-    // console.log("next_user_id = ", nextUser_id)
 
     useEffect(()=>{
-        if(nextFollowers.includes(user._id)){
-            console.log("user already follows rhe nxt user thus showing unfollow button")
-            setLoading(false)
-            setOperationType("unfollow")
-        }else if(nextFollowing.includes(user._id)){
-            console.log("The next user follows current user thus showing follow back button")
-            setLoading(false)
-            setOperationType("followBack")
-        }else{
-            console.log("Neither of the users follow each other ths showing follow button")
-            setLoading(false)
-            setOperationType("follow")
+        let operationset = false;
+        for(let i =0; i < userFollowing.length ; i++ ){
+            if(userFollowing[i][0] == nextUser_id){
+                console.log("user already follows rhe next user thus showing unfollow button")
+                setLoading(false)
+                setOperationType("unfollow")
+                operationset = true
+                break
+            }
         }
+        if(!operationset){
+            for(let i =0; i < nextFollowing.length ; i++ ){
+                if(nextFollowing[i][0] == user_id){
+                    if(operationType !="unfollow" ){
+                        console.log("operatin type ====> ", operationType)
+                        console.log("nrent user showing follow back button")
+                        setLoading(false)
+                        setOperationType("followBack")
+                        break
+                    }
+                }
+            }
+        }
+        setLoading(false)
     }, [])
 
 
@@ -60,18 +60,17 @@ import "./FullowUnfollowButton.styles.css"
      const handelClick =async (event) => {
         setLoading(true)
         event.preventDefault()
-        console.clear()
+        // console.clear()
         console.log("Operation type = ", operationType)
 
         if(operationType == "follow" || operationType =="followBack"){
-            updatedUserFollowing = updatedUserFollowing.filter(following_id => following_id != nextUser_id)
-            updatednextFollowers = updatednextFollowers.filter(follower_id => follower_id != user_id)
-            updatedUserFollowing.push(nextUser_id)
-            updatednextFollowers.push(user_id)
-
+            updatedUserFollowing = updatedUserFollowing.filter(following => following[0] != nextUser_id)
+            updatednextFollowers = updatednextFollowers.filter(follower => follower[0] != user_id)
+            updatedUserFollowing.unshift([nextUser_id, next_user_username])
+            updatednextFollowers.unshift([user_id, user_userName])
         }else {
-            updatedUserFollowing = updatedUserFollowing.filter(following_id => following_id != nextUser_id)
-            updatednextFollowers = updatednextFollowers.filter(follower_id => follower_id != user_id)
+            updatedUserFollowing = updatedUserFollowing.filter(following => following[0] != nextUser_id)
+            updatednextFollowers = updatednextFollowers.filter(follower => follower[0] != user_id)
         }
 
         try{    
@@ -80,15 +79,23 @@ import "./FullowUnfollowButton.styles.css"
                             user_id,nextUser_id, 
                             updatedUserFollowing, updatednextFollowers})
             setLoading(false)          
-            if(operationType == "follow"||operationType=="followBack"){
-                setFollowersCount(followers => followers + 1)
+
+            if(operationType == "follow" || operationType =="followBack"){
                 setOperationType("unfollow")
             }else{
-                setFollowersCount(followers => {
-                    return followers > 0 ? followers -1 : 0
-                })
-                setOperationType("follow")
+                for(let i =0; i < nextFollowing.length ; i++ ){
+                    if(nextFollowing[i][0] == user_id){
+                        console.log("next user follows current user showing follow back button")
+                        setLoading(false)
+                        setOperationType("followBack")
+                        break
+                    }else{
+                        setOperationType("follow")
+                    }
+                }
             }
+            setFollowers(followers => updatednextFollowers)
+            
         }catch{
             console.log("Some error in following the user")
         }

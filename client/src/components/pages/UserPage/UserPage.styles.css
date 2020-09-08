@@ -86,6 +86,15 @@
     line-height: 1.25;
 }
 
+.m50{
+    margin: 50px;
+}
+.m5{
+    margin: 5px;
+}
+.p5{
+    padding: 5px;
+}
 
 .grid-container {
     display: grid;
@@ -126,7 +135,11 @@
     font-size: 20px
 }
 
-
+.styled-border{
+    box-shadow: 0 0 10px -1px rgba(0,0,0,.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.05);
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .activity::-webkit-scrollbar {

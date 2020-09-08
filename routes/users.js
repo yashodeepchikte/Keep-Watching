@@ -142,15 +142,17 @@ router.get("/:userID", async (req, res) => {
 
 //  Follow or un follow users
 router.post("/follow", async(req, res) => {
-    console.log("req.body = ", req.body)
-    console.log("user_id = ", req.body.user_id)
-    console.log("nextUser_id = ", req.body.nextUser_id)
+    // console.log("req.body = ", req.body)
+    // console.log("user_id = ", req.body.user_id)
+    console.log("updatedUserFollowing = ", req.body.updatedUserFollowing)
+    console.log("updatednextFollowers = ", req.body.updatednextFollowers)
+    // console.log("nextUser_id = ", req.body.nextUser_id)
 
     try{
         const user = await User.findByIdAndUpdate({_id: req.body.user_id}, {"following" : req.body.updatedUserFollowing})
-        console.log("response 1 = ", user)
+        // console.log("user  = ", user)
         const next_user = await User.findByIdAndUpdate({_id: req.body.nextUser_id}, {"followers" : req.body.updatednextFollowers})
-        console.log("response2 = ", next_user)
+        // console.log("next user= ", next_user)
         res.status(200).send("Success")
     }catch(error){
         console.log("some errror in updating the followers in  the database")
