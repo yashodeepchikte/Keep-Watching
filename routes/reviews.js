@@ -29,7 +29,7 @@ router.get("/movie/:movieID", async (req, res) => {
     const movieID = req.params.movieID
     try {
         console.log("movieID =>> ", movieID)
-        const reviews = await Review.find({tmdbMovieId: movieID})
+        const reviews = await Review.find({tmdbMovieId: movieID}).sort({"date":-1})
         res.status(200).json(reviews)
     } catch (error) {
         console.log("error = ", error.message)

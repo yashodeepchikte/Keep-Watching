@@ -169,21 +169,28 @@ const UserPage = (props) => {
                                 </span>
                                 </div>
                                 <div className="userWatchlist">
-                                {user.watchlist ? 
-                                    <WatchlistGrid > 
-                                            {   
-                                                user.watchlist.map(movie=> {
-                                                    return (<MovieThumb 
-                                                        key={movie.id}
-                                                        image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
-                                                        movieId={movie.id}
-                                                        movieName={movie.original_title}
-                                                    />)
-                                                })
-                                            }
-                                    </WatchlistGrid>
-                                            : 
-                                    <span className="second">Wishlist is empty</span>}
+                                {
+                                    currentUser.data.email == user.email ?
+
+                                    (
+                                        user.watchlist ? 
+                                        <WatchlistGrid > 
+                                                {   
+                                                    user.watchlist.map(movie=> {
+                                                        return (<MovieThumb 
+                                                            key={movie.id}
+                                                            image={movie.poster_path ?`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`: NoImage}
+                                                            movieId={movie.id}
+                                                            movieName={movie.original_title}
+                                                        />)
+                                                    })
+                                                }
+                                        </WatchlistGrid>
+                                                : 
+                                        <span className="second">Wishlist is empty</span>
+                                    ) :
+                                    <></>
+                                }
                             </div>
                         </div>
                     </div>

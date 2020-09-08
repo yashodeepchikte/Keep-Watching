@@ -1,4 +1,5 @@
 import React  from "react"
+import {Link} from "react-router-dom"
 
 import useReviewsFetch from "../../hooks/useReviewsFetch"
 import Spinner from "../Spinner/Spinner"
@@ -14,7 +15,6 @@ const ShowReviews = (props) => {
     if (error) return <div>Something went wrong</div>
     if (loading) return <Spinner />
 
-
     return(
         <div className="ShowReviews">
 
@@ -24,9 +24,17 @@ const ShowReviews = (props) => {
         {
             movie_reviews.data.length !== 0 && 
             movie_reviews.data.map(review => (
+            
             <div className="reviewBox">
+            {
+                console.log("Review =???????", review)
+            }
                 <div className="reviewBox-container">
-                    <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
+                <span className="username">
+                    <Link to={"/user/"+review.userID}>
+                        <h3><i className="fa fa-user" aria-hidden="true"></i> {review.username}</h3>
+                    </Link>
+                </span>
                     <h3>Review</h3>
                     <p>{review.review}</p>
                 </div>
