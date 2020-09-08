@@ -108,8 +108,8 @@ Password : 123456
 ## To be done 
 <ul>
   <li>Admin view, admin should be able to see all the activity on the website</li>
-  <li></li>
-  <li></li>
+  <li>At this point styling is a mess it need to be counverted to a class oriented fashon like bootstrap unkine what we have now that is componenet based styling</li>
+  <li>Optimize the manifest files ot work proprly with Add to homescreen progressive app</li>
 </ul>
 ##### PS:- i don't own or claim the egg logo used for the favicon it was copied from google images
 
