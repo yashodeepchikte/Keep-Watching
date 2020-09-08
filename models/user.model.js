@@ -22,7 +22,8 @@ const userSchema = mongoose.Schema({
         type:Array
     },
     followers:{
-        type:Array
+        type:Array,
+        default: () =>[["5f01c49105651443acc4f823", "yashodeepchikte2520"]]
     },
     following:{
         type: Array

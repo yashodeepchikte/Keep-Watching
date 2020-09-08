@@ -49,7 +49,7 @@ const AddtoWatchlist = (props)=>{
         watchlist = user.watchlist.filter(movie => movie.id != movieID)
         console.log("operation = ", operation)
         if(operation == "addToWatchlist"){
-            watchlist.push(newmovie)
+            watchlist.unshift(newmovie)
         }
 
         try {
