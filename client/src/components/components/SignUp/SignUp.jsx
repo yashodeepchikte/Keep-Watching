@@ -24,7 +24,7 @@ const validateEmail = (email) =>  {
     {return (true);}else{return false}
 }
 
-//  Helpwer function
+//  Helper function
 const checkAlphabetic = (inputtxt) => {
     var alphabets = /^[a-zA-Z]+$/;
     if(inputtxt.match(alphabets)){ return true;}else{ return false; }
